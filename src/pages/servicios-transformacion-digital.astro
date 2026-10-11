@@ -1,0 +1,540 @@
+---
+// src/pages/servicios-transformacion-digital.astro - Página Oficial "Transformación Digital" de Boosted (boosted.cl)
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+
+// 6 Pasos de Nuestra Metodología: ¿Cómo abordamos la transformación digital para empresas?
+const methodologySteps = [
+  {
+    number: "01",
+    badge: "Fase 1: Diagnóstico",
+    title: "Diagnóstico de procesos y madurez digital",
+    description: "Analizamos cómo trabajas hoy, qué herramientas usas y dónde se pierden tiempo e información, para priorizar qué mejorar primero.",
+    deliverable: "Mapa de procesos actuales & matriz de prioridades",
+    icon: `<svg class="w-6 h-6 text-[#030303] group-hover:text-[#26CCCA] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7" /></svg>`
+  },
+  {
+    number: "02",
+    badge: "Fase 2: Estrategia",
+    title: "Definición de objetivos y hoja de ruta",
+    description: "Establecemos metas concretas y medibles, y un plan por etapas que conecta procesos, tecnología y equipos.",
+    deliverable: "Roadmap por etapas & KPIs de impacto",
+    icon: `<svg class="w-6 h-6 text-[#030303] group-hover:text-[#26CCCA] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>`
+  },
+  {
+    number: "03",
+    badge: "Fase 3: Arquitectura",
+    title: "Diseño del nuevo modelo de operación",
+    description: "Rediseñamos flujos clave y definimos qué se automatiza, qué se simplifica y qué herramientas se integran o reemplazan.",
+    deliverable: "Blueprints operativos & arquitectura de datos",
+    icon: `<svg class="w-6 h-6 text-[#030303] group-hover:text-[#26CCCA] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z" /></svg>`
+  },
+  {
+    number: "04",
+    badge: "Fase 4: Ejecución",
+    title: "Implementación de herramientas",
+    description: "Configuramos e integramos soluciones digitales, automatizaciones y desarrollos a medida según las prioridades del plan.",
+    deliverable: "Puesta en marcha de software & conexiones API",
+    icon: `<svg class="w-6 h-6 text-[#030303] group-hover:text-[#26CCCA] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>`
+  },
+  {
+    number: "05",
+    badge: "Fase 5: Adopción",
+    title: "Habilitación y acompañamiento de equipos",
+    description: "Capacitamos a tu equipo, resolvemos dudas operativas y aseguramos la adopción real de los nuevos procesos y herramientas.",
+    deliverable: "Sesiones de inducción & manuales operativos",
+    icon: `<svg class="w-6 h-6 text-[#030303] group-hover:text-[#26CCCA] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>`
+  },
+  {
+    number: "06",
+    badge: "Fase 6: Evolución",
+    title: "Medición, ajustes y mejora continua",
+    description: "Definimos indicadores, medimos resultados y vamos ajustando el sistema para mantener y aumentar el impacto en el tiempo.",
+    deliverable: "Reportes de telemetría & optimización continua",
+    icon: `<svg class="w-6 h-6 text-[#030303] group-hover:text-[#26CCCA] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>`
+  }
+];
+
+// 4 Grandes Beneficios de la Transformación Digital con Boosted
+const transformationBenefits = [
+  {
+    number: "01",
+    title: "Procesos más eficientes",
+    highlight: "Con menos pasos manuales y menos retrabajo.",
+    detail: "Flujos optimizados que eliminan la duplicación de tareas, reducen el error humano y aceleran los tiempos de respuesta en cada área."
+  },
+  {
+    number: "02",
+    title: "Mejor visibilidad del negocio",
+    highlight: "Gracias a datos centralizados y reportes claros.",
+    detail: "Toma decisiones fundamentadas con telemetría en tiempo real sobre ventas, atención y operaciones, dejando atrás las hojas de cálculo dispersas."
+  },
+  {
+    number: "03",
+    title: "Equipos más alineados",
+    highlight: "Preparados para trabajar en un entorno digital.",
+    detail: "Herramientas que el equipo realmente disfruta usar, con capacitación práctica que elimina la resistencia al cambio y fomenta la colaboración."
+  },
+  {
+    number: "04",
+    title: "Mayor capacidad de adaptación",
+    highlight: "Innovación y crecimiento sostenible en el tiempo.",
+    detail: "Una base tecnológica ágil y modular que permite a tu empresa reaccionar rápido a las exigencias del mercado sin rehacer toda la infraestructura."
+  }
+];
+
+const calendarUrl = "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0eLzWvh-yrlAvDqP4vCBpex5c2wtzqpp89n_C4VVp6Obx184OHVTcQxAJBAtq4CtJtcYmyMuuA";
+---
+
+<Layout 
+  title="Transformación Digital para Empresas y Pymes | Boosted.cl"
+  description="De procesos manuales a ecosistemas digitales. Rediseñamos tu operación y adoptamos tecnología para que la digitalización se traduzca en más eficiencia, mejor experiencia y crecimiento sostenible."
+>
+  <Navbar />
+
+  <main class="flex-grow">
+
+    <!-- 1. HERO SECTION (Negro Obsidiana #050505 con Acentos Cian & Estilo Editorial Abierto) -->
+    <section class="min-h-[calc(100vh-80px)] bg-[#050505] text-white relative flex items-center px-6 sm:px-12 lg:px-20 py-12 lg:py-16 overflow-hidden select-none">
+      
+      <!-- Fondo Cinematográfico y Texturas de Profundidad -->
+      <div class="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
+        <img 
+          src="/mockup/digital_ecosystem_mockup.jpg" 
+          alt="Boosted Digital Transformation Texture" 
+          class="w-full h-full object-cover object-right lg:object-center opacity-30 brightness-90 contrast-125 scale-105"
+        />
+        <!-- Viñetas de gradiente que dejan visible la imagen de fondo -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505] opacity-80"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/50 to-transparent opacity-85"></div>
+        <div class="absolute top-1/3 left-1/4 w-[500px] h-[350px] bg-[#26CCCA]/15 rounded-full blur-[160px]"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-[450px] h-[300px] bg-[#0E8A88]/20 rounded-full blur-[180px]"></div>
+      </div>
+
+      <!-- Contenido Principal en Grilla de 2 Columnas -->
+      <div class="w-full max-w-[1400px] mx-auto relative z-10 py-6 sm:py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          <!-- Columna Izquierda: Titulares, Narrativa y CTAs (7 Columnas) -->
+          <div class="lg:col-span-7 flex flex-col justify-center">
+
+            <!-- Titular Proporcionado e Impactante -->
+            <h1 class="font-bebas text-4xl sm:text-6xl lg:text-[4.6rem] text-white tracking-tight uppercase leading-[0.95] mb-4">
+              TRANSFORMACIÓN DIGITAL PARA<br />
+              <span class="bg-gradient-to-r from-[#26CCCA] via-[#3DE8E5] to-[#0E8A88] bg-clip-text text-transparent">
+                EMPRESAS Y PYMES
+              </span>
+            </h1>
+
+            <!-- Párrafo Claro y Respirable -->
+            <p class="font-poppins text-sm sm:text-base lg:text-lg text-zinc-300 font-normal leading-relaxed max-w-xl mb-6">
+              De procesos manuales a ecosistemas digitales. Rediseñamos tu operación y adoptamos tecnología para que la digitalización se traduzca en <strong class="text-white font-medium">más eficiencia, mejor experiencia y crecimiento sostenible</strong>.
+            </p>
+
+            <!-- Botones de Acción Inmediatos -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5">
+              <!-- CTA 1: Hablemos sobre tu Transformación Digital -->
+              <a 
+                href="#contacto" 
+                class="btn-primary text-xs uppercase tracking-wider py-3.5 px-7 inline-flex items-center justify-center gap-2.5 border border-white/20 shadow-lg text-center"
+              >
+                <span>Hablemos sobre tu Transformación Digital</span>
+                <svg class="w-4 h-4 text-[#26CCCA] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </a>
+
+              <!-- CTA 2: Agendar Asesoría Gratuita -->
+              <a 
+                href={calendarUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-7 py-3.5 rounded-full border border-white/20 bg-white/[0.05] hover:bg-white/[0.12] hover:border-[#26CCCA] text-white font-outfit text-xs font-bold uppercase tracking-wider transition-all duration-200 inline-flex items-center justify-center gap-2 text-center"
+              >
+                <span>Agendar Asesoría Gratuita</span>
+                <svg class="w-4 h-4 text-[#26CCCA] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Columna Derecha: Métricas y Pilares en Estilo Editorial Abierto (Sin cajas ni recuadros) -->
+          <div class="lg:col-span-5 flex flex-col justify-center gap-8 lg:gap-10 lg:pl-6">
+            
+            <!-- Pilar 1: Sincronización Operativa -->
+            <div class="relative pl-6 border-l-2 border-[#26CCCA]/40 hover:border-[#26CCCA] transition-colors duration-300 group">
+              <div class="flex items-baseline justify-between gap-4 mb-2">
+                <div>
+                  <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#26CCCA] block mb-1">
+                    Modelo Operativo
+                  </span>
+                  <h3 class="font-outfit text-xl sm:text-2xl font-bold text-white tracking-tight">
+                    Ecosistema Conectado
+                  </h3>
+                </div>
+                <span class="font-bebas text-6xl sm:text-7xl text-white group-hover:text-[#26CCCA] transition-colors leading-none tracking-tight shrink-0">
+                  360°
+                </span>
+              </div>
+              <p class="font-poppins text-xs sm:text-sm text-zinc-400 font-normal leading-relaxed max-w-md">
+                Dejamos atrás las tareas manuales y herramientas sueltas para operar con procesos, datos y personas en sincronía continua.
+              </p>
+            </div>
+
+            <!-- Divisor sutil entre métricas -->
+            <div class="h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent"></div>
+
+            <!-- Pilar 2: Adopción y Retorno Real -->
+            <div class="relative pl-6 border-l-2 border-[#26CCCA]/40 hover:border-[#26CCCA] transition-colors duration-300 group">
+              <div class="flex items-baseline justify-between gap-4 mb-2">
+                <div>
+                  <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#26CCCA] block mb-1">
+                    Adopción Real
+                  </span>
+                  <h3 class="font-outfit text-xl sm:text-2xl font-bold text-white tracking-tight">
+                    Impacto Medible
+                  </h3>
+                </div>
+                <span class="font-bebas text-6xl sm:text-7xl text-[#26CCCA] leading-none tracking-tight shrink-0">
+                  100%
+                </span>
+              </div>
+              <p class="font-poppins text-xs sm:text-sm text-zinc-400 font-normal leading-relaxed max-w-md">
+                La tecnología no se queda en un documento: se implanta directamente en el día a día con acompañamiento activo para tu equipo.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 2. NUESTRA METODOLOGÍA (Blanco Puro #FFFFFF) -->
+    <section id="metodologia" class="py-24 sm:py-32 bg-[#FFFFFF] text-[#030303] border-t border-black/[0.06] relative">
+      <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+        
+        <!-- Header de Sección -->
+        <div class="max-w-3xl mb-16 sm:mb-20">
+          <span class="font-outfit text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0E8A88] block mb-3">
+            NUESTRA METODOLOGÍA
+          </span>
+          <h2 class="font-bebas text-5xl sm:text-6xl lg:text-7xl text-[#030303] tracking-tight uppercase leading-[0.95] mb-5">
+            ¿CÓMO ABORDAMOS LA TRANSFORMACIÓN <span class="border-b-4 border-[#26CCCA] inline-block">DIGITAL PARA EMPRESAS?</span>
+          </h2>
+          <p class="font-poppins text-base sm:text-lg text-[#52525B] leading-relaxed">
+            Partimos entendiendo cómo funciona hoy tu negocio, definimos qué debe cambiar y construimos una hoja de ruta que conecta procesos, personas y tecnología en un ecosistema inteligente.
+          </p>
+        </div>
+
+        <!-- Grilla de los 6 Pasos Metodológicos -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-16">
+          {methodologySteps.map((step) => (
+            <div class="luxury-card group flex flex-col justify-between p-8 rounded-3xl bg-white border border-zinc-200 hover:border-[#26CCCA] hover:-translate-y-1 transition-all duration-300 relative min-h-[320px]">
+              <div>
+                <!-- Top Row: Icono + Número Grande -->
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-black/10">
+                  <div class="w-12 h-12 rounded-2xl bg-zinc-100 flex items-center justify-center group-hover:bg-[#26CCCA]/10 transition-colors" set:html={step.icon}>
+                  </div>
+                  <span class="font-bebas text-4xl text-zinc-300 group-hover:text-[#26CCCA] transition-colors leading-none">
+                    {step.number}
+                  </span>
+                </div>
+
+                <!-- Título de la Fase -->
+                <h3 class="font-outfit text-2xl font-bold text-[#030303] mb-3 leading-tight">
+                  {step.title}
+                </h3>
+
+                <!-- Descripción Oficial -->
+                <p class="font-poppins text-sm text-[#52525B] leading-relaxed mb-6">
+                  {step.description}
+                </p>
+              </div>
+
+              <!-- Footer de la Tarjeta: Badge de Fase & Entregable -->
+              <div class="pt-4 border-t border-black/5 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-outfit">
+                <span class="inline-flex items-center gap-1.5 uppercase font-bold text-[#0E8A88]">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA]"></span>
+                  {step.badge}
+                </span>
+                <span class="text-zinc-400 font-medium">{step.deliverable}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        <!-- Quote / Statement de Enfoque Metodológico Boosted -->
+        <div class="rounded-3xl bg-[#050505] text-white p-8 sm:p-12 border border-white/10 relative overflow-hidden shadow-xl">
+          <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-[#26CCCA]/10 rounded-full blur-3xl pointer-events-none"></div>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            <div class="lg:col-span-8">
+              <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#26CCCA] block mb-3">
+                TRANSFORMACIÓN ORIENTADA AL RETORNO
+              </span>
+              <p class="font-outfit text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-snug">
+                "La verdadera transformación digital no consiste en acumular software, sino en <span class="text-[#26CCCA]">conectar procesos, personas y tecnología</span> para multiplicar resultados tangibles."
+              </p>
+            </div>
+            <div class="lg:col-span-4 flex lg:justify-end">
+              <a 
+                href="#contacto" 
+                class="btn-primary text-xs uppercase tracking-wider py-4 px-8 inline-flex items-center gap-2 border border-white/20 whitespace-nowrap"
+              >
+                <span>Hablemos sobre tu Hoja de Ruta</span>
+                <svg class="w-4 h-4 text-[#26CCCA]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. IMPACTO REAL: BENEFICIOS DE LA TRANSFORMACIÓN DIGITAL (Gris Muy Claro #F8F9FA) -->
+    <section id="beneficios" class="py-24 sm:py-32 bg-[#F8F9FA] text-[#030303] border-t border-black/[0.06] relative">
+      <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+        
+        <!-- Header de Sección -->
+        <div class="max-w-3xl mb-16 sm:mb-20">
+          <span class="font-outfit text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0E8A88] block mb-3">
+            IMPACTO REAL
+          </span>
+          <h2 class="font-bebas text-5xl sm:text-6xl lg:text-7xl text-[#030303] tracking-tight uppercase leading-[0.95] mb-5">
+            BENEFICIOS DE LA TRANSFORMACIÓN <span class="border-b-4 border-[#26CCCA] inline-block">DIGITAL CON BOOSTED</span>
+          </h2>
+          <p class="font-poppins text-base sm:text-lg text-[#52525B] leading-relaxed">
+            Lo que cambia cuando la transformación digital se conecta con resultados tangibles en tu día a día:
+          </p>
+        </div>
+
+        <!-- Grilla de Beneficios en 4 Tarjetas de Lujo -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          {transformationBenefits.map((b) => (
+            <div class="luxury-card group flex flex-col justify-between p-8 rounded-3xl bg-white border border-zinc-200 hover:border-[#26CCCA] hover:-translate-y-1 transition-all duration-300 relative min-h-[300px]">
+              <div>
+                <!-- Top: Número + Checkmark -->
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-black/10">
+                  <span class="font-bebas text-4xl text-zinc-300 group-hover:text-[#26CCCA] transition-colors leading-none">
+                    {b.number}
+                  </span>
+                  <div class="w-8 h-8 rounded-full bg-[#26CCCA]/15 text-[#0E8A88] flex items-center justify-center font-bold text-sm">
+                    ✓
+                  </div>
+                </div>
+
+                <!-- Título del Beneficio -->
+                <h3 class="font-outfit text-xl sm:text-2xl font-bold text-[#030303] mb-3 leading-snug">
+                  {b.title}
+                </h3>
+
+                <!-- Highlight Oficial -->
+                <p class="font-poppins text-sm font-semibold text-[#0E8A88] mb-3">
+                  {b.highlight}
+                </p>
+
+                <!-- Detalle Contextual -->
+                <p class="font-poppins text-xs text-[#52525B] leading-relaxed">
+                  {b.detail}
+                </p>
+              </div>
+
+              <!-- Footer Indicator -->
+              <div class="pt-4 border-t border-black/5 flex items-center gap-2 text-xs font-outfit uppercase font-semibold text-[#0E8A88]">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA]"></span>
+                <span>Eficiencia Sostenible</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. ¿POR QUÉ IMPULSAR TU TRANSFORMACIÓN DIGITAL CON BOOSTED? (Negro Obsidiana #030303) -->
+    <section id="por-que-boosted" class="py-16 sm:py-20 lg:py-24 bg-[#030303] text-white border-y border-white/10 relative overflow-hidden">
+      <!-- Glows ambientales sutiles -->
+      <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#26CCCA]/10 rounded-full blur-[180px] pointer-events-none"></div>
+      <div class="absolute bottom-0 right-10 w-72 h-72 bg-[#26CCCA]/5 rounded-full blur-[140px] pointer-events-none"></div>
+
+      <div class="max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Header de Sección Compacto y Centrado -->
+        <div class="max-w-2xl mx-auto text-center mb-10 sm:mb-12">
+          <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#26CCCA] block mb-2">
+            VENTAJA ESTRATÉGICA
+          </span>
+          <h2 class="font-bebas text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight uppercase leading-[0.95] mb-3">
+            ¿POR QUÉ IMPULSAR TU TRANSFORMACIÓN CON <span class="text-[#26CCCA]">BOOSTED</span>?
+          </h2>
+          <p class="font-poppins text-xs sm:text-sm text-zinc-400 leading-relaxed max-w-lg mx-auto">
+            Hacemos que la tecnología funcione para tu negocio, combinando estrategia, experiencia y ejecución técnica en un solo flujo.
+          </p>
+        </div>
+
+        <!-- Grilla de los 2 Grandes Pilares -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-5 sm:gap-6 mb-10 sm:mb-12">
+          
+          <!-- Pilar 01: Enfoque Estratégico -->
+          <div class="group relative rounded-2xl sm:rounded-3xl bg-[#080808] border border-white/10 hover:border-[#26CCCA]/50 p-6 sm:p-7 lg:p-8 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
+            <!-- Línea luminosa superior en hover -->
+            <div class="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#26CCCA]/30 to-transparent group-hover:via-[#26CCCA] transition-all duration-500"></div>
+            
+            <div>
+              <!-- Top Row: Icono + Número Gigante Fantasma + Badge -->
+              <div class="flex items-center justify-between mb-5 pb-4 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 text-[#26CCCA] flex items-center justify-center group-hover:bg-[#26CCCA] group-hover:text-[#030303] transition-all duration-300 shadow-sm shrink-0">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                    </svg>
+                  </div>
+                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-outfit uppercase font-bold tracking-wider text-[#26CCCA] bg-[#26CCCA]/10 border border-[#26CCCA]/20">
+                    Visión Integral
+                  </span>
+                </div>
+
+                <span class="font-bebas text-4xl sm:text-5xl text-white/10 group-hover:text-[#26CCCA]/40 transition-colors leading-none">
+                  01
+                </span>
+              </div>
+
+              <!-- Título y Descripción Principal -->
+              <h3 class="font-outfit text-xl sm:text-2xl font-bold text-white mb-2 leading-tight">
+                Enfoque Estratégico
+              </h3>
+
+              <p class="font-poppins text-xs sm:text-sm text-zinc-300 leading-relaxed mb-5">
+                Combinamos visión de negocio, diseño de experiencia y tecnología para que la transformación no se quede en un documento, sino en procesos que funcionan.
+              </p>
+            </div>
+
+            <!-- Entregables / Claves de Valor -->
+            <div class="pt-4 border-t border-white/10 space-y-2 font-poppins text-xs text-zinc-400">
+              <div class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA] shrink-0"></span>
+                <span>Foco en retorno sobre inversión y priorización de quick-wins.</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA] shrink-0"></span>
+                <span>Diseño centrado en la usabilidad real para colaboradores y clientes.</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA] shrink-0"></span>
+                <span>Acompañamiento cercano durante todo el ciclo de cambio operativo.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pilar 02: Ecosistema Integrado -->
+          <div class="group relative rounded-2xl sm:rounded-3xl bg-[#080808] border border-white/10 hover:border-[#26CCCA]/50 p-6 sm:p-7 lg:p-8 transition-all duration-300 flex flex-col justify-between overflow-hidden shadow-xl hover:-translate-y-1">
+            <!-- Línea luminosa superior en hover -->
+            <div class="absolute inset-x-0 top-0 h-[2px] bg-gradient-to-r from-transparent via-[#26CCCA]/30 to-transparent group-hover:via-[#26CCCA] transition-all duration-500"></div>
+
+            <div>
+              <!-- Top Row: Icono + Número Gigante Fantasma + Badge -->
+              <div class="flex items-center justify-between mb-5 pb-4 border-b border-white/10">
+                <div class="flex items-center gap-3">
+                  <div class="w-10 h-10 rounded-xl bg-white/[0.05] border border-white/10 text-[#26CCCA] flex items-center justify-center group-hover:bg-[#26CCCA] group-hover:text-[#030303] transition-all duration-300 shadow-sm shrink-0">
+                    <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
+                    </svg>
+                  </div>
+                  <span class="px-2.5 py-0.5 rounded-full text-[11px] font-outfit uppercase font-bold tracking-wider text-[#26CCCA] bg-[#26CCCA]/10 border border-[#26CCCA]/20">
+                    Sincronía Total
+                  </span>
+                </div>
+
+                <span class="font-bebas text-4xl sm:text-5xl text-white/10 group-hover:text-[#26CCCA]/40 transition-colors leading-none">
+                  02
+                </span>
+              </div>
+
+              <!-- Título y Descripción Principal -->
+              <h3 class="font-outfit text-xl sm:text-2xl font-bold text-white mb-2 leading-tight">
+                Ecosistema Integrado
+              </h3>
+
+              <p class="font-poppins text-xs sm:text-sm text-zinc-300 leading-relaxed mb-5">
+                Integramos automatización, desarrollos a medida y presencia digital dentro de un mismo ecosistema, alineado a metas concretas de tu empresa.
+              </p>
+            </div>
+
+            <!-- Entregables / Claves de Valor -->
+            <div class="pt-4 border-t border-white/10 space-y-2 font-poppins text-xs text-zinc-400">
+              <div class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA] shrink-0"></span>
+                <span>Conexión fluida entre tus sistemas actuales (CRM, ERP, analítica y bases de datos).</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA] shrink-0"></span>
+                <span>Cero silos de datos: la información viaja en tiempo real a donde se necesita.</span>
+              </div>
+              <div class="flex items-center gap-2.5">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA] shrink-0"></span>
+                <span>Evolución modular que te permite escalar capacidades a tu propio ritmo.</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Bloque Inferior de Conversión & CTAs -->
+        <div class="max-w-xl mx-auto text-center">
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-4">
+            <a 
+              href={calendarUrl}
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="btn-primary text-xs uppercase tracking-wider py-3.5 px-7 inline-flex items-center justify-center gap-2 border border-white/20 shadow-xl text-center w-full sm:w-auto"
+            >
+              <span>Agendar una Asesoría Gratuita</span>
+              <svg class="w-3.5 h-3.5 text-[#26CCCA]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </a>
+
+            <a 
+              href="#contacto" 
+              class="px-7 py-3.5 rounded-full border border-white/20 bg-white/[0.05] hover:bg-white/[0.12] hover:border-[#26CCCA] text-white font-outfit text-xs font-bold uppercase tracking-wider transition-all duration-200 inline-flex items-center justify-center gap-2 text-center w-full sm:w-auto"
+            >
+              <span>Hablar con un Asesor</span>
+              <span class="text-[#26CCCA]">↓</span>
+            </a>
+          </div>
+
+          <!-- Indicadores de Confianza Micro-reaseguro -->
+          <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-[11px] font-outfit text-zinc-400">
+            <span class="inline-flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA]"></span>
+              Sesión estratégica de 30 minutos
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA]"></span>
+              Diagnóstico inicial de procesos
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA]"></span>
+              Sin costo ni compromiso
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. CONTACTO REUTILIZADO (Componente Oficial Contact.astro con Formulario y Canales) -->
+    <Contact />
+
+  </main>
+
+  <Footer />
+</Layout>

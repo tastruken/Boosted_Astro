@@ -1,0 +1,147 @@
+---
+// src/components/NotchedProjectCard.astro - Tarjeta de Proyecto con Muesca Redondeada & Botón Concéntrico
+export interface Props {
+  href: string;
+  title: string;
+  description?: string;
+  image: string;
+  imageAlt?: string;
+  category?: string;
+  number?: string;
+  tags?: string[];
+  surface?: string;
+  accent?: string;
+  accentForeground?: string;
+  className?: string;
+}
+
+const {
+  href,
+  title,
+  description,
+  image,
+  imageAlt = "",
+  category,
+  number,
+  tags = [],
+  surface = "#FFFFFF",
+  accent = "#26CCCA",
+  accentForeground = "#050505",
+  className = "",
+} = Astro.props;
+
+// Parámetros geométricos para el corte concéntrico (en píxeles)
+const DISC = 56; // Tamaño del disco de flecha
+const BLOCK = 74; // Tamaño del bloque de la muesca
+const FILLET = 24; // Radio de curvatura del fileteado
+const RADIUS = BLOCK - DISC / 2; // 46px (concéntrico con el radio del disco)
+---
+
+<a
+  href={href}
+  target="_blank"
+  rel="noopener noreferrer"
+  class:list={[
+    "notched-card group flex flex-col rounded-[28px] outline-none focus-visible:ring-2 focus-visible:ring-[#26CCCA] transition-all duration-300",
+    className
+  ]}
+>
+  <!-- Contenedor de la Portada con Muesca Concéntrica -->
+  <div class="relative w-full">
+    
+    <!-- Imagen de Portada con Bordes Redondeados (Aislada en GPU para evitar repaints) -->
+    <div 
+      class="relative aspect-[4/3] sm:aspect-[16/11] overflow-hidden rounded-[26px] bg-zinc-100 border border-black/5 shadow-sm group-hover:shadow-md transition-shadow"
+      style="transform: translateZ(0); -webkit-transform: translateZ(0);"
+    >
+      <img
+        src={image}
+        alt={imageAlt || title}
+        class="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+        loading="lazy"
+        decoding="async"
+      />
+    </div>
+
+    <!-- Capa 1 de la Muesca: Bloque con Esquina Cóncava -->
+    <div
+      aria-hidden="true"
+      class="absolute bottom-0 right-0 pointer-events-none"
+      style={`width: ${BLOCK}px; height: ${BLOCK}px; border-top-left-radius: ${RADIUS}px; background-color: ${surface};`}
+    ></div>
+
+    <!-- Capa 2 de la Muesca: Filete Superior (Curva hacia el borde derecho) -->
+    <div
+      aria-hidden="true"
+      class="absolute pointer-events-none"
+      style={`bottom: ${BLOCK}px; right: 0; width: ${FILLET}px; height: ${FILLET}px; background: radial-gradient(circle at top left, transparent ${FILLET - 0.5}px, ${surface} ${FILLET}px);`}
+    ></div>
+
+    <!-- Capa 3 de la Muesca: Filete Izquierdo (Curva hacia el borde inferior) -->
+    <div
+      aria-hidden="true"
+      class="absolute pointer-events-none"
+      style={`bottom: 0; right: ${BLOCK}px; width: ${FILLET}px; height: ${FILLET}px; background: radial-gradient(circle at top left, transparent ${FILLET - 0.5}px, ${surface} ${FILLET}px);`}
+    ></div>
+
+    <!-- Disco de Acción con Flecha Anidado en la Muesca -->
+    <span
+      aria-hidden="true"
+      class="absolute bottom-0 right-0 flex items-center justify-center rounded-full bg-[#050505] text-white border border-white/10 group-hover:bg-[#26CCCA] group-hover:text-[#050505] group-hover:border-[#26CCCA] transition-all duration-300 group-hover:scale-105 shadow-md"
+      style={`width: ${DISC}px; height: ${DISC}px;`}
+    >
+      <svg 
+        class="w-5 h-5 transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5" 
+        fill="none" 
+        viewBox="0 0 24 24" 
+        stroke="currentColor" 
+        stroke-width="2.5"
+      >
+        <path stroke-linecap="round" stroke-linejoin="round" d="M7 17L17 7M17 7H7M17 7V17" />
+      </svg>
+    </span>
+
+  </div>
+
+  <!-- Información del Proyecto -->
+  <div class="pt-5 flex flex-col flex-grow">
+    
+    <!-- Meta Fila: Número y Categoría Tipográfica Limpia -->
+    <div class="flex items-center justify-between gap-3 mb-2">
+      {category && (
+        <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#0E8A88]">
+          {category}
+        </span>
+      )}
+      {number && (
+        <span class="font-bebas text-xl text-zinc-300 group-hover:text-[#26CCCA] transition-colors leading-none shrink-0">
+          {number}
+        </span>
+      )}
+    </div>
+
+    <!-- Título del Caso -->
+    <h3 class="font-outfit text-xl sm:text-2xl font-bold text-[#030303] group-hover:text-[#0E8A88] transition-colors leading-tight mb-2">
+      {title}
+    </h3>
+
+    <!-- Descripción Oficial -->
+    {description && (
+      <p class="font-poppins text-xs sm:text-sm text-[#52525B] leading-relaxed line-clamp-3 mb-4 flex-grow">
+        {description}
+      </p>
+    )}
+
+    <!-- Tags de Valor -->
+    {tags.length > 0 && (
+      <ul class="flex flex-wrap gap-2 mt-auto pt-2">
+        {tags.map((tag) => (
+          <li class="rounded-lg bg-zinc-100 border border-zinc-200/70 px-2.5 py-1 text-[10px] sm:text-[11px] font-outfit font-semibold uppercase tracking-wider text-zinc-700 group-hover:border-[#26CCCA]/40 transition-colors">
+            {tag}
+          </li>
+        ))}
+      </ul>
+    )}
+
+  </div>
+</a>

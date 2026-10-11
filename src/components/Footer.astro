@@ -1,0 +1,206 @@
+---
+// Footer.astro - Pie de Página Oficial en Negro Obsidiana (#030303) con Estructura Editorial de 4 Columnas
+---
+
+<footer class="bg-[#030303] text-white pt-20 pb-12 border-t border-white/10">
+  <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+    <!-- Grid Principal de 4 Columnas -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 lg:gap-10 pb-16 border-b border-white/10">
+      <!-- Columna 1: BOOSTED Identidad & Misión (4 Columnas) -->
+      <div class="lg:col-span-4 flex flex-col justify-between">
+        <div>
+          <a href="#" class="inline-block mb-6 group" aria-label="Boosted Inicio">
+            <img 
+              src="/images/logo/logo-white.png" 
+              alt="BOOSTED" 
+              class="h-8 sm:h-9 w-auto object-contain transition-transform duration-200 group-hover:scale-105"
+            />
+          </a>
+
+          <p class="font-poppins text-xs sm:text-sm text-zinc-400 leading-relaxed max-w-sm mb-8">
+            Agencia de Automatización y Marketing Digital. Diseñamos ecosistemas digitales conectados con Inteligencia Artificial que eliminan tareas manuales y escalan tus ventas.
+          </p>
+
+          <!-- Input Newsletter Minimalista (Estilo Referencia) -->
+          <form id="footer-newsletter-form" class="relative max-w-xs mb-8">
+            <input 
+              type="email" 
+              placeholder="Ingresa tu email" 
+              required
+              class="w-full pl-4 pr-12 py-3 rounded-full bg-white/5 border border-white/15 text-xs text-white placeholder:text-zinc-500 focus:border-[#26CCCA] focus:outline-none transition-colors"
+            />
+            <button 
+              type="submit" 
+              aria-label="Suscribirse al newsletter"
+              class="absolute right-1.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-full bg-white text-[#030303] hover:bg-[#26CCCA] hover:text-[#030303] flex items-center justify-center transition-colors cursor-pointer shadow-sm"
+            >
+              <svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+              </svg>
+            </button>
+          </form>
+        </div>
+
+        <!-- Redes Sociales Oficiales -->
+        <div class="flex items-center gap-3">
+          <!-- LinkedIn -->
+          <a 
+            href="https://www.linkedin.com/company/boosted-cl" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label="LinkedIn de Boosted"
+            class="w-9 h-9 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-zinc-300 hover:text-[#030303] hover:bg-[#26CCCA] hover:border-[#26CCCA] transition-all duration-300 cursor-pointer"
+          >
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M19 3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h14m-.5 15.5v-5.3a3.26 3.26 0 0 0-3.26-3.26c-.85 0-1.84.52-2.28 1.3v-1.11h-2.79v8.37h2.79v-4.93c0-.77.62-1.4 1.39-1.4a1.4 1.4 0 0 1 1.4 1.4v4.93h2.75M6.46 10.9v8.37H9.2V10.9H6.46M7.83 6.45a1.62 1.62 0 1 0 0 3.24 1.62 1.62 0 0 0 0-3.24z"/>
+            </svg>
+          </a>
+
+          <!-- Instagram -->
+          <a 
+            href="https://www.instagram.com/boosted.cl" 
+            target="_blank" 
+            rel="noopener noreferrer" 
+            aria-label="Instagram de Boosted"
+            class="w-9 h-9 rounded-full border border-white/15 bg-white/5 flex items-center justify-center text-zinc-300 hover:text-[#030303] hover:bg-[#26CCCA] hover:border-[#26CCCA] transition-all duration-300 cursor-pointer"
+          >
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna 2: Servicios (2.5 Columnas) -->
+      <div class="lg:col-span-2 sm:col-span-1">
+        <h4 class="font-outfit text-sm font-bold text-white uppercase tracking-wider mb-5">
+          Servicios
+        </h4>
+        <ul class="space-y-3 font-poppins text-xs sm:text-sm text-zinc-400">
+          <li>
+            <a href="/servicios-automatizacion" class="hover:text-[#26CCCA] transition-colors">
+              Automatización de Procesos
+            </a>
+          </li>
+          <li>
+            <a href="/servicios-desarrollo-a-medida" class="hover:text-[#26CCCA] transition-colors">
+              Desarrollo a Medida
+            </a>
+          </li>
+          <li>
+            <a href="/servicios-transformacion-digital" class="hover:text-[#26CCCA] transition-colors">
+              Transformación Digital
+            </a>
+          </li>
+          <li>
+            <a href="/servicios-sitios-web" class="hover:text-[#26CCCA] transition-colors">
+              Sitios Web y Experiencias
+            </a>
+          </li>
+          <li>
+            <a href="/branding-y-contenido" class="hover:text-[#26CCCA] transition-colors">
+              Branding, Contenido y Redes
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Columna 3: Soluciones por Sector (2.5 Columnas) -->
+      <div class="lg:col-span-3 sm:col-span-1">
+        <h4 class="font-outfit text-sm font-bold text-white uppercase tracking-wider mb-5">
+          Soluciones por Sector
+        </h4>
+        <ul class="space-y-3 font-poppins text-xs sm:text-sm text-zinc-400">
+          <li>
+            <a href="/belleza" class="hover:text-[#26CCCA] transition-colors">
+              Belleza y Estética
+            </a>
+          </li>
+          <li>
+            <a href="/construccion" class="hover:text-[#26CCCA] transition-colors">
+              Construcción e Inmobiliaria
+            </a>
+          </li>
+          <li>
+            <a href="/educacion" class="hover:text-[#26CCCA] transition-colors">
+              Educación
+            </a>
+          </li>
+          <li>
+            <a href="/hospitalidad" class="hover:text-[#26CCCA] transition-colors">
+              Hospitalidad – HORECA
+            </a>
+          </li>
+          <li>
+            <a href="/retail" class="hover:text-[#26CCCA] transition-colors">
+              Retail
+            </a>
+          </li>
+          <li>
+            <a href="/servicios-profesionales" class="hover:text-[#26CCCA] transition-colors">
+              Servicios Profesionales
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Columna 4: Empresa & Contacto (3 Columnas) -->
+      <div class="lg:col-span-3 sm:col-span-2">
+        <h4 class="font-outfit text-sm font-bold text-white uppercase tracking-wider mb-5">
+          Empresa & Contacto
+        </h4>
+        <ul class="space-y-3 font-poppins text-xs sm:text-sm text-zinc-400 mb-6">
+          <li>
+            <a href="/nosotros" class="hover:text-[#26CCCA] transition-colors">
+              Quiénes Somos
+            </a>
+          </li>
+          <li>
+            <a href="/blog" class="hover:text-[#26CCCA] transition-colors">
+              Nuestro Blog
+            </a>
+          </li>
+          <li>
+            <a href="#charlie" class="hover:text-[#26CCCA] transition-colors text-white font-medium">
+              Conoce a Charlie™
+            </a>
+          </li>
+          <li>
+            <a href="/branding-y-contenido" class="hover:text-[#26CCCA] transition-colors">
+              Portafolio Branding
+            </a>
+          </li>
+          <li>
+            <a href="/servicios-sitios-web" class="hover:text-[#26CCCA] transition-colors">
+              Portafolio Web
+            </a>
+          </li>
+        </ul>
+
+        <!-- Email Directo de Contacto -->
+        <div class="pt-4 border-t border-white/10">
+          <a 
+            href="mailto:proyectos@boosted.cl" 
+            class="inline-flex items-center gap-2 text-xs sm:text-sm font-semibold text-white hover:text-[#26CCCA] transition-colors"
+          >
+            <svg class="w-4 h-4 text-[#26CCCA]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            <span>proyectos@boosted.cl</span>
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bottom Bar de Derechos y Enlaces Legales -->
+    <div class="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-poppins text-zinc-500">
+      <div>
+        © 2025 <strong class="text-zinc-300 font-medium">Boosted</strong>. Todos los derechos reservados.
+      </div>
+      <div class="flex items-center gap-6 font-medium">
+        <a href="https://boosted.cl/politicas-de-privacidad.html" target="_blank" class="hover:text-white transition-colors">Políticas de Privacidad</a>
+        <a href="https://boosted.cl/terminos-y-condiciones.html" target="_blank" class="hover:text-white transition-colors">Términos y Condiciones</a>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,150 @@
+---
+// src/components/ui/accordion.astro - Componente genérico Accordion (shadcn/ui style para Astro)
+export interface AccordionEntry {
+  value: string;
+  trigger: string;
+  content: string;
+  defaultOpen?: boolean;
+}
+
+export interface Props {
+  items: AccordionEntry[];
+  type?: 'single' | 'multiple';
+  collapsible?: boolean;
+  defaultValue?: string;
+  className?: string;
+}
+
+const {
+  items = [],
+  type = 'single',
+  collapsible = true,
+  defaultValue = '',
+  className = ''
+} = Astro.props;
+---
+
+<div
+  class={`boosted-accordion divide-y divide-black/10 border-y border-black/10 ${className}`}
+  data-type={type}
+  data-collapsible={collapsible ? 'true' : 'false'}
+  data-default-value={defaultValue}
+>
+  {items.map((item, index) => {
+    const val = item.value || `item-${index}`;
+    const isOpen = item.defaultOpen || val === defaultValue;
+    return (
+      <div 
+        class="accordion-item transition-colors"
+        data-state={isOpen ? 'open' : 'closed'}
+        data-value={val}
+      >
+        <button
+          type="button"
+          class="accordion-trigger w-full flex items-center justify-between py-5 text-left group transition-all outline-none focus-visible:ring-2 focus-visible:ring-[#26CCCA] rounded-md"
+          aria-expanded={isOpen ? 'true' : 'false'}
+          aria-controls={`content-${val}`}
+          id={`trigger-${val}`}
+        >
+          <span class="font-outfit text-lg font-bold text-[#030303] group-hover:text-[#0E8A88] transition-colors pr-4">
+            {item.trigger}
+          </span>
+          <span class="w-8 h-8 rounded-full bg-zinc-100 group-hover:bg-[#26CCCA]/15 flex items-center justify-center shrink-0 transition-colors">
+            <svg
+              class="chevron-icon h-4 w-4 shrink-0 text-zinc-500 group-hover:text-[#0E8A88] transition-transform duration-300 pointer-events-none"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="m6 9 6 6 6-6" />
+            </svg>
+          </span>
+        </button>
+
+        <div
+          id={`content-${val}`}
+          role="region"
+          aria-labelledby={`trigger-${val}`}
+          class="accordion-content overflow-hidden text-[#52525B] transition-all"
+        >
+          <div class="accordion-inner pb-5 pt-1 font-poppins text-sm leading-relaxed text-[#52525B]">
+            {item.content}
+          </div>
+        </div>
+      </div>
+    );
+  })}
+</div>
+
+<style>
+  .accordion-content {
+    display: grid;
+    grid-template-rows: 0fr;
+    opacity: 0;
+    transition: grid-template-rows 300ms cubic-bezier(0.16, 1, 0.3, 1), opacity 200ms ease;
+  }
+
+  .accordion-inner {
+    overflow: hidden;
+  }
+
+  .accordion-item[data-state="open"] .accordion-content {
+    grid-template-rows: 1fr;
+    opacity: 1;
+  }
+
+  .accordion-item[data-state="open"] .chevron-icon {
+    transform: rotate(180deg);
+    color: #0E8A88;
+  }
+</style>
+
+<script>
+  function initGenericAccordions() {
+    const accordions = document.querySelectorAll('.boosted-accordion');
+
+    accordions.forEach((accordion) => {
+      const type = accordion.getAttribute('data-type') || 'single';
+      const items = accordion.querySelectorAll<HTMLElement>('.accordion-item');
+
+      items.forEach((item) => {
+        const trigger = item.querySelector<HTMLButtonElement>('.accordion-trigger');
+        if (!trigger) return;
+        if (trigger.dataset.initialized === 'true') return;
+        trigger.dataset.initialized = 'true';
+
+        trigger.addEventListener('click', () => {
+          const isOpen = item.getAttribute('data-state') === 'open';
+
+          if (type === 'single') {
+            items.forEach((sibling) => {
+              if (sibling !== item && sibling.getAttribute('data-state') === 'open') {
+                sibling.setAttribute('data-state', 'closed');
+                const siblingTrigger = sibling.querySelector<HTMLButtonElement>('.accordion-trigger');
+                if (siblingTrigger) siblingTrigger.setAttribute('aria-expanded', 'false');
+              }
+            });
+          }
+
+          if (isOpen) {
+            item.setAttribute('data-state', 'closed');
+            trigger.setAttribute('aria-expanded', 'false');
+          } else {
+            item.setAttribute('data-state', 'open');
+            trigger.setAttribute('aria-expanded', 'true');
+          }
+        });
+      });
+    });
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initGenericAccordions);
+  } else {
+    initGenericAccordions();
+  }
+</script>

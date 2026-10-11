@@ -1,0 +1,307 @@
+---
+// src/components/ui/HowItWorks.astro - Bloque de pasos tipo How-It-Works adaptado a Boosted
+export interface StepItem {
+  number?: string;
+  title: string;
+  copy?: string;
+  description?: string;
+  icon?: string;
+}
+
+export interface Props {
+  tagline?: string;
+  title?: string;
+  titleAccent?: string;
+  subtitle?: string;
+  steps?: StepItem[];
+  layout?: "split" | "columns" | "single";
+  className?: string;
+}
+
+const defaultSteps: StepItem[] = [
+  {
+    number: "01",
+    title: "Ecosistema Integrado",
+    copy: "Agenda online, marketing digital, identidad de marca e Inteligencia Artificial trabajando coordinados sin silos de datos.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>`
+  },
+  {
+    number: "02",
+    title: "Especialización Belleza",
+    copy: "Entendemos la dinámica real de los tiempos de servicio, el valor del feed de Instagram y la gestión de no-shows.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M5 3v4M3 5h4M6 17v4m-2-2h4m5-16l2.286 6.857L21 12l-5.714 2.143L13 21l-2.286-6.857L5 12l5.714-2.143L13 3z" /></svg>`
+  },
+  {
+    number: "03",
+    title: "Implementación sin Fricción",
+    copy: "Evolución gradual de tus herramientas paso a paso para que tu equipo aprenda y adopte el cambio sin estrés operativo.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`
+  },
+  {
+    number: "04",
+    title: "Solución 360°",
+    copy: "No solo te damos software: construimos la marca premium, la estrategia de contenidos y la infraestructura comercial.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>`
+  },
+  {
+    number: "05",
+    title: "Soporte Creativo",
+    copy: "Equipo dedicado que entiende de estética visual, fotografía, narrativa editorial y diseño de experiencia para clientes exigentes.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg>`
+  },
+  {
+    number: "06",
+    title: "Autonomía Total",
+    copy: "Tus datos, tu base de clientes, tus historiales y tus plataformas te pertenecen al 100%, sin ataduras ni formatos propietarios.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>`
+  }
+];
+
+const {
+  tagline = "",
+  title = "¿POR QUÉ TRABAJAR",
+  titleAccent = "CON BOOSTED?",
+  subtitle = "Unimos la precisión de la ingeniería de software con la sensibilidad estética que tu sector demanda:",
+  steps = defaultSteps,
+  layout = "columns",
+  className = ""
+} = Astro.props;
+
+// Dividir pasos en dos columnas para layout 'columns'
+const midpoint = Math.ceil(steps.length / 2);
+const firstHalf = steps.slice(0, midpoint);
+const secondHalf = steps.slice(midpoint);
+---
+
+<div class={`w-full ${className}`}>
+  {layout === "split" ? (
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      <div class="lg:col-span-5 lg:sticky lg:top-28">
+        {tagline && (
+          <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-outfit font-bold uppercase tracking-widest text-[#0E8A88] bg-[#26CCCA]/10 border border-[#26CCCA]/30 mb-4">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA] animate-pulse"></span>
+            {tagline}
+          </span>
+        )}
+        <h2 class="font-bebas text-5xl sm:text-6xl lg:text-7xl text-[#030303] tracking-tight uppercase leading-[0.95] mb-5">
+          {title} {titleAccent && <span class="border-b-4 border-[#26CCCA] inline-block">{titleAccent}</span>}
+        </h2>
+        {subtitle && (
+          <p class="font-poppins text-base sm:text-lg text-[#52525B] leading-relaxed mb-8">
+            {subtitle}
+          </p>
+        )}
+        
+        <div class="p-6 rounded-3xl bg-[#F8F9FA] border border-zinc-200/90 shadow-xs space-y-3">
+          <div class="flex items-center gap-2 text-xs font-outfit font-bold uppercase tracking-wider text-[#0E8A88]">
+            <span class="w-2 h-2 rounded-full bg-[#26CCCA]"></span>
+            <span>Estándar de Calidad Boosted</span>
+          </div>
+          <p class="font-poppins text-xs sm:text-sm text-[#52525B] leading-relaxed">
+            Metodología ágil que asegura trazabilidad, cero tiempos de inactividad operativa y adopción inmediata por parte de tu equipo.
+          </p>
+        </div>
+      </div>
+
+      <div class="lg:col-span-7">
+        <ol class="flex flex-col">
+          {steps.map((step, index) => {
+            const isLast = index === steps.length - 1;
+            const textCopy = step.copy || step.description;
+            return (
+              <li class="flex gap-5 sm:gap-6 group">
+                <div class="flex flex-col items-center">
+                  <span class="flex size-11 sm:size-12 shrink-0 items-center justify-center rounded-2xl border border-zinc-200 bg-[#F8F9FA] text-[#0E8A88] group-hover:border-[#26CCCA] group-hover:bg-[#26CCCA]/10 group-hover:scale-105 transition-all duration-300 shadow-xs">
+                    {step.icon ? (
+                      <span class="size-5 flex items-center justify-center" set:html={step.icon} />
+                    ) : (
+                      <span class="font-bebas text-lg leading-none">{step.number || index + 1}</span>
+                    )}
+                  </span>
+                  {!isLast && (
+                    <span class="mt-2 w-[2px] flex-1 bg-zinc-200 group-hover:bg-gradient-to-b group-hover:from-[#26CCCA] group-hover:to-zinc-200 transition-colors duration-300 rounded-full" />
+                  )}
+                </div>
+
+                <div class={`flex-1 ${isLast ? "pb-2" : "pb-10 sm:pb-12"}`}>
+                  {step.number && (
+                    <span class="font-bebas text-lg text-[#0E8A88] tracking-wider leading-none block mb-1">
+                      {step.number}
+                    </span>
+                  )}
+                  <h3 class="font-outfit text-xl sm:text-2xl font-bold text-[#030303] mb-2 leading-tight group-hover:text-[#0E8A88] transition-colors">
+                    {step.title}
+                  </h3>
+                  {textCopy && (
+                    <p class="font-poppins text-sm sm:text-base text-[#52525B] leading-relaxed">
+                      {textCopy}
+                    </p>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    </div>
+  ) : layout === "columns" ? (
+    <div>
+      <div class="max-w-3xl mb-14 sm:mb-16">
+        {tagline && (
+          <span class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full text-xs font-outfit font-bold uppercase tracking-widest text-[#0E8A88] bg-[#26CCCA]/10 border border-[#26CCCA]/30 mb-4">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA] animate-pulse"></span>
+            {tagline}
+          </span>
+        )}
+        <h2 class="font-bebas text-5xl sm:text-6xl lg:text-7xl text-[#030303] tracking-tight uppercase leading-[0.95] mb-5">
+          {title} {titleAccent && <span class="border-b-4 border-[#26CCCA] inline-block">{titleAccent}</span>}
+        </h2>
+        {subtitle && (
+          <p class="font-poppins text-base sm:text-lg text-[#52525B] leading-relaxed">
+            {subtitle}
+          </p>
+        )}
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 lg:gap-x-16 gap-y-0">
+        <!-- Columna 1 (Pasos 1 a 3) -->
+        <ol class="flex flex-col">
+          {firstHalf.map((step, index) => {
+            const isLast = index === firstHalf.length - 1;
+            const textCopy = step.copy || step.description;
+            return (
+              <li class="flex gap-5 sm:gap-6 group">
+                <div class="flex flex-col items-center">
+                  <span class="flex size-11 sm:size-12 shrink-0 items-center justify-center rounded-2xl border border-zinc-200 bg-[#F8F9FA] text-[#0E8A88] group-hover:border-[#26CCCA] group-hover:bg-[#26CCCA]/10 group-hover:scale-105 transition-all duration-300 shadow-xs">
+                    {step.icon ? (
+                      <span class="size-5 flex items-center justify-center" set:html={step.icon} />
+                    ) : (
+                      <span class="font-bebas text-lg leading-none">{step.number || index + 1}</span>
+                    )}
+                  </span>
+                  {!isLast && (
+                    <span class="mt-2 w-[2px] flex-1 bg-zinc-200 group-hover:bg-gradient-to-b group-hover:from-[#26CCCA] group-hover:to-zinc-200 transition-colors duration-300 rounded-full" />
+                  )}
+                </div>
+
+                <div class={`flex-1 ${isLast ? "pb-8 md:pb-0" : "pb-10 sm:pb-12"}`}>
+                  {step.number && (
+                    <span class="font-bebas text-lg text-[#0E8A88] tracking-wider leading-none block mb-1">
+                      {step.number}
+                    </span>
+                  )}
+                  <h3 class="font-outfit text-xl sm:text-2xl font-bold text-[#030303] mb-2 leading-tight group-hover:text-[#0E8A88] transition-colors">
+                    {step.title}
+                  </h3>
+                  {textCopy && (
+                    <p class="font-poppins text-sm sm:text-base text-[#52525B] leading-relaxed">
+                      {textCopy}
+                    </p>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+
+        <!-- Columna 2 (Pasos 4 a 6) -->
+        <ol class="flex flex-col">
+          {secondHalf.map((step, index) => {
+            const isLast = index === secondHalf.length - 1;
+            const textCopy = step.copy || step.description;
+            return (
+              <li class="flex gap-5 sm:gap-6 group">
+                <div class="flex flex-col items-center">
+                  <span class="flex size-11 sm:size-12 shrink-0 items-center justify-center rounded-2xl border border-zinc-200 bg-[#F8F9FA] text-[#0E8A88] group-hover:border-[#26CCCA] group-hover:bg-[#26CCCA]/10 group-hover:scale-105 transition-all duration-300 shadow-xs">
+                    {step.icon ? (
+                      <span class="size-5 flex items-center justify-center" set:html={step.icon} />
+                    ) : (
+                      <span class="font-bebas text-lg leading-none">{step.number || index + midpoint + 1}</span>
+                    )}
+                  </span>
+                  {!isLast && (
+                    <span class="mt-2 w-[2px] flex-1 bg-zinc-200 group-hover:bg-gradient-to-b group-hover:from-[#26CCCA] group-hover:to-zinc-200 transition-colors duration-300 rounded-full" />
+                  )}
+                </div>
+
+                <div class={`flex-1 ${isLast ? "pb-0" : "pb-10 sm:pb-12"}`}>
+                  {step.number && (
+                    <span class="font-bebas text-lg text-[#0E8A88] tracking-wider leading-none block mb-1">
+                      {step.number}
+                    </span>
+                  )}
+                  <h3 class="font-outfit text-xl sm:text-2xl font-bold text-[#030303] mb-2 leading-tight group-hover:text-[#0E8A88] transition-colors">
+                    {step.title}
+                  </h3>
+                  {textCopy && (
+                    <p class="font-poppins text-sm sm:text-base text-[#52525B] leading-relaxed">
+                      {textCopy}
+                    </p>
+                  )}
+                </div>
+              </li>
+            );
+          })}
+        </ol>
+      </div>
+    </div>
+  ) : (
+    <div class="mx-auto w-full max-w-2xl">
+      <div class="mb-14">
+        {tagline && (
+          <span class="inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-outfit font-bold uppercase tracking-widest text-[#0E8A88] bg-[#26CCCA]/10 border border-[#26CCCA]/30 mb-4">
+            <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA] animate-pulse"></span>
+            {tagline}
+          </span>
+        )}
+        <h2 class="font-bebas text-4xl sm:text-5xl lg:text-6xl text-[#030303] tracking-tight uppercase leading-[0.95] mb-4">
+          {title} {titleAccent && <span class="border-b-4 border-[#26CCCA] inline-block">{titleAccent}</span>}
+        </h2>
+        {subtitle && (
+          <p class="font-poppins text-base text-[#52525B] leading-relaxed">
+            {subtitle}
+          </p>
+        )}
+      </div>
+
+      <ol class="flex flex-col">
+        {steps.map((step, index) => {
+          const isLast = index === steps.length - 1;
+          const textCopy = step.copy || step.description;
+          return (
+            <li class="flex gap-6 group">
+              <div class="flex flex-col items-center">
+                <span class="flex size-11 shrink-0 items-center justify-center rounded-xl border border-zinc-200 bg-[#F8F9FA] text-[#0E8A88] group-hover:border-[#26CCCA] group-hover:bg-[#26CCCA]/10 transition-all duration-300 shadow-xs">
+                  {step.icon ? (
+                    <span class="size-4.5 flex items-center justify-center" set:html={step.icon} />
+                  ) : (
+                    <span class="font-bebas text-base leading-none">{step.number || index + 1}</span>
+                  )}
+                </span>
+                {!isLast && (
+                  <span class="mt-1.5 w-[2px] flex-1 bg-zinc-200 group-hover:bg-[#26CCCA] transition-colors rounded-full" />
+                )}
+              </div>
+
+              <div class={`flex-1 ${isLast ? "pb-0" : "pb-10"}`}>
+                {step.number && (
+                  <span class="font-bebas text-base text-[#0E8A88] leading-none block mb-1">
+                    {step.number}
+                  </span>
+                )}
+                <h3 class="font-outfit text-xl font-bold text-[#030303] mb-1.5 leading-tight group-hover:text-[#0E8A88] transition-colors">
+                  {step.title}
+                </h3>
+                {textCopy && (
+                  <p class="font-poppins text-sm text-[#52525B] leading-relaxed">
+                    {textCopy}
+                  </p>
+                )}
+              </div>
+            </li>
+          );
+        })}
+      </ol>
+    </div>
+  )}
+</div>

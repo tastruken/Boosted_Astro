@@ -1,0 +1,402 @@
+---
+// Contact.astro - Sección de Contacto Oficial (Estilo Boutique en Blanco & Negro Oficial, Cero Azules)
+const clientLogos = [
+  {
+    name: "Wellford",
+    icon: `<svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>`
+  },
+  {
+    name: "Fini Chile",
+    icon: `<svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1.5" fill="currentColor"/><circle cx="15" cy="10" r="1.5" fill="currentColor"/><path d="M8 15s1.5 2 4 2 4-2 4-2"/></svg>`
+  },
+  {
+    name: "Ulloa y Cía",
+    icon: `<svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 21h18M5 21V7l8-4v18M19 21V11l-6-3M9 9h1M9 13h1M9 17h1M15 13h1M15 17h1"/></svg>`
+  },
+  {
+    name: "ELD Lighting",
+    icon: `<svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 22 22 22"/><line x1="12" y1="13" x2="12" y2="17"/></svg>`
+  },
+  {
+    name: "IQ Facility",
+    icon: `<svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>`
+  },
+  {
+    name: "Deck Kingdom",
+    icon: `<svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 4l3 12h14l3-12-6 7-4-7-4 7-6-7z"/><circle cx="12" cy="19" r="2"/></svg>`
+  },
+  {
+    name: "Auditor Condominio",
+    icon: `<svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>`
+  },
+  {
+    name: "Maelstrom Studios",
+    icon: `<svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M14.31 8l5.74 9.94M9.69 8h11.48M7.38 12l5.74-9.94M9.69 16L3.95 6.06M14.31 16H2.83M16.62 12l-5.74 9.94"/></svg>`
+  },
+  {
+    name: "Beltrán & Guzmán",
+    icon: `<svg class="w-5 h-5 shrink-0" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3v18M6 8l6-5 6 5M6 8l-3 7h6l-3-7zM18 8l-3 7h6l-3-7z"/></svg>`
+  }
+];
+---
+
+<section id="contacto" class="py-24 sm:py-32 bg-[#FFFFFF] text-[#030303] border-t border-black/[0.06] relative overflow-hidden scroll-mt-20">
+  <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 lg:items-stretch items-start">
+      
+      <!-- Columna Izquierda: Información Directa (5 Cols) -->
+      <div class="lg:col-span-5 flex flex-col pt-2 h-full">
+        <div>
+          <h2 class="font-bebas text-5xl sm:text-6xl lg:text-7xl text-[#030303] tracking-tight uppercase leading-[0.95] mb-6">
+            CONVERSEMOS SOBRE EL ECOSISTEMA QUE <span class="border-b-4 border-[#26CCCA] inline-block">NECESITAS</span>
+          </h2>
+
+          <p class="font-poppins text-sm sm:text-base text-[#52525B] leading-relaxed mb-8">
+            Agenda una reunión estratégica con el equipo de Boosted. Evaluemos juntos qué herramientas a medida, automatizaciones con IA y desarrollo digital impulsarán el crecimiento de tu operación.
+          </p>
+
+          <!-- Botón Destacado Google Calendar -->
+          <div class="mb-8">
+            <a 
+              href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0eLzWvh-yrlAvDqP4vCBpex5c2wtzqpp89n_C4VVp6Obx184OHVTcQxAJBAtq4CtJtcYmyMuuA" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="btn-primary w-full text-xs uppercase tracking-wider py-4 px-6 text-center shadow-md flex items-center justify-center gap-2.5 rounded-2xl"
+            >
+              <span>AGENDAR CONSULTORÍA GRATUITA</span>
+              <svg class="w-4 h-4 text-[#26CCCA]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </a>
+          </div>
+
+          <!-- Canales de Contacto Directo con Función Copiar al Clic (Diseño Limpio Sin Cuadros) -->
+          <div class="space-y-4 pt-5 border-t border-black/10">
+            <div>
+              <span class="text-[11px] font-outfit uppercase font-bold tracking-widest text-[#52525B] block mb-1">
+                WhatsApp & Teléfono
+              </span>
+              <button 
+                type="button" 
+                data-copy="+56 9 5617 3500" 
+                class="copy-btn group flex items-center gap-2.5 text-lg font-bold text-[#030303] hover:text-[#0E8A88] transition-colors cursor-pointer text-left focus:outline-none"
+                title="Clic para copiar"
+              >
+                <span>+56 9 5617 3500</span>
+                <span class="copy-icon text-zinc-400 group-hover:text-[#0E8A88] transition-colors">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                </span>
+                <span class="copy-feedback hidden text-[10px] font-outfit uppercase tracking-wider font-bold text-[#0E8A88] bg-[#26CCCA]/15 px-2 py-0.5 rounded-md">¡Copiado!</span>
+              </button>
+            </div>
+
+            <div>
+              <span class="text-[11px] font-outfit uppercase font-bold tracking-widest text-[#52525B] block mb-1">
+                Email de Proyectos
+              </span>
+              <button 
+                type="button" 
+                data-copy="proyectos@boosted.cl" 
+                class="copy-btn group flex items-center gap-2.5 text-lg font-bold text-[#030303] hover:text-[#0E8A88] transition-colors cursor-pointer text-left focus:outline-none"
+                title="Clic para copiar"
+              >
+                <span>proyectos@boosted.cl</span>
+                <span class="copy-icon text-zinc-400 group-hover:text-[#0E8A88] transition-colors">
+                  <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                  </svg>
+                </span>
+                <span class="copy-feedback hidden text-[10px] font-outfit uppercase tracking-wider font-bold text-[#0E8A88] bg-[#26CCCA]/15 px-2 py-0.5 rounded-md">¡Copiado!</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Marcas y Proyectos que confían en Boosted (Ubicado más arriba con espacio amplio para logos destacados) -->
+        <div class="pt-6 mt-6 border-t border-black/10 flex-grow flex flex-col justify-center w-full overflow-hidden">
+          <div class="mb-3.5">
+            <span class="text-[11px] font-outfit uppercase font-bold tracking-widest text-[#52525B] block">
+              Empresas que confían en Boosted
+            </span>
+          </div>
+
+          <!-- Carousel / Slider Continuo Infinito (Sin cuadros grises, logotipos limpios flotantes) -->
+          <div class="relative w-full overflow-hidden py-3 [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)] [-webkit-mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
+            <div class="flex items-center gap-10 sm:gap-12 w-max logo-marquee-track">
+              {clientLogos.concat(clientLogos).map((logo) => (
+                <div class="flex items-center gap-3 py-1 text-zinc-500 hover:text-[#030303] transition-colors select-none shrink-0 group cursor-default">
+                  <div class="text-zinc-500 group-hover:text-[#0E8A88] transition-colors shrink-0 [&>svg]:w-6 [&>svg]:h-6 sm:[&>svg]:w-7 sm:[&>svg]:h-7" set:html={logo.icon} />
+                  <span class="font-outfit text-base sm:text-lg font-bold tracking-wider uppercase text-zinc-700 group-hover:text-[#030303] transition-colors whitespace-nowrap">
+                    {logo.name}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Formulario Soft Espacioso en Blanco Puro (7 Cols) -->
+      <div class="lg:col-span-7">
+        <div class="p-8 sm:p-12 rounded-[2rem] bg-white border border-black/[0.08] shadow-2xl shadow-black/[0.04] text-[#030303] relative">
+          
+          <!-- Form Header -->
+          <div class="mb-8">
+            <h3 class="font-outfit text-2xl sm:text-3xl font-bold text-[#030303] mb-2 tracking-tight">
+              Agenda tu diagnóstico
+            </h3>
+            <p class="font-poppins text-sm text-[#52525B] leading-relaxed">
+              Completa los datos para coordinar la estrategia y propuesta técnica de tu empresa.
+            </p>
+          </div>
+
+          <form id="boosted-contact-form" class="space-y-6">
+            <!-- Row 1: First name & Last name -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-5">
+              <div>
+                <label for="first-name" class="block font-outfit text-xs sm:text-sm font-semibold text-[#030303] mb-2">
+                  Nombre <span class="text-red-500 font-bold">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="first-name" 
+                  name="first_name" 
+                  required 
+                  placeholder="Tu nombre"
+                  class="w-full px-4 py-3.5 rounded-xl bg-zinc-50 border border-zinc-200 font-poppins text-sm text-[#030303] placeholder:text-zinc-400 hover:border-zinc-300 focus:border-[#030303] focus:bg-white focus:ring-4 focus:ring-black/[0.04] focus:outline-none transition-all"
+                />
+              </div>
+
+              <div>
+                <label for="last-name" class="block font-outfit text-xs sm:text-sm font-semibold text-[#030303] mb-2">
+                  Apellido <span class="text-red-500 font-bold">*</span>
+                </label>
+                <input 
+                  type="text" 
+                  id="last-name" 
+                  name="last_name" 
+                  required 
+                  placeholder="Tu apellido"
+                  class="w-full px-4 py-3.5 rounded-xl bg-zinc-50 border border-zinc-200 font-poppins text-sm text-[#030303] placeholder:text-zinc-400 hover:border-zinc-300 focus:border-[#030303] focus:bg-white focus:ring-4 focus:ring-black/[0.04] focus:outline-none transition-all"
+                />
+              </div>
+            </div>
+
+            <!-- Row 2: Email -->
+            <div>
+              <label for="email" class="block font-outfit text-xs sm:text-sm font-semibold text-[#030303] mb-2">
+                Email corporativo <span class="text-red-500 font-bold">*</span>
+              </label>
+              <input 
+                type="email" 
+                id="email" 
+                name="email" 
+                required 
+                placeholder="tu@empresa.com"
+                class="w-full px-4 py-3.5 rounded-xl bg-zinc-50 border border-zinc-200 font-poppins text-sm text-[#030303] placeholder:text-zinc-400 hover:border-zinc-300 focus:border-[#030303] focus:bg-white focus:ring-4 focus:ring-black/[0.04] focus:outline-none transition-all"
+              />
+            </div>
+
+            <!-- Row 3: Empresa / Organización -->
+            <div>
+              <label for="company" class="block font-outfit text-xs sm:text-sm font-semibold text-[#030303] mb-2">
+                Empresa o Proyecto <span class="text-red-500 font-bold">*</span>
+              </label>
+              <input 
+                type="text" 
+                id="company" 
+                name="company" 
+                required 
+                placeholder="Nombre de tu empresa o negocio"
+                class="w-full px-4 py-3.5 rounded-xl bg-zinc-50 border border-zinc-200 font-poppins text-sm text-[#030303] placeholder:text-zinc-400 hover:border-zinc-300 focus:border-[#030303] focus:bg-white focus:ring-4 focus:ring-black/[0.04] focus:outline-none transition-all"
+              />
+            </div>
+
+            <!-- Row 4: Teléfono, Servicio & Presupuesto (3 Columnas Espaciosas) -->
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-5">
+              <div>
+                <label for="phone" class="block font-outfit text-xs sm:text-sm font-semibold text-[#030303] mb-2">
+                  Teléfono / WA <span class="text-red-500 font-bold">*</span>
+                </label>
+                <input 
+                  type="tel" 
+                  id="phone" 
+                  name="phone" 
+                  required
+                  placeholder="+56 9 1234 5678"
+                  class="w-full px-4 py-3.5 rounded-xl bg-zinc-50 border border-zinc-200 font-poppins text-sm text-[#030303] placeholder:text-zinc-400 hover:border-zinc-300 focus:border-[#030303] focus:bg-white focus:ring-4 focus:ring-black/[0.04] focus:outline-none transition-all"
+                />
+              </div>
+
+              <div>
+                <label for="service" class="block font-outfit text-xs sm:text-sm font-semibold text-[#030303] mb-2">
+                  Servicio <span class="text-red-500 font-bold">*</span>
+                </label>
+                <div class="relative">
+                  <select 
+                    id="service" 
+                    name="service" 
+                    required 
+                    class="w-full px-4 py-3.5 rounded-xl bg-zinc-50 border border-zinc-200 font-poppins text-sm text-[#030303] hover:border-zinc-300 focus:border-[#030303] focus:bg-white focus:ring-4 focus:ring-black/[0.04] focus:outline-none transition-all cursor-pointer appearance-none pr-9"
+                  >
+                    <option value="">Selecciona...</option>
+                    <option value="Automatización de Procesos">Automatización</option>
+                    <option value="Desarrollo Web / Experiencia Digital">Desarrollo Web</option>
+                    <option value="Branding y Redes">Branding y Redes</option>
+                    <option value="Charlie™ IA">Charlie™ Agente IA</option>
+                    <option value="Transformación Digital">Transformación</option>
+                  </select>
+                  <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-400">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <label for="budget" class="block font-outfit text-xs sm:text-sm font-semibold text-[#030303] mb-2">
+                  Inversión estimada
+                </label>
+                <div class="relative">
+                  <select 
+                    id="budget" 
+                    name="budget" 
+                    class="w-full px-4 py-3.5 rounded-xl bg-zinc-50 border border-zinc-200 font-poppins text-sm text-[#030303] hover:border-zinc-300 focus:border-[#030303] focus:bg-white focus:ring-4 focus:ring-black/[0.04] focus:outline-none transition-all cursor-pointer appearance-none pr-9"
+                  >
+                    <option value="Por definir">Por definir</option>
+                    <option value="Menos de $1.000 USD">&lt; $1.000 USD</option>
+                    <option value="$1.000 - $3.000 USD">$1.000 - $3.000</option>
+                    <option value="$3.000 - $5.000 USD">$3.000 - $5.000</option>
+                    <option value="Más de $5.000 USD">&gt; $5.000 USD</option>
+                  </select>
+                  <div class="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-zinc-400">
+                    <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Row 5: Mensaje / Desafío -->
+            <div>
+              <label for="message" class="block font-outfit text-xs sm:text-sm font-semibold text-[#030303] mb-2">
+                Cuéntanos sobre tu desafío
+              </label>
+              <textarea 
+                id="message" 
+                name="message" 
+                rows="3" 
+                placeholder="¿Qué procesos, sitio web o estrategia necesitas acelerar?"
+                class="w-full px-4 py-3.5 rounded-xl bg-zinc-50 border border-zinc-200 font-poppins text-sm text-[#030303] placeholder:text-zinc-400 hover:border-zinc-300 focus:border-[#030303] focus:bg-white focus:ring-4 focus:ring-black/[0.04] focus:outline-none transition-all resize-none"
+              ></textarea>
+            </div>
+
+            <!-- Form Actions: Cancel & Submit Buttons Right-Aligned con estilo limpio -->
+            <div class="pt-5 flex items-center justify-end gap-3.5 border-t border-black/10">
+              <button 
+                type="reset" 
+                class="px-6 py-3 rounded-xl border border-zinc-200 bg-zinc-100 font-outfit font-semibold text-sm text-[#52525B] hover:text-[#030303] hover:bg-zinc-200 transition-all cursor-pointer"
+              >
+                Cancel
+              </button>
+
+              <button 
+                type="submit" 
+                id="btn-submit"
+                class="px-8 py-3 rounded-xl bg-[#030303] text-white font-outfit font-bold text-sm hover:bg-[#26CCCA] hover:text-[#030303] transition-all duration-200 shadow-md hover:shadow-lg cursor-pointer flex items-center gap-2"
+              >
+                <span>Submit</span>
+                <svg class="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </button>
+            </div>
+          </form>
+
+          <!-- Success Notification -->
+          <div id="contact-success" class="hidden mt-6 p-8 rounded-2xl bg-[#26CCCA]/10 border border-[#26CCCA]/30 text-center">
+            <div class="w-12 h-12 rounded-full bg-[#030303] text-[#26CCCA] flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7" />
+              </svg>
+            </div>
+            <h4 class="font-outfit text-xl font-bold text-[#030303] mb-1">¡Solicitud Enviada con Éxito!</h4>
+            <p class="font-poppins text-sm text-[#52525B]">
+              Nos pondremos en contacto contigo a la brevedad para coordinar tu diagnóstico estratégico.
+            </p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<style>
+  @keyframes logoMarquee {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .logo-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: logoMarquee 26s linear infinite;
+    will-change: transform;
+  }
+
+  .logo-marquee-track:hover {
+    animation-play-state: paused;
+  }
+</style>
+
+<script>
+  // Form submit
+  const form = document.getElementById('boosted-contact-form') as HTMLFormElement;
+  const success = document.getElementById('contact-success');
+  if (form && success) {
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      const btn = document.getElementById('btn-submit');
+      if (btn) btn.innerHTML = '<span>Enviando...</span>';
+      setTimeout(() => {
+        form.reset();
+        form.style.display = 'none';
+        success.classList.remove('hidden');
+      }, 500);
+    });
+  }
+
+  // Click to copy functionality
+  const copyButtons = document.querySelectorAll('.copy-btn');
+  copyButtons.forEach((btn) => {
+    btn.addEventListener('click', async () => {
+      const textToCopy = btn.getAttribute('data-copy') || '';
+      if (!textToCopy) return;
+
+      try {
+        await navigator.clipboard.writeText(textToCopy);
+        const feedback = btn.querySelector('.copy-feedback');
+        const icon = btn.querySelector('.copy-icon');
+
+        if (feedback) feedback.classList.remove('hidden');
+        if (icon) icon.classList.add('hidden');
+
+        setTimeout(() => {
+          if (feedback) feedback.classList.add('hidden');
+          if (icon) icon.classList.remove('hidden');
+        }, 2000);
+      } catch (err) {
+        console.error('Error al copiar:', err);
+      }
+    });
+  });
+</script>

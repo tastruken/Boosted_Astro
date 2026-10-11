@@ -1,0 +1,124 @@
+---
+// Stats.astro - Métricas Oficiales de Boosted con Animación Count-Up al Entrar en Pantalla (Diseño Limpio Sin Puntos Ni Etiquetas Superiores)
+const metrics = [
+  {
+    prefix: "+",
+    target: 10,
+    suffix: "",
+    label: "Años de trayectoria"
+  },
+  {
+    prefix: "+",
+    target: 80,
+    suffix: "",
+    label: "Proyectos ejecutados"
+  },
+  {
+    prefix: "",
+    target: 6,
+    suffix: "",
+    label: "Sectores industriales"
+  },
+  {
+    prefix: "",
+    target: 60,
+    suffix: "D",
+    label: "ROI promedio medible"
+  }
+];
+---
+
+<section id="stats-section" class="py-14 border-y border-black/[0.06] bg-white relative select-none">
+  <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+    <div class="grid grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12 divide-y md:divide-y-0 md:divide-x divide-black/[0.06]">
+      {metrics.map((metric, i) => (
+        <div class={`flex flex-col items-center text-center justify-center ${i > 0 ? 'pt-6 md:pt-0 md:pl-8' : ''}`}>
+          <!-- Número con Animación Count-Up -->
+          <div 
+            class="stat-counter font-bebas text-5xl sm:text-6xl md:text-7xl text-[#030303] tracking-tight leading-none mb-2 tabular-nums"
+            data-target={metric.target}
+            data-prefix={metric.prefix}
+            data-suffix={metric.suffix}
+          >
+            {metric.prefix}{metric.target}{metric.suffix}
+          </div>
+
+          <div class="font-outfit text-sm font-semibold text-[#52525B]">
+            {metric.label}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<script>
+  function setupStatsCounter() {
+    const statsSection = document.getElementById('stats-section');
+    if (!statsSection) return;
+
+    const counters = statsSection.querySelectorAll('.stat-counter');
+    let hasAnimated = false;
+
+    // Reset initial text to 0 with prefix/suffix
+    counters.forEach((counter) => {
+      const prefix = counter.getAttribute('data-prefix') || '';
+      const suffix = counter.getAttribute('data-suffix') || '';
+      counter.textContent = `${prefix}0${suffix}`;
+    });
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting && !hasAnimated) {
+            hasAnimated = true;
+            observer.unobserve(entry.target);
+
+            counters.forEach((counter) => {
+              const target = parseInt(counter.getAttribute('data-target') || '0', 10);
+              const prefix = counter.getAttribute('data-prefix') || '';
+              const suffix = counter.getAttribute('data-suffix') || '';
+              
+              const duration = 1800; // 1.8 segundos de animación fluida
+              const startTime = performance.now();
+
+              function easeOutExpo(x: number): number {
+                return x === 1 ? 1 : 1 - Math.pow(2, -10 * x);
+              }
+
+              function updateCount(currentTime: number) {
+                const elapsed = currentTime - startTime;
+                const progress = Math.min(elapsed / duration, 1);
+                const easedProgress = easeOutExpo(progress);
+                const currentVal = Math.round(easedProgress * target);
+
+                counter.textContent = `${prefix}${currentVal}${suffix}`;
+
+                if (progress < 1) {
+                  requestAnimationFrame(updateCount);
+                } else {
+                  counter.textContent = `${prefix}${target}${suffix}`;
+                }
+              }
+
+              requestAnimationFrame(updateCount);
+            });
+          }
+        });
+      },
+      {
+        threshold: 0.25, // Se activa cuando el 25% de la sección es visible
+        rootMargin: '0px 0px -50px 0px'
+      }
+    );
+
+    observer.observe(statsSection);
+  }
+
+  // Ejecutar al cargar la página o transiciones
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupStatsCounter);
+  } else {
+    setupStatsCounter();
+  }
+</script>

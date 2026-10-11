@@ -1,0 +1,138 @@
+---
+// Blog.astro - El Pulso de la Transformación Digital
+import { featuredPost, blogPosts } from '../data/blog';
+---
+
+<section id="blog" class="py-24 bg-white border-t border-black/[0.06] relative">
+  <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+    <!-- Encabezado de Sección Editorial -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+      <div class="max-w-3xl">
+        <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#0E8A88] block mb-2">
+          PUBLICACIONES & ANÁLISIS ESTRATÉGICO
+        </span>
+        <h2 class="font-bebas text-4xl sm:text-6xl text-[#030303] tracking-tight uppercase leading-none mb-3">
+          EL PULSO DE LA <span class="border-b-4 border-[#26CCCA] inline-block">TRANSFORMACIÓN DIGITAL</span>
+        </h2>
+        <p class="font-poppins text-sm sm:text-base text-[#52525B] leading-relaxed">
+          Exploramos la intersección entre diseño estratégico, tecnología de vanguardia y automatización inteligente para potenciar el crecimiento de tu negocio.
+        </p>
+      </div>
+
+      <div class="flex-shrink-0">
+        <a 
+          href="/blog" 
+          class="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-[#030303] text-white hover:bg-[#26CCCA] hover:text-[#030303] text-xs font-outfit font-bold uppercase tracking-wider transition-all duration-300 shadow-md hover:shadow-lg"
+        >
+          <span>Ver todos los artículos</span>
+          <span>→</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- Artículo Destacado de Portada en Home -->
+    <div class="mb-12">
+      <a 
+        href={featuredPost.href}
+        target="_blank"
+        rel="noopener noreferrer"
+        class="group block rounded-3xl bg-[#070708] text-white border border-white/10 overflow-hidden shadow-xl hover:border-[#26CCCA]/50 transition-all duration-500"
+      >
+        <div class="grid grid-cols-1 lg:grid-cols-12 items-stretch">
+          <div class="lg:col-span-7 p-8 sm:p-10 lg:p-12 flex flex-col justify-between">
+            <div>
+              <div class="flex flex-wrap items-center gap-3 mb-5">
+                <span class="px-3 py-1 rounded-full bg-[#26CCCA] text-[#030303] font-outfit text-xs font-bold uppercase tracking-wider">
+                  ★ Destacado
+                </span>
+                <span class="text-xs font-poppins text-zinc-400">
+                  {featuredPost.date}
+                </span>
+                <span class="text-xs font-poppins text-zinc-400">
+                  • {featuredPost.readTime}
+                </span>
+              </div>
+
+              <h3 class="font-outfit text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-4 leading-tight group-hover:text-[#26CCCA] transition-colors">
+                {featuredPost.title}
+              </h3>
+
+              <p class="font-poppins text-sm text-zinc-300 leading-relaxed mb-6 line-clamp-3">
+                {featuredPost.excerpt}
+              </p>
+            </div>
+
+            <div class="pt-5 border-t border-white/10 flex items-center justify-between">
+              <span class="font-outfit text-xs font-bold uppercase tracking-wider text-[#26CCCA] flex items-center gap-2 group-hover:translate-x-1 transition-transform">
+                <span>Leer artículo completo</span>
+                <span>→</span>
+              </span>
+              <span class="text-xs font-poppins text-zinc-400">{featuredPost.category}</span>
+            </div>
+          </div>
+
+          <div class="lg:col-span-5 relative min-h-[260px] sm:min-h-[300px] lg:min-h-full overflow-hidden bg-black/40">
+            <img 
+              src={featuredPost.image} 
+              alt={featuredPost.title} 
+              class="w-full h-full object-cover object-center brightness-95 group-hover:scale-105 transition-transform duration-700 ease-out"
+              loading="lazy"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-[#070708] via-transparent to-transparent opacity-60 lg:opacity-40"></div>
+          </div>
+        </div>
+      </a>
+    </div>
+
+    <!-- Grilla de Artículos Recientes -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+      {blogPosts.slice(0, 3).map((post) => (
+        <a 
+          href={post.href} 
+          target="_blank"
+          rel="noopener noreferrer"
+          class="group p-8 rounded-3xl bg-[#F8F9FA] border border-zinc-200 hover:border-[#26CCCA] hover:bg-white hover:shadow-xl hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+        >
+          <div>
+            <div class="flex items-center justify-between gap-2 mb-4 pb-3 border-b border-black/5">
+              <span class="font-outfit text-xs font-bold uppercase tracking-wider text-[#0E8A88]">
+                {post.category}
+              </span>
+              <span class="text-xs font-poppins text-zinc-400">
+                {post.readTime}
+              </span>
+            </div>
+
+            <h3 class="font-outfit text-xl font-bold text-[#030303] mb-3 group-hover:text-[#0E8A88] transition-colors leading-snug">
+              {post.title}
+            </h3>
+
+            <p class="font-poppins text-xs sm:text-sm text-[#52525B] leading-relaxed mb-6 line-clamp-3">
+              {post.excerpt}
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-black/5 flex items-center justify-between">
+            <span class="font-outfit text-xs font-bold text-[#030303] group-hover:text-[#26CCCA] flex items-center gap-1.5 transition-colors">
+              <span>Leer más</span>
+              <span class="group-hover:translate-x-1 transition-transform">→</span>
+            </span>
+            <span class="w-2 h-2 rounded-full bg-zinc-300 group-hover:bg-[#26CCCA] transition-colors"></span>
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- CTA móvil para ver todos los artículos -->
+    <div class="mt-10 text-center md:hidden">
+      <a 
+        href="/blog" 
+        class="inline-flex items-center justify-center gap-2 w-full py-3.5 px-6 rounded-full bg-[#030303] text-white text-xs font-outfit font-bold uppercase tracking-wider"
+      >
+        <span>Ver todos los artículos</span>
+        <span>→</span>
+      </a>
+    </div>
+  </div>
+</section>
+

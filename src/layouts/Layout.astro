@@ -1,0 +1,102 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "Boosted.cl — Tecnología, Inteligencia Artificial y Creación Web Boutique",
+  description = "Partners tecnológicos y de diseño para marcas ambiciosas. Especialistas en desarrollo web de alto rendimiento, automatizaciones con IA y branding boutique."
+} = Astro.props;
+---
+
+<!doctype html>
+<html lang="es" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="theme-color" content="#FFFFFF" />
+
+    <!-- Open Graph / Redes Sociales -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://boosted.cl" />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content="/mockup/light_contrast_studio_1786827514288.jpg" />
+
+    <!-- Google Fonts Oficiales -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link 
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@400;500;600;700;800&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" 
+      rel="stylesheet" 
+    />
+  </head>
+  <body class="bg-[#FFFFFF] text-[#030303] font-poppins selection:bg-[#26CCCA]/30 selection:text-[#030303] min-h-screen flex flex-col antialiased">
+    <slot />
+
+    <script>
+      function initFluidSideReveal() {
+        const sections = document.querySelectorAll('section:not(#hero-fx)');
+
+        sections.forEach((section) => {
+          // Detectar grids de 2 columnas principales (ej: Columna izquierda y Columna derecha)
+          const cols12 = section.querySelectorAll(':scope > div > .grid > div[class*="col-span"]');
+          
+          if (cols12.length >= 2) {
+            // Primer bloque viene de la izquierda, segundo de la derecha
+            cols12[0].classList.add('reveal-left');
+            cols12[1].classList.add('reveal-right');
+          } else {
+            // Si es una sección con encabezado y grilla interna
+            const header = section.querySelector('h2, .max-w-3xl, .max-w-2xl');
+            if (header) header.classList.add('reveal-left');
+
+            const cards = section.querySelectorAll('.luxury-card, .notched-card, article, .stat-counter');
+            cards.forEach((card, idx) => {
+              card.classList.add(idx % 2 === 0 ? 'reveal-left' : 'reveal-right');
+              (card as HTMLElement).style.transitionDelay = `${(idx % 3) * 0.05}s`;
+            });
+
+            // Si no tiene tarjetas específicas, animar la sección completa
+            if (!header && cards.length === 0) {
+              section.classList.add('reveal-scale');
+            }
+          }
+        });
+
+        // Observer que activa los elementos al entrar en viewport
+        const elementsToAnimate = document.querySelectorAll('.reveal-left, .reveal-right, .reveal-scale');
+        
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('reveal-visible');
+                observer.unobserve(entry.target);
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: '0px 0px -60px 0px'
+          }
+        );
+
+        elementsToAnimate.forEach((el) => observer.observe(el));
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initFluidSideReveal);
+      } else {
+        initFluidSideReveal();
+      }
+    </script>
+  </body>
+</html>

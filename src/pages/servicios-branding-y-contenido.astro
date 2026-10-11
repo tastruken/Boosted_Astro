@@ -1,0 +1,665 @@
+---
+// src/pages/servicios-branding-y-contenido.astro - Página Oficial "Branding, Contenido y Redes Sociales" de Boosted (boosted.cl)
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import NotchedProjectCard from '../components/NotchedProjectCard.astro';
+import FAQ1 from '../components/ui/faq1.astro';
+
+// 20 Casos de Éxito Reales Oficiales
+const portfolioProjects = [
+  {
+    number: "01",
+    category: "Branding · Contabilidad",
+    title: "Ulloa y Cía: Renovación de Marca y Estrategia Digital Integral",
+    description: "Re-posicionamos a Ulloa y Cía. como una firma referente en auditoría y asesoría tributaria mediante rebranding completo y contenidos SEO de autoridad.",
+    href: "https://boosted.cl/portfolio-ulloa.html",
+    tag: "Rebranding Corporativo",
+    featuredBadge: "SEO & Autoridad",
+    image: "/mockup/industry_servicios_1786829835822.jpg"
+  },
+  {
+    number: "02",
+    category: "Branding · Ingeniería B2B",
+    title: "ELD: Ingeniería de Autoridad mediante Estrategia de Branding y Diseño Web B2B",
+    description: "Impulsamos la evolución de ELD hacia una firma de autoridad, con rediseño web corporativo y activación en LinkedIn e Instagram.",
+    href: "https://boosted.cl/portfolio-eld.html",
+    tag: "Ingeniería B2B",
+    featuredBadge: "LinkedIn & Web",
+    image: "/mockup/concept_cyber_minimalist_1786827233847.jpg"
+  },
+  {
+    number: "03",
+    category: "Diseño Editorial · Salud",
+    title: "Diseño de Presentaciones Corporativas: Caso Health Chile",
+    description: "Convertimos el material comercial de Health Chile en una suite de presentaciones modulares que segmenta el mensaje por industria.",
+    href: "https://boosted.cl/portfolio-health-chile.html",
+    tag: "Diseño Editorial",
+    featuredBadge: "Salud B2B",
+    image: "/mockup/light_contrast_studio_1786827514288.jpg"
+  },
+  {
+    number: "04",
+    category: "Contenidos · Educación Financiera",
+    title: "Auditor Condominio: Estrategia de Contenidos para la Educación Financiera",
+    description: "Diseñamos una estrategia de contenidos educativos que traduce la Ley 21.442 en mensajes claros que posicionan la firma como especialista en copropiedad.",
+    href: "https://boosted.cl/portfolio-auditor-branding.html",
+    tag: "Ley 21.442",
+    featuredBadge: "Educación Financiera",
+    image: "/mockup/industry_educacion_photo_1786832298593.jpg"
+  },
+  {
+    number: "05",
+    category: "Marketing B2B · Energía",
+    title: "IQ Facility: Estrategia de Marketing B2B ante el Desafío Energético",
+    description: "Convertimos el \"tarifazo\" eléctrico en el mayor catalizador comercial de IQ Facility, reposicionando la marca como socio financiero en gestión energética.",
+    href: "https://boosted.cl/portfolio-iq-facility-branding.html",
+    tag: "Gestión Energética",
+    featuredBadge: "Catalizador Comercial",
+    image: "/mockup/growth_analytics_dark.jpg"
+  },
+  {
+    number: "06",
+    category: "Marketing · Contabilidad",
+    title: "Ulloa y Cía: Estrategia de Marketing Contable y Tributario",
+    description: "Construimos una voz digital de autoridad técnica para transformar la aridez normativa en beneficios de negocio tangibles ante la gerencia.",
+    href: "https://boosted.cl/portfolio-ulloa-marketing.html",
+    tag: "Marketing B2B",
+    featuredBadge: "Voz de Autoridad",
+    image: "/mockup/hero_growth_noir.jpg"
+  },
+  {
+    number: "07",
+    category: "Editorial · Industrial",
+    title: "Instruvalve: Proyecto Editorial Corporativo en Alianza",
+    description: "Transformamos la ingeniería dura en una herramienta de venta ágil mediante una arquitectura de información modular y evidencia visual.",
+    href: "https://boosted.cl/portfolio-instruvalve.html",
+    tag: "Ingeniería Dura",
+    featuredBadge: "Herramienta Comercial",
+    image: "/mockup/industry_construccion_1786829732825.jpg"
+  },
+  {
+    number: "08",
+    category: "Editorial · Localización",
+    title: "Trenton 5: Brochure Industrial y Localización",
+    description: "Localizamos el catálogo norteamericano resolviendo la expansión del texto en español sin alterar la grilla ni la autoridad visual original.",
+    href: "https://boosted.cl/portfolio-trenton.html",
+    tag: "Localización Global",
+    featuredBadge: "Brochure Técnico",
+    image: "/mockup/hero_architecture_noir.webp"
+  },
+  {
+    number: "09",
+    category: "Diseño Gráfico · Industrial",
+    title: "Aros del Pacífico: Diseño Gráfico y Marketing Industrial para Equipamiento Pesado",
+    description: "Diseñamos una estética heavy duty poniendo el dato técnico en primer plano para posicionar la marca como proveedor serio para flotas y faenas de alta exigencia.",
+    href: "https://boosted.cl/portfolio-aros-del-pacifico.html",
+    tag: "Heavy Duty",
+    featuredBadge: "Marketing Industrial",
+    image: "/mockup/automation_pipeline_mockup.jpg"
+  },
+  {
+    number: "10",
+    category: "Branding · Web B2B",
+    title: "IQ Facility: Plataforma Digital, Branding y Contenido para Consultoría B2B",
+    description: "Diseñamos el sitio de IQ Facility como una plataforma de venta B2B que convierte la promesa de ahorro en propuesta de valor clara y segmentada por industria.",
+    href: "https://boosted.cl/portfolio-iq-facility.html",
+    tag: "Plataforma B2B",
+    featuredBadge: "Segmentación Industrial",
+    image: "/mockup/digital_ecosystem_mockup.jpg"
+  },
+  {
+    number: "11",
+    category: "Identidad Corporativa · Industrial",
+    title: "ARBMet: Identidad Corporativa Industrial y Uniformidad B2B",
+    description: "Transformamos la percepción de marca de un contratista a una empresa referente de montaje industrial mediante un sistema visual de alto nivel.",
+    href: "https://boosted.cl/portfolio-arbmet.html",
+    tag: "Montaje Industrial",
+    featuredBadge: "Identidad B2B",
+    image: "/mockup/industry_construccion_1786829732825.jpg"
+  },
+  {
+    number: "12",
+    category: "Redes Sociales · Ingeniería",
+    title: "ELD: Estrategia de Redes Sociales para Ingeniería de Alta Complejidad",
+    description: "Convertimos las redes de ELD en un sistema de contenido B2B que educa y vende, traduciendo normativa compleja en mensajes claros en LinkedIn e Instagram.",
+    href: "https://boosted.cl/portfolio-eld-social.html",
+    tag: "LinkedIn B2B",
+    featuredBadge: "Educación & Ventas",
+    image: "/mockup/hero_pilar_marketing.jpg"
+  },
+  {
+    number: "13",
+    category: "Contenidos · Comercio",
+    title: "Galería Casa Colorada: Estrategia de Contenidos y Revitalización Comercial",
+    description: "Reposicionamos Galería Casa Colorada como una experiencia urbana deseable, humanizando a los locatarios y transformando su valor patrimonial en tráfico real.",
+    href: "https://boosted.cl/portfolio-casa-colorada.html",
+    tag: "Retail Patrimonial",
+    featuredBadge: "Tráfico & Engagement",
+    image: "/mockup/industry_retail_photo_1786832352096.jpg"
+  },
+  {
+    number: "14",
+    category: "Diseño Editorial · Moda",
+    title: "Broccato: Diseño de Lookbook Corporativo para Moda y Funcionalidad",
+    description: "Posicionamos a Broccato con un Lookbook Corporativo de moda ejecutiva que eleva el ticket promedio y tangibiliza la confección a medida ante gerencias exigentes.",
+    href: "https://boosted.cl/portfolio-broccato.html",
+    tag: "Moda Corporativa",
+    featuredBadge: "Lookbook Editorial",
+    image: "/mockup/concept_haute_editorial_1786827284300.jpg"
+  },
+  {
+    number: "15",
+    category: "Editorial · Medios",
+    title: "CMET: Diseño de Revista Digital y Guía Programática en la Era del Cable",
+    description: "Convertimos la guía de programación de CMET en una revista digital interactiva que refuerza la percepción de servicio premium en miles de hogares.",
+    href: "https://boosted.cl/portfolio-cmet.html",
+    tag: "Medios Digitales",
+    featuredBadge: "Revista Interactiva",
+    image: "/mockup/light_contrast_studio_1786827514288.jpg"
+  },
+  {
+    number: "16",
+    category: "Brochure · Ingeniería",
+    title: "BAS: Brochure Corporativo para el Sector Industrial",
+    description: "Convertimos la experiencia de BAS en infraestructura crítica en un brochure de autoridad que respalda licitaciones de salud, corporativo y retail.",
+    href: "https://boosted.cl/portfolio-bas.html",
+    tag: "Infraestructura Crítica",
+    featuredBadge: "Respaldo Licitaciones",
+    image: "/mockup/hero_architecture_noir.webp"
+  },
+  {
+    number: "17",
+    category: "Portfolio Web · Audiovisual",
+    title: "Maelstrom Studios: El Estándar del Fotorrealismo en Diseño Web Portfolio Audiovisual",
+    description: "Diseñamos un sitio portfolio audiovisual con interfaz dark minimalista y galería inmersiva que valida su nivel cinematográfico en segundos.",
+    href: "https://boosted.cl/portfolio-maelstrom.html",
+    tag: "Audiovisual 4K",
+    featuredBadge: "Nivel Cinematográfico",
+    image: "/mockup/cinema_studio.jpg"
+  },
+  {
+    number: "18",
+    category: "Branding · E-commerce",
+    title: "Kitty Zone: Tienda Online y Branding para Boutique Erótica",
+    description: "Diseñamos una boutique digital con marca dark & classy y tienda online optimizada para compras privadas desde el móvil con estética de lujo.",
+    href: "https://boosted.cl/portfolio-kitty-zone.html",
+    tag: "Dark & Classy",
+    featuredBadge: "Boutique de Lujo",
+    image: "/mockup/light_minimalist_boutique_1786827479127.jpg"
+  },
+  {
+    number: "19",
+    category: "Branding · Legal",
+    title: "Beltrán & Guzmán: Branding Moderno y Sitio Web Integral",
+    description: "Rejuvenecimos Beltrán & Guzmán con un monograma geométrico con gradientes vibrantes y una interfaz dinámica que proyecta sofisticación en digital y merchandising.",
+    href: "https://boosted.cl/portfolio-beltran-guzman.html",
+    tag: "Sector Legal",
+    featuredBadge: "Monograma Dinámico",
+    image: "/mockup/hero_studio_visual_1786834965899.jpg"
+  },
+  {
+    number: "20",
+    category: "Portfolio Técnico · B2B",
+    title: "Akitec: Estrategia de Contenido B2B y Portafolio Técnico",
+    description: "Convertimos la experiencia transversal de Akitec en un portafolio B2B segmentado por verticales que hace visibles servicios intangibles para licitaciones de alto valor.",
+    href: "https://boosted.cl/portfolio-akitec.html",
+    tag: "Portafolio Técnico",
+    featuredBadge: "Licitaciones de Alto Valor",
+    image: "/mockup/developer_desk_dark.jpg"
+  }
+];
+
+// Metodología en 3 Etapas Oficiales
+const methodologyStages = [
+  {
+    stage: "01",
+    badge: "Etapa 1: Fundamentos",
+    title: "Diagnóstico y ADN de Marca",
+    description: "Analizamos tu posición actual, tus competidores y la percepción que tiene tu audiencia. Definimos el ADN de tu marca y los mensajes clave que diferencian tu propuesta de valor.",
+    icon: `<svg class="w-6 h-6 text-[#030303] group-hover:text-[#26CCCA] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" /></svg>`,
+    keyPoints: [
+      "Auditoría de percepción y posicionamiento actual",
+      "Benchmarking exhaustivo de competencia directa",
+      "Definición de propuesta de valor y mensajes clave"
+    ]
+  },
+  {
+    stage: "02",
+    badge: "Etapa 2: Identidad",
+    title: "Construcción de Identidad Visual",
+    description: "Diseñamos el sistema visual completo: logotipo, paleta cromática, tipografías, templates y guía de marca. Todo para garantizar coherencia en cada punto de contacto con tu cliente.",
+    icon: `<svg class="w-6 h-6 text-[#030303] group-hover:text-[#26CCCA] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M7 21a4 4 0 01-4-4V5a2 2 0 012-2h4a2 2 0 012 2v12a4 4 0 01-4 4zm0 0h12a2 2 0 002-2v-4a2 2 0 00-2-2h-2.343M11 7.343l1.657-1.657a2 2 0 012.828 0l2.829 2.829a2 2 0 010 2.828l-8.486 8.485M7 17h.01" /></svg>`,
+    keyPoints: [
+      "Logotipo, imagotipo y variantes de aplicación",
+      "Paleta cromática, jerarquía tipográfica y manual",
+      "Templates editables para presentaciones y redes"
+    ]
+  },
+  {
+    stage: "03",
+    badge: "Etapa 3: Distribución",
+    title: "Despliegue en Canales Digitales",
+    description: "Activamos tu marca en redes sociales, web y materiales de venta con un calendario de contenidos estratégico. Cada publicación educa, posiciona y acerca al prospecto a la decisión de compra.",
+    icon: `<svg class="w-6 h-6 text-[#030303] group-hover:text-[#26CCCA] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" /></svg>`,
+    keyPoints: [
+      "Calendario editorial mensual orientado a conversión",
+      "Producción de activos comerciales y de venta",
+      "Activación estratégica en LinkedIn, Instagram y web"
+    ]
+  }
+];
+
+// 3 Pilares del Ecosistema Unificado
+const ecosystemPillars = [
+  {
+    number: "01",
+    title: "Ahorro de Tiempo y Recursos",
+    detail: "Al centralizar la estrategia en un solo equipo, eliminas los problemas de comunicación entre múltiples proveedores y maximizas la inversión de cada pieza creada.",
+    metric: "1 Equipo",
+    metricLabel: "Cero fricción de proveedores"
+  },
+  {
+    number: "02",
+    title: "Mensaje Unificado",
+    detail: "Tu sitio web, tus redes y tus presentaciones de ventas hablarán el mismo idioma, aumentando la percepción de profesionalismo ante tus clientes en cada interacción.",
+    metric: "100%",
+    metricLabel: "Consistencia multicanal"
+  },
+  {
+    number: "03",
+    title: "Mejor Retorno de Inversión",
+    detail: "El contenido bien diseñado y alineado con la marca tiene tasas de conversión más altas que las publicaciones genéricas, generando resultados que se sostienen en el tiempo.",
+    metric: "+ROI",
+    metricLabel: "Conversión sostenida"
+  }
+];
+
+// Preguntas Frecuentes Oficiales
+const faqs = [
+  {
+    q: "¿Cuál es la diferencia entre un logo y el branding?",
+    a: "Un logo es solo el símbolo gráfico de tu empresa; el branding es el sistema completo que define la personalidad, los valores y la forma en que tu marca se comunica en cada canal. Incluye tipografías, paleta de colores, tono de voz y experiencia del cliente. Sin una estrategia de branding, el logo es solo una imagen."
+  },
+  {
+    q: "¿Entregan los archivos editables de los diseños?",
+    a: "Sí. Todos nuestros proyectos incluyen la entrega de los archivos fuente en los formatos estándar de la industria (Illustrator, Figma, InDesign, etc.). Tu marca te pertenece completamente y tendrás autonomía total para usarla con cualquier proveedor en el futuro."
+  },
+  {
+    q: "¿Cómo miden el éxito de una estrategia de contenidos?",
+    a: "Definimos KPIs concretos desde el inicio: alcance orgánico, engagement, tráfico web referido desde redes, leads generados y tasa de conversión de contenido. Entregamos reportes mensuales y ajustamos la estrategia basándonos en datos reales, no en suposiciones."
+  }
+];
+
+const calendarUrl = "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0eLzWvh-yrlAvDqP4vCBpex5c2wtzqpp89n_C4VVp6Obx184OHVTcQxAJBAtq4CtJtcYmyMuuA";
+---
+
+<Layout 
+  title="Branding, Contenido y Redes: Portafolio y Estrategias que Venden | Boosted.cl"
+  description="Selección de proyectos donde transformamos la identidad visual y el ecosistema digital de nuestros clientes. Construimos marcas con autoridad y comunicación estratégica orientada a la venta."
+>
+  <Navbar />
+
+  <main class="flex-grow">
+
+    <!-- 1. HERO SECTION (Negro Obsidiana #050505 con Acentos Cian & Estilo Editorial) -->
+    <section class="min-h-[calc(100vh-80px)] bg-[#050505] text-white relative flex items-center px-6 sm:px-12 lg:px-20 py-12 lg:py-16 overflow-hidden select-none">
+      
+      <!-- Fondo Cinematográfico y Texturas de Profundidad -->
+      <div class="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
+        <img 
+          src="/mockup/hero_marketing_cinema.jpg" 
+          alt="Boosted Branding y Contenido Texture" 
+          class="w-full h-full object-cover object-right lg:object-center opacity-25 brightness-90 contrast-125 scale-105"
+          loading="eager"
+          decoding="async"
+        />
+        <!-- Viñetas de gradiente -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505] opacity-80"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/60 to-transparent opacity-90"></div>
+        <div class="absolute top-1/3 left-1/4 w-[500px] h-[350px] bg-[#26CCCA]/15 rounded-full blur-[160px]"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-[450px] h-[300px] bg-[#0E8A88]/20 rounded-full blur-[180px]"></div>
+      </div>
+
+      <!-- Contenido Principal en Grilla de 2 Columnas -->
+      <div class="w-full max-w-[1400px] mx-auto relative z-10 py-6 sm:py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          <!-- Columna Izquierda: Titulares, Narrativa y CTAs (7 Columnas) -->
+          <div class="lg:col-span-7 flex flex-col justify-center">
+
+            <!-- Tag / Eyebrow -->
+            <span class="font-outfit text-xs sm:text-sm font-bold uppercase tracking-widest text-[#26CCCA] block mb-3">
+              Branding · Contenido · Redes Sociales
+            </span>
+
+            <!-- Titular Proporcionado e Impactante -->
+            <h1 class="font-bebas text-4xl sm:text-6xl lg:text-[4.6rem] text-white tracking-tight uppercase leading-[0.95] mb-4">
+              PORTAFOLIO Y ESTRATEGIAS<br />
+              <span class="bg-gradient-to-r from-[#26CCCA] via-[#3DE8E5] to-[#0E8A88] bg-clip-text text-transparent">
+                QUE VENDEN
+              </span>
+            </h1>
+
+            <!-- Párrafo Claro y Respirable -->
+            <p class="font-poppins text-sm sm:text-base lg:text-lg text-zinc-300 font-normal leading-relaxed max-w-xl mb-6">
+              Selección de proyectos donde transformamos la <strong class="text-white font-medium">identidad visual y el ecosistema digital</strong> de nuestros clientes. En Boosted, no solo diseñamos logotipos o publicamos posts en redes sociales; construimos ecosistemas digitales coherentes.
+            </p>
+
+            <!-- Botones de Acción Inmediatos -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-6">
+              <!-- CTA 1: Hablemos sobre mi marca y contenido -->
+              <a 
+                href="#contacto" 
+                class="btn-primary text-xs uppercase tracking-wider py-3.5 px-7 inline-flex items-center justify-center gap-2.5 border border-white/20 shadow-lg text-center"
+              >
+                <span>Hablemos sobre mi marca y contenido</span>
+                <svg class="w-4 h-4 text-[#26CCCA] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </a>
+
+              <!-- CTA 2: Ver Proyectos -->
+              <a 
+                href="#portafolio" 
+                class="px-7 py-3.5 rounded-full border border-white/20 bg-white/[0.05] hover:bg-white/[0.12] hover:border-[#26CCCA] text-white font-outfit text-xs font-bold uppercase tracking-wider transition-all duration-200 inline-flex items-center justify-center gap-2 text-center"
+              >
+                <span>Ver Proyectos</span>
+                <span class="text-[#26CCCA]">↓</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Columna Derecha: Enfoque Estratégico en Estilo Editorial Abierto (Sin cajas ni recuadros) -->
+          <div class="lg:col-span-5 flex flex-col justify-center gap-8 lg:gap-10 lg:pl-6">
+            
+            <!-- Pilar 1: Identidad de Autoridad -->
+            <div class="relative pl-6 border-l-2 border-[#26CCCA]/40 hover:border-[#26CCCA] transition-colors duration-300 group">
+              <div class="flex items-baseline justify-between gap-4 mb-2">
+                <div>
+                  <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#26CCCA] block mb-1">
+                    Identidad Visual
+                  </span>
+                  <h3 class="font-outfit text-xl sm:text-2xl font-bold text-white tracking-tight">
+                    Imagen de Autoridad
+                  </h3>
+                </div>
+                <span class="font-bebas text-6xl sm:text-7xl text-white group-hover:text-[#26CCCA] transition-colors leading-none tracking-tight shrink-0">
+                  100%
+                </span>
+              </div>
+              <p class="font-poppins text-xs sm:text-sm text-zinc-400 font-normal leading-relaxed max-w-md">
+                Modernizamos la imagen corporativa de tu empresa conservando su esencia y proyectando liderazgo ante mandantes y clientes.
+              </p>
+            </div>
+
+            <!-- Divisor sutil entre pilares -->
+            <div class="h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent"></div>
+
+            <!-- Pilar 2: Contenido que Vende -->
+            <div class="relative pl-6 border-l-2 border-[#26CCCA]/40 hover:border-[#26CCCA] transition-colors duration-300 group">
+              <div class="flex items-baseline justify-between gap-4 mb-2">
+                <div>
+                  <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#26CCCA] block mb-1">
+                    Contenido Estratégico
+                  </span>
+                  <h3 class="font-outfit text-xl sm:text-2xl font-bold text-white tracking-tight">
+                    Activos que Convierten
+                  </h3>
+                </div>
+                <span class="font-bebas text-6xl sm:text-7xl text-[#26CCCA] leading-none tracking-tight shrink-0">
+                  360°
+                </span>
+              </div>
+              <p class="font-poppins text-xs sm:text-sm text-zinc-400 font-normal leading-relaxed max-w-md">
+                Calendarios editoriales de interacción real, lookbooks y presentaciones comerciales diseñadas para acelerar y cerrar ventas.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 2. CASOS DE ÉXITO: PROYECTOS QUE HABLAN POR SÍ SOLOS (Blanco Puro #FFFFFF) -->
+    <section id="portafolio" class="py-24 sm:py-32 bg-[#FFFFFF] text-[#030303] border-t border-black/[0.06] relative">
+      <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+        
+        <!-- Header de Sección -->
+        <div class="max-w-3xl mb-16 sm:mb-20">
+          <span class="font-outfit text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0E8A88] block mb-3">
+            CASOS DE ÉXITO
+          </span>
+          <h2 class="font-bebas text-5xl sm:text-6xl lg:text-7xl text-[#030303] tracking-tight uppercase leading-[0.95] mb-5">
+            PROYECTOS QUE HABLAN <span class="border-b-4 border-[#26CCCA] inline-block">POR SÍ SOLOS</span>
+          </h2>
+          <p class="font-poppins text-base sm:text-lg text-[#52525B] leading-relaxed">
+            A continuación, verás cómo hemos ayudado a empresas de Salud, Tecnología, Educación e industria a transformar su presencia digital.
+          </p>
+        </div>
+
+        <!-- Grilla de los 20 Casos de Éxito en 3 Columnas con NotchedProjectCard -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 mb-16">
+          {portfolioProjects.map((project) => (
+            <NotchedProjectCard
+              href={project.href}
+              title={project.title}
+              description={project.description}
+              image={project.image}
+              imageAlt={`Caso ${project.title}`}
+              category={project.category}
+              number={project.number}
+              tags={[project.tag, project.featuredBadge]}
+              surface="#FFFFFF"
+            />
+          ))}
+        </div>
+
+        <!-- Banner de Conversión: ¿Quieres resultados similares? -->
+        <div class="rounded-3xl bg-[#050505] text-white p-8 sm:p-12 border border-white/10 relative overflow-hidden shadow-xl">
+          <div class="absolute -right-10 -bottom-10 w-80 h-80 bg-[#26CCCA]/10 rounded-full blur-3xl pointer-events-none"></div>
+          
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+            <div class="lg:col-span-8">
+              <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#26CCCA] block mb-3">
+                RESULTADOS COMPROBADOS
+              </span>
+              <p class="font-outfit text-xl sm:text-2xl lg:text-3xl font-bold text-white leading-snug">
+                "¿Quieres resultados similares? <span class="text-[#26CCCA]">Conversemos</span> y diseñemos una identidad y estrategia de contenido que posicione a tu empresa como líder."
+              </p>
+            </div>
+            <div class="lg:col-span-4 flex lg:justify-end">
+              <a 
+                href="#contacto" 
+                class="btn-primary text-xs uppercase tracking-wider py-4 px-8 inline-flex items-center gap-2 border border-white/20 whitespace-nowrap"
+              >
+                <span>Hablemos de tu Proyecto</span>
+                <svg class="w-4 h-4 text-[#26CCCA]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. NUESTRA METODOLOGÍA: ¿CÓMO INTEGRAMOS BRANDING, CONTENIDO Y REDES? (Gris Muy Claro #F8F9FA) -->
+    <section id="metodologia" class="py-24 sm:py-32 bg-[#F8F9FA] text-[#030303] border-t border-black/[0.06] relative">
+      <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+        
+        <!-- Header de Sección -->
+        <div class="max-w-3xl mb-16 sm:mb-20">
+          <span class="font-outfit text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0E8A88] block mb-3">
+            NUESTRA METODOLOGÍA
+          </span>
+          <h2 class="font-bebas text-5xl sm:text-6xl lg:text-7xl text-[#030303] tracking-tight uppercase leading-[0.95] mb-5">
+            ¿CÓMO INTEGRAMOS BRANDING, CONTENIDO <span class="border-b-4 border-[#26CCCA] inline-block">Y REDES EN BOOSTED?</span>
+          </h2>
+          <p class="font-poppins text-base sm:text-lg text-[#52525B] leading-relaxed">
+            No creemos en las soluciones parche. Muchos clientes llegan habiendo contratado un logo por un lado y un Community Manager por otro, resultando en una imagen fracturada. Nuestra metodología unifica estos mundos en tres etapas diseñadas para la coherencia y la conversión:
+          </p>
+        </div>
+
+        <!-- Grilla de las 3 Etapas de Metodología -->
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+          {methodologyStages.map((stage) => (
+            <div class="luxury-card group flex flex-col justify-between p-8 sm:p-10 rounded-3xl bg-white border border-zinc-200 hover:border-[#26CCCA] hover:-translate-y-1 transition-all duration-300 relative min-h-[380px] shadow-sm hover:shadow-xl">
+              <div>
+                <!-- Top Row: Icono + Número Gigante -->
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-black/10">
+                  <div class="w-12 h-12 rounded-2xl bg-zinc-100 flex items-center justify-center group-hover:bg-[#26CCCA]/10 transition-colors" set:html={stage.icon}>
+                  </div>
+                  <span class="font-bebas text-4xl text-zinc-300 group-hover:text-[#26CCCA] transition-colors leading-none">
+                    {stage.stage}
+                  </span>
+                </div>
+
+                <!-- Badge de Etapa -->
+                <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#0E8A88] block mb-3">
+                  {stage.badge}
+                </span>
+
+                <!-- Título de la Etapa -->
+                <h3 class="font-outfit text-2xl font-bold text-[#030303] mb-4 leading-tight">
+                  {stage.title}
+                </h3>
+
+                <!-- Descripción Completa Oficial -->
+                <p class="font-poppins text-sm text-[#52525B] leading-relaxed mb-6">
+                  {stage.description}
+                </p>
+              </div>
+
+              <!-- Puntos Clave de la Etapa -->
+              <div class="pt-4 border-t border-black/5 space-y-2 font-poppins text-xs text-zinc-600">
+                {stage.keyPoints.map((point) => (
+                  <div class="flex items-center gap-2">
+                    <span class="text-[#26CCCA] font-bold text-xs shrink-0">✓</span>
+                    <span>{point}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. ECOSISTEMA UNIFICADO: ¿POR QUÉ TU EMPRESA NECESITA UN ECOSISTEMA UNIFICADO? (Negro Obsidiana #030303) -->
+    <section id="ecosistema-unificado" class="py-16 sm:py-20 lg:py-24 bg-[#030303] text-white border-y border-white/10 relative overflow-hidden">
+      <!-- Glows ambientales sutiles -->
+      <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#26CCCA]/10 rounded-full blur-[180px] pointer-events-none"></div>
+      <div class="absolute bottom-0 right-10 w-72 h-72 bg-[#26CCCA]/5 rounded-full blur-[140px] pointer-events-none"></div>
+
+      <div class="max-w-[1180px] mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        
+        <!-- Header de Sección -->
+        <div class="max-w-2xl mx-auto text-center mb-12 sm:mb-16">
+          <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#26CCCA] block mb-2">
+            ECOSISTEMA UNIFICADO
+          </span>
+          <h2 class="font-bebas text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight uppercase leading-[0.95] mb-3">
+            ¿POR QUÉ TU EMPRESA NECESITA <span class="text-[#26CCCA]">UN ECOSISTEMA UNIFICADO?</span>
+          </h2>
+          <p class="font-poppins text-xs sm:text-sm text-zinc-400 leading-relaxed max-w-lg mx-auto">
+            El mercado digital de hoy está saturado. Para destacar, la consistencia es la clave. Un servicio aislado de redes sociales puede generar ruido momentáneo, pero sin una identidad de marca sólida ese ruido no construye lealtad a largo plazo.
+          </p>
+        </div>
+
+        <!-- 3 Pilares del Ecosistema Unificado -->
+        <div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-white/10 mb-14 pt-6 border-t border-white/10">
+          
+          {ecosystemPillars.map((pillar) => (
+            <div class="py-8 md:py-4 md:px-6 lg:px-8 flex flex-col group first:md:pl-0 last:md:pr-0">
+              <div class="flex items-center justify-between mb-4">
+                <span class="font-bebas text-3xl sm:text-4xl text-[#26CCCA] group-hover:text-white transition-colors leading-none">
+                  {pillar.number}
+                </span>
+                <span class="px-2.5 py-1 rounded-full bg-white/[0.04] text-[11px] font-outfit uppercase font-bold text-[#26CCCA] border border-white/10 group-hover:border-[#26CCCA]/40 transition-colors">
+                  {pillar.metric}
+                </span>
+              </div>
+              <h3 class="font-outfit text-xl font-bold text-white mb-2 group-hover:text-[#26CCCA] transition-colors leading-tight">
+                {pillar.title}
+              </h3>
+              <p class="font-poppins text-xs sm:text-sm text-zinc-400 leading-relaxed mb-4 flex-grow">
+                {pillar.detail}
+              </p>
+              <div class="pt-3 border-t border-white/5 text-[11px] font-outfit uppercase font-semibold text-zinc-400 flex items-center gap-1.5">
+                <span class="text-[#26CCCA] font-bold text-xs">✓</span>
+                <span>{pillar.metricLabel}</span>
+              </div>
+            </div>
+          ))}
+
+        </div>
+
+        <!-- Bloque Inferior de Conversión & CTAs -->
+        <div class="max-w-xl mx-auto text-center">
+          <div class="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 mb-4">
+            <a 
+              href={calendarUrl}
+              target="_blank" 
+              rel="noopener noreferrer"
+              class="btn-primary text-xs uppercase tracking-wider py-3.5 px-7 inline-flex items-center justify-center gap-2 border border-white/20 shadow-xl text-center w-full sm:w-auto"
+            >
+              <span>AGENDAR UNA ASESORÍA GRATUITA</span>
+              <svg class="w-3.5 h-3.5 text-[#26CCCA]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+            </a>
+
+            <a 
+              href="#contacto" 
+              class="px-7 py-3.5 rounded-full border border-white/20 bg-white/[0.05] hover:bg-white/[0.12] hover:border-[#26CCCA] text-white font-outfit text-xs font-bold uppercase tracking-wider transition-all duration-200 inline-flex items-center justify-center gap-2 text-center w-full sm:w-auto"
+            >
+              <span>Hablar con un Asesor</span>
+              <span class="text-[#26CCCA]">↓</span>
+            </a>
+          </div>
+
+          <!-- Indicadores de Confianza Micro-reaseguro -->
+          <div class="flex flex-wrap items-center justify-center gap-4 sm:gap-6 text-[11px] font-outfit text-zinc-400">
+            <span class="inline-flex items-center gap-1.5">
+              <span class="text-[#26CCCA] font-bold">✓</span>
+              Sesión estratégica de 30 minutos
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <span class="text-[#26CCCA] font-bold">✓</span>
+              Diagnóstico de marca y canales
+            </span>
+            <span class="inline-flex items-center gap-1.5">
+              <span class="text-[#26CCCA] font-bold">✓</span>
+              Sin compromiso
+            </span>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 6. PREGUNTAS FRECUENTES (FAQ) (Diseño shadcn/ui faq1 Accordion) -->
+    <FAQ1 
+      faqs={faqs} 
+      tagline="PREGUNTAS FRECUENTES"
+      title="PREGUNTAS"
+      titleAccent="FRECUENTES"
+      subtitle="Preguntas frecuentes sobre nuestros servicios de Branding, Contenido y Redes Sociales."
+    />
+
+
+    <!-- 8. CONTACTO REUTILIZADO (Componente Oficial Contact.astro con Formulario y Canales) -->
+    <Contact />
+
+  </main>
+
+  <Footer />
+</Layout>

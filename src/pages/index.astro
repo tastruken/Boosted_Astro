@@ -1,0 +1,36 @@
+---
+// src/pages/index.astro - Página Oficial de Boosted (boosted.cl)
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import FullScreenHeroFX from '../components/FullScreenHeroFX.astro';
+import Stats from '../components/Stats.astro';
+import Ecosystem from '../components/Ecosystem.astro';
+import Industries from '../components/Industries.astro';
+import Framework from '../components/Framework.astro';
+import CharlieShowcase from '../components/CharlieShowcase.astro';
+import Portfolio from '../components/Portfolio.astro';
+import Testimonials from '../components/Testimonials.astro';
+import Blog from '../components/Blog.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+---
+
+<Layout 
+  title="Boosted.cl — Marketing, Contenido, Automatización & IA"
+  description="Estrategia, redes y contenidos que venden. Ecosistema digital integral: automatización de procesos, desarrollo a medida y agentes de IA con Charlie™."
+>
+  <Navbar />
+  <main class="flex-grow">
+    <FullScreenHeroFX />
+    <Stats />
+    <Ecosystem />
+    <Industries />
+    <Framework />
+    <CharlieShowcase />
+    <Portfolio />
+    <Testimonials />
+    <Blog />
+    <Contact />
+  </main>
+  <Footer />
+</Layout>

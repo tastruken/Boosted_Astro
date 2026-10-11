@@ -1,0 +1,49 @@
+---
+// Framework.astro - Metodología en 3 Pasos (Diseño Lineal Minimalista sin Cajas Pesadas)
+import { frameworkSteps } from '../data/framework';
+---
+
+<section id="framework" class="py-24 bg-white border-t border-black/[0.06] relative">
+  <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+    <div class="max-w-3xl mb-20">
+      <h2 class="font-bebas text-4xl sm:text-6xl text-[#030303] tracking-tight uppercase leading-none mb-4">
+        DE DIAGNÓSTICO A <span class="border-b-4 border-[#26CCCA] inline-block">IMPACTO REAL</span>
+      </h2>
+      <p class="font-poppins text-base text-[#52525B] leading-relaxed">
+        Nuestra metodología estructurada para garantizar el éxito de tu transformación digital.
+      </p>
+    </div>
+
+    <!-- 3 Pasos Conectados con Línea de Precisión -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-10 lg:gap-14 relative">
+      {frameworkSteps.map((step, idx) => (
+        <div class="flex flex-col relative group">
+          <!-- Top Step Indicator -->
+          <div class="flex items-center justify-between mb-6 pb-4 border-b border-black/10">
+            <span class="font-bebas text-6xl lg:text-7xl text-[#030303] group-hover:text-[#0E8A88] transition-colors leading-none">
+              {step.number}
+            </span>
+            <span class="w-3 h-3 rounded-full bg-zinc-200 group-hover:bg-[#26CCCA] transition-colors"></span>
+          </div>
+
+          <h3 class="font-outfit text-2xl font-bold text-[#030303] mb-3">
+            {step.title}
+          </h3>
+
+          <p class="font-poppins text-sm text-[#52525B] leading-relaxed mb-6">
+            {step.description}
+          </p>
+
+          <ul class="space-y-2 mt-auto pt-4 border-t border-black/5">
+            {step.points.map(pt => (
+              <li class="flex items-center gap-2 text-xs font-poppins text-[#52525B]">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA]"></span>
+                <span>{pt}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

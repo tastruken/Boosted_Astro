@@ -1,0 +1,120 @@
+---
+// Portfolio.astro - Casos de Éxito (Diseño Editorial Boutique)
+import { portfolioCases } from '../data/portfolio';
+
+const featured = portfolioCases.find(p => p.isFeatured) || portfolioCases[0];
+const rest = portfolioCases.filter(p => !p.isFeatured);
+---
+
+<section id="casos" class="py-24 bg-white border-t border-black/[0.06] relative">
+  <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+    <!-- Header con enlaces a portafolios específicos -->
+    <div class="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+      <div>
+        <h2 class="font-bebas text-4xl sm:text-6xl text-[#030303] tracking-tight uppercase leading-none">
+          PROYECTOS QUE <span class="border-b-4 border-[#26CCCA] inline-block">HABLAN POR SÍ SOLOS</span>
+        </h2>
+      </div>
+
+      <!-- Quick Portfolio Links -->
+      <div class="flex items-center gap-3">
+        <a 
+          href="https://boosted.cl/branding-y-contenido.html" 
+          target="_blank"
+          class="btn-secondary text-xs uppercase tracking-wider py-2.5 px-5"
+        >
+          Portafolio Branding →
+        </a>
+        <a 
+          href="/servicios-sitios-web" 
+          class="btn-secondary text-xs uppercase tracking-wider py-2.5 px-5"
+        >
+          Portafolio Web →
+        </a>
+      </div>
+    </div>
+
+    <!-- Featured Case (Ulloa y Cía) -->
+    <div class="mb-12 rounded-3xl border border-black/10 overflow-hidden bg-zinc-50 group hover:border-[#26CCCA] transition-all duration-300">
+      <div class="grid grid-cols-1 lg:grid-cols-12 items-center">
+        <div class="lg:col-span-6 p-8 sm:p-12 flex flex-col justify-between">
+          <div>
+            <div class="flex items-center gap-3 mb-3">
+              <span class="text-[11px] font-outfit uppercase font-bold tracking-widest text-[#0E8A88]">
+                Caso Destacado
+              </span>
+              <span class="text-xs font-poppins text-[#52525B]">
+                • {featured.category}
+              </span>
+            </div>
+
+            <h3 class="font-outfit text-3xl sm:text-4xl font-bold text-[#030303] mb-4">
+              {featured.title}
+            </h3>
+
+            <p class="font-poppins text-sm text-[#52525B] leading-relaxed mb-8">
+              {featured.description}
+            </p>
+
+            <div class="flex flex-wrap gap-2 mb-8">
+              {featured.tags.map(tag => (
+                <span class="px-3 py-1 rounded-lg bg-white border border-zinc-200 text-xs font-poppins text-zinc-700">
+                  {tag}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <a 
+              href={featured.href} 
+              target="_blank"
+              class="btn-primary text-xs uppercase tracking-wider py-3.5 px-8 inline-flex items-center gap-2"
+            >
+              <span>Ver caso completo</span>
+              <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA]"></span>
+            </a>
+          </div>
+        </div>
+
+        <div class="lg:col-span-6 h-full min-h-[350px] relative overflow-hidden bg-zinc-200">
+          <img 
+            src={featured.image} 
+            alt={featured.title}
+            class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Secondary Cases Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+      {rest.map((c) => (
+        <a 
+          href={c.href} 
+          target="_blank"
+          class="group p-8 rounded-3xl bg-white border border-black/10 hover:border-[#26CCCA] hover:shadow-xl transition-all duration-300 flex flex-col justify-between"
+        >
+          <div>
+            <span class="text-[11px] font-outfit uppercase font-bold tracking-wider text-[#0E8A88] block mb-2">
+              {c.category}
+            </span>
+            <h3 class="font-outfit text-2xl font-bold text-[#030303] mb-3 group-hover:text-black transition-colors">
+              {c.title}
+            </h3>
+            <p class="font-poppins text-sm text-[#52525B] leading-relaxed mb-6">
+              {c.description}
+            </p>
+          </div>
+
+          <div class="pt-4 border-t border-black/5 flex items-center justify-between">
+            <span class="text-xs font-poppins font-bold text-[#030303] group-hover:text-[#0E8A88] flex items-center gap-1">
+              Leer más →
+            </span>
+            <span class="w-2 h-2 rounded-full bg-zinc-300 group-hover:bg-[#26CCCA] transition-colors"></span>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

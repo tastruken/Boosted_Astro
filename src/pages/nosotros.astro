@@ -1,0 +1,607 @@
+---
+// src/pages/nosotros.astro - Página Oficial "Nosotros" de Boosted (boosted.cl)
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import TeamSection from '../components/TeamSection.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+
+// Métricas Editoriales de Autoridad
+const heroMetrics = [
+  {
+    prefix: "+",
+    value: "10",
+    suffix: "",
+    numericTarget: 10,
+    title: "Años de Ingeniería",
+    description: "Trayectoria sólida en arquitectura de datos, software y tecnología empresarial."
+  },
+  {
+    prefix: "",
+    value: "B2B",
+    suffix: "",
+    numericTarget: null,
+    title: "Foco en Resultados",
+    description: "Orientación absoluta al retorno de inversión (ROI), conversión y eficiencia comercial."
+  },
+  {
+    prefix: "",
+    value: "360",
+    suffix: "°",
+    numericTarget: 360,
+    title: "Visión Sistémica",
+    description: "Ecosistema integral que une marketing, ventas, automatizaciones e inteligencia artificial."
+  }
+];
+
+// Los 4 Pilares de Boosted
+const pillars = [
+  {
+    number: "01",
+    title: "Estrategia",
+    badge: "Impacto Comercial",
+    description: "Cimentamos cada acción en objetivos comerciales reales. Si no genera ROI, no es parte del plan.",
+    icon: `<svg class="w-6 h-6 text-[#030303] group-hover:text-[#26CCCA] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>`
+  },
+  {
+    number: "02",
+    title: "Diseño de Conversión",
+    badge: "Psicología CRO",
+    description: "No solo estética. Diseñamos experiencias psicológicamente optimizadas para guiar al usuario al \"Sí\".",
+    icon: `<svg class="w-6 h-6 text-[#030303] group-hover:text-[#26CCCA] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5M7.188 2.239l.777 2.897M5.136 7.965l-2.898-.777M13.95 4.05l-2.122 2.122m-5.657 5.656l-2.12 2.122" /></svg>`
+  },
+  {
+    number: "03",
+    title: "Ingeniería Operativa",
+    badge: "Escala Sin Headcount",
+    description: "Automatizamos lo repetitivo para liberar el talento humano. Escalamos tu operación sin sumar headcount.",
+    icon: `<svg class="w-6 h-6 text-[#030303] group-hover:text-[#26CCCA] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z" /></svg>`
+  },
+  {
+    number: "04",
+    title: "Evolución Continua",
+    badge: "Sistemas Vivos",
+    description: "Tu ecosistema digital es un organismo vivo. Medimos, aprendemos y optimizamos en cada ciclo.",
+    icon: `<svg class="w-6 h-6 text-[#030303] group-hover:text-[#26CCCA] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>`
+  }
+];
+
+// Metodología de Alto Impacto en 3 Pasos
+const methodologySteps = [
+  {
+    number: "01",
+    phase: "Fase 01",
+    title: "Auditoría Sistémica",
+    description: "No partimos por la herramienta. Mapeamos tus procesos actuales, identificamos cuellos de botella y definimos la arquitectura ideal.",
+    deliverable: "Mapa de arquitectura & procesos",
+    points: [
+      "Mapeo exhaustivo de flujos y fricciones",
+      "Auditoría técnica de CRM y herramientas",
+      "Definición de la arquitectura digital ideal"
+    ]
+  },
+  {
+    number: "02",
+    phase: "Fase 02",
+    title: "Construcción & Vínculo",
+    description: "Implementamos el sitio web y las automatizaciones centrales, asegurando que cada dato fluya correctamente entre todas tus plataformas.",
+    deliverable: "Web CRO + flujos integrados con CRM",
+    points: [
+      "Desarrollo web ultra-rápido (Lighthouse 99+)",
+      "Automatizaciones de captura y calificación",
+      "Sincronización bidireccional entre plataformas"
+    ]
+  },
+  {
+    number: "03",
+    phase: "Fase 03",
+    title: "Escalamiento",
+    description: "Una vez el sistema está ordenado, le metemos potencia. Optimizamos la conversión y refinamos los flujos para que el crecimiento sea sostenible.",
+    deliverable: "Optimización continua y agentes de IA",
+    points: [
+      "Monitoreo analítico y telemetría de conversión",
+      "Activación de Agentes de IA autónomos 24/7",
+      "Escalamiento operativo predecible"
+    ]
+  }
+];
+---
+
+<Layout 
+  title="Nosotros — Escalamos Negocios mediante Inteligencia Digital | Boosted.cl"
+  description="En un mundo saturado de herramientas, nosotros construimos sistemas. Unimos arquitectura de datos, diseño de conversión y automatización para que tu operación crezca sin fricciones."
+>
+  <Navbar />
+  
+  <main class="flex-grow">
+    
+    <!-- 1. HERO SECTION (Estructura Editorial Equilibrada: Textura de Fondo Cinematográfica & Espaciado Tipográfico Uniforme) -->
+    <section class="min-h-[calc(100vh-76px)] bg-[#050505] text-white relative flex flex-col justify-between px-6 sm:px-12 lg:px-20 pt-16 sm:pt-20 lg:pt-24 pb-10 sm:pb-12 overflow-hidden select-none">
+      
+      <!-- Textura de fondo cinematográfica con gradientes suaves de fundido -->
+      <div class="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
+        <img 
+          src="/mockup/hero_nosotros_texture.jpg" 
+          alt="Boosted Texture Background" 
+          class="w-full h-full object-cover object-center opacity-30 brightness-90 contrast-125 scale-105"
+        />
+        <!-- Viñetas de fundido superior, inferior y lateral para integración perfecta con el negro del sitio -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505] opacity-90 pointer-events-none"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#050505] via-transparent to-[#050505] opacity-80 pointer-events-none"></div>
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[380px] bg-[#26CCCA]/10 rounded-full blur-[170px] pointer-events-none"></div>
+      </div>
+
+      <!-- Zona Central: Composición Tipográfica con Espaciado Vertical Idéntico y Equilibrado -->
+      <div class="w-full max-w-[1360px] mx-auto my-auto py-10 sm:py-14 relative z-10 flex flex-col space-y-4 sm:space-y-6 lg:space-y-7">
+        
+        <!-- Fila 1: "Escalamos" + Bloque Explicativo Flotante Adyacente (Cercano y Centrado Verticalmente) -->
+        <div class="flex flex-col md:flex-row md:items-center gap-4 sm:gap-6 md:gap-8 lg:gap-12">
+          <h1 class="font-outfit font-extrabold text-5xl sm:text-7xl md:text-8xl lg:text-[6.5rem] xl:text-[7.5rem] tracking-[-0.035em] text-white leading-none shrink-0">
+            Escalamos
+          </h1>
+
+          <!-- Párrafo Lateral Flotante Adyacente (Directamente al lado de Escalamos) -->
+          <div class="max-w-[280px] lg:max-w-[320px] text-left">
+            <p class="font-outfit text-xs sm:text-sm lg:text-[0.9375rem] font-semibold text-[#26CCCA] leading-snug tracking-tight">
+              ADVANCED STRATEGY & TECH;<br />
+              Arquitectura de datos & CRO;<br />
+              Bienvenido a Boosted.
+            </p>
+          </div>
+        </div>
+
+        <!-- Fila 2: "Negocios con" (Desplazamiento horizontal equilibrado, exactamente al mismo espacio vertical) -->
+        <div class="ml-6 sm:ml-12 md:ml-16 lg:ml-24 xl:ml-32">
+          <div class="font-outfit font-extrabold text-5xl sm:text-7xl md:text-8xl lg:text-[6.5rem] xl:text-[7.5rem] tracking-[-0.035em] text-white leading-none">
+            Negocios con
+          </div>
+        </div>
+
+        <!-- Fila 3: "inteligencia." (Mayor desplazamiento y degradado cian con punto final, exactamente al mismo espacio vertical) -->
+        <div class="ml-12 sm:ml-24 md:ml-32 lg:ml-48 xl:ml-64">
+          <div class="font-outfit font-extrabold text-5xl sm:text-7xl md:text-8xl lg:text-[6.5rem] xl:text-[7.5rem] tracking-[-0.035em] leading-none">
+            <span class="bg-gradient-to-r from-[#26CCCA] via-[#3DE8E5] to-[#0E8A88] bg-clip-text text-transparent">
+              inteligencia.
+            </span>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Barra Inferior Fiel a la Referencia -->
+      <div class="w-full max-w-[1360px] mx-auto pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs font-outfit relative z-10">
+        <!-- Texto Izquierdo: Statement de Impacto -->
+        <div class="text-zinc-400 text-center sm:text-left">
+          En un mundo saturado de herramientas, <span class="text-[#26CCCA] font-semibold">construimos sistemas.</span>
+        </div>
+
+        <!-- Redes Sociales Oficiales a la Derecha (Idéntico a la referencia) -->
+        <div class="flex items-center gap-5 text-zinc-400">
+          <a href="https://instagram.com/boosted.cl" target="_blank" rel="noopener noreferrer" class="hover:text-[#26CCCA] transition-colors" title="Instagram">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="https://linkedin.com/company/boostedcl" target="_blank" rel="noopener noreferrer" class="hover:text-[#26CCCA] transition-colors" title="LinkedIn">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          </a>
+          <a href="https://wa.me/56956173500" target="_blank" rel="noopener noreferrer" class="hover:text-[#26CCCA] transition-colors" title="WhatsApp">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981z"/></svg>
+          </a>
+          <a href="https://x.com/boostedcl" target="_blank" rel="noopener noreferrer" class="hover:text-[#26CCCA] transition-colors" title="X">
+            <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+        </div>
+      </div>
+
+    </section>
+
+    <!-- Métricas de Impacto (Barra Transicional entre Hero y Manifiesto) -->
+    <section id="nosotros-stats" class="py-12 sm:py-16 bg-[#FFFFFF] border-b border-black/[0.06] select-none">
+      <div class="max-w-[1360px] mx-auto px-6 sm:px-12 lg:px-20">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-12 divide-y md:divide-y-0 md:divide-x divide-black/[0.06]">
+          {heroMetrics.map((m, idx) => (
+            <div class={`flex flex-col justify-between text-center md:text-left ${idx > 0 ? 'pt-8 md:pt-0 md:pl-10' : ''}`}>
+              <div>
+                <div 
+                  class="font-bebas text-5xl sm:text-6xl text-[#030303] mb-2 tabular-nums stat-counter-nosotros"
+                  data-target={m.numericTarget}
+                  data-prefix={m.prefix}
+                  data-suffix={m.suffix}
+                  data-static={m.numericTarget === null ? m.value : null}
+                >
+                  {m.prefix}{m.value}{m.suffix}
+                </div>
+                <h3 class="font-outfit text-xl sm:text-2xl font-bold text-[#030303] mb-1">
+                  {m.title}
+                </h3>
+                <p class="font-poppins text-xs sm:text-sm text-[#52525B] leading-relaxed max-w-sm mx-auto md:mx-0">
+                  {m.description}
+                </p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. NUESTRO MANIFIESTO & FILOSOFÍA HÍBRIDA (Blanco Puro #FFFFFF) -->
+    <section id="manifiesto" class="py-24 sm:py-32 bg-[#FFFFFF] text-[#030303] border-t border-black/[0.06] relative">
+      <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          <!-- Columna Izquierda: El Diagnóstico & Manifiesto (7 Cols) -->
+          <div class="lg:col-span-7">
+            <span class="font-outfit text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0E8A88] block mb-3">
+              NUESTRO MANIFIESTO
+            </span>
+
+            <h2 class="font-bebas text-5xl sm:text-6xl lg:text-7xl text-[#030303] tracking-tight uppercase leading-[0.95] mb-6">
+              NO HACEMOS SITIOS, <br class="hidden sm:inline" />
+              <span class="border-b-4 border-[#26CCCA] inline-block">CREAMOS ACTIVOS</span>
+            </h2>
+
+            <div class="space-y-6 font-poppins text-base sm:text-lg text-[#52525B] leading-relaxed max-w-2xl">
+              <p>
+                La mayoría de las empresas tienen <strong class="text-[#030303] font-semibold">"herramientas sueltas"</strong>: un sitio web que no vende, un CRM que nadie usa y procesos manuales que queman tiempo.
+              </p>
+              <p>
+                En <strong class="text-[#030303] font-semibold">Boosted</strong>, creemos que la tecnología solo tiene valor si está al servicio de la estrategia. Nuestra misión es transformar tu caos digital en un ecosistema fluido, escalable y sobre todo, rentable.
+              </p>
+            </div>
+
+            <!-- Citas de Impacto y Beneficios -->
+            <div class="mt-8 pt-8 border-t border-black/10 grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div class="flex items-start gap-3">
+                <span class="w-2 h-2 rounded-full bg-[#26CCCA] mt-2 shrink-0"></span>
+                <span class="font-poppins text-sm text-[#030303] font-medium leading-snug">
+                  Estrategia comercial integrada desde el día uno
+                </span>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="w-2 h-2 rounded-full bg-[#26CCCA] mt-2 shrink-0"></span>
+                <span class="font-poppins text-sm text-[#030303] font-medium leading-snug">
+                  Automatizaciones conectadas a tu facturación
+                </span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Tarjeta de Lujo de la Filosofía Híbrida (5 Cols) -->
+          <div class="lg:col-span-5">
+            <div class="luxury-card p-8 sm:p-10 rounded-3xl bg-zinc-50/70 border border-black/10 relative overflow-hidden group">
+              <div class="w-12 h-1 bg-[#26CCCA] mb-6 rounded-full"></div>
+              
+              <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#0E8A88] block mb-2">
+                Visión Estratégica
+              </span>
+
+              <h3 class="font-outfit text-2xl sm:text-3xl font-bold text-[#030303] mb-4 tracking-tight">
+                La Filosofía Híbrida
+              </h3>
+
+              <p class="font-poppins text-sm sm:text-base text-[#52525B] leading-relaxed mb-8">
+                Somos un equipo donde el diseño entiende de ROI y la ingeniería entiende de experiencia de usuario. Esta visión híbrida es lo que nos permite resolver problemas de negocio complejos que las agencias tradicionales simplemente no ven.
+              </p>
+
+              <!-- Hashtags Conceptuales Editoriales -->
+              <div class="pt-6 border-t border-black/10 flex flex-wrap gap-2.5">
+                <span class="px-3.5 py-1.5 rounded-full bg-white border border-black/10 font-outfit text-xs font-bold text-[#030303] hover:border-[#26CCCA] hover:text-[#0E8A88] transition-colors cursor-default">
+                  #EstrategiaPrimero
+                </span>
+                <span class="px-3.5 py-1.5 rounded-full bg-white border border-black/10 font-outfit text-xs font-bold text-[#030303] hover:border-[#26CCCA] hover:text-[#0E8A88] transition-colors cursor-default">
+                  #IngenieríaUX
+                </span>
+                <span class="px-3.5 py-1.5 rounded-full bg-white border border-black/10 font-outfit text-xs font-bold text-[#030303] hover:border-[#26CCCA] hover:text-[#0E8A88] transition-colors cursor-default">
+                  #SistemasVivos
+                </span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. LOS PILARES DE BOOSTED (4 Tarjetas Pulidas con Micro-Elevación) -->
+    <section class="py-24 sm:py-32 bg-[#FFFFFF] text-[#030303] border-t border-black/[0.06] relative">
+      <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+        
+        <!-- Header de Sección -->
+        <div class="max-w-3xl mb-16 sm:mb-20">
+          <span class="font-outfit text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0E8A88] block mb-3">
+            LOS PILARES DE BOOSTED
+          </span>
+          <h2 class="font-bebas text-5xl sm:text-6xl lg:text-7xl text-[#030303] tracking-tight uppercase leading-[0.95] mb-5">
+            FUERZAS QUE IMPULSAN <span class="border-b-4 border-[#26CCCA] inline-block">TU CRECIMIENTO</span>
+          </h2>
+          <p class="font-poppins text-sm sm:text-base text-[#52525B] leading-relaxed">
+            Cuatro pilares de ingeniería y diseño sobre los cuales estructuramos cada solución para garantizar impacto medible en tu operación.
+          </p>
+        </div>
+
+        <!-- Grilla de 4 Tarjetas de Lujo -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+          {pillars.map((pillar) => (
+            <div class="luxury-card group flex flex-col justify-between p-8 rounded-3xl bg-white border border-zinc-200 hover:border-[#26CCCA] hover:-translate-y-1 transition-all duration-300 relative min-h-[300px]">
+              <div>
+                <!-- Top Row: Icono + Número Grande -->
+                <div class="flex items-center justify-between mb-6 pb-4 border-b border-black/10">
+                  <div class="w-12 h-12 rounded-2xl bg-zinc-100 flex items-center justify-center group-hover:bg-[#26CCCA]/10 transition-colors" set:html={pillar.icon}>
+                  </div>
+                  <span class="font-bebas text-4xl text-zinc-300 group-hover:text-[#26CCCA] transition-colors leading-none">
+                    {pillar.number}
+                  </span>
+                </div>
+
+                <!-- Título del Pilar -->
+                <h3 class="font-outfit text-2xl font-bold text-[#030303] mb-3 leading-tight">
+                  {pillar.title}
+                </h3>
+
+                <!-- Descripción Oficial -->
+                <p class="font-poppins text-sm text-[#52525B] leading-relaxed mb-6">
+                  {pillar.description}
+                </p>
+              </div>
+
+              <!-- Footer de la Tarjeta: Badge de Precisión -->
+              <div class="pt-4 border-t border-black/5 flex items-center gap-2 text-xs font-outfit uppercase font-semibold text-[#0E8A88]">
+                <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA]"></span>
+                <span>{pillar.badge}</span>
+              </div>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 4. METODOLOGÍA DE ALTO IMPACTO (Del caos al sistema en 3 pasos) -->
+    <section id="metodologia" class="py-24 sm:py-32 bg-[#FFFFFF] text-[#030303] border-t border-black/[0.06] relative">
+      <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+        
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+          
+          <!-- Columna Izquierda: Los 3 Pasos Metodológicos (7 Cols) -->
+          <div class="lg:col-span-7">
+            <span class="font-outfit text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0E8A88] block mb-3">
+              METODOLOGÍA DE ALTO IMPACTO
+            </span>
+            <h2 class="font-bebas text-5xl sm:text-6xl lg:text-7xl text-[#030303] tracking-tight uppercase leading-[0.95] mb-5">
+              DEL CAOS AL SISTEMA <span class="border-b-4 border-[#26CCCA] inline-block">EN 3 PASOS</span>
+            </h2>
+            <p class="font-poppins text-sm sm:text-base text-[#52525B] leading-relaxed mb-10 max-w-xl">
+              Un proceso ágil y transparente diseñado para entregar resultados tangibles sin rodeos.
+            </p>
+
+            <!-- Lista de los 3 Pasos con Indicadores Numéricos y Entregables -->
+            <div class="space-y-8">
+              {methodologySteps.map((step) => (
+                <div class="group p-6 sm:p-7 rounded-2xl border border-zinc-200 hover:border-[#26CCCA] transition-all bg-white relative">
+                  <div class="flex items-start gap-5">
+                    <!-- Número Grande -->
+                    <span class="font-bebas text-5xl sm:text-6xl text-[#030303] group-hover:text-[#0E8A88] transition-colors leading-none shrink-0 w-12">
+                      {step.number}
+                    </span>
+
+                    <div class="flex-grow pt-0.5">
+                      <div class="flex items-center gap-3 mb-2">
+                        <span class="text-xs font-outfit uppercase font-bold tracking-wider text-[#0E8A88] bg-[#26CCCA]/15 px-2.5 py-0.5 rounded-full">
+                          {step.phase}
+                        </span>
+                        <h3 class="font-outfit text-xl sm:text-2xl font-bold text-[#030303]">
+                          {step.title}
+                        </h3>
+                      </div>
+
+                      <p class="font-poppins text-sm sm:text-base text-[#52525B] leading-relaxed mb-4">
+                        {step.description}
+                      </p>
+
+                      <!-- Bullets de Ejecución Técnica -->
+                      <div class="space-y-2 mb-4 pt-3 border-t border-black/5">
+                        {step.points.map((pt) => (
+                          <div class="flex items-center gap-2 text-xs font-poppins text-zinc-600">
+                            <span class="w-1.5 h-1.5 rounded-full bg-[#26CCCA] shrink-0"></span>
+                            <span>{pt}</span>
+                          </div>
+                        ))}
+                      </div>
+
+                      <div class="flex items-center gap-2 text-xs font-outfit uppercase font-semibold text-[#0E8A88] pt-2 border-t border-black/5">
+                        <span class="font-bold text-[#030303]">Entregable:</span>
+                        <span>{step.deliverable}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          <!-- Columna Derecha: Stage Gráfico Digital & IA (5 Cols) -->
+          <div class="lg:col-span-5 lg:sticky lg:top-32">
+            <div class="rounded-3xl overflow-hidden border border-black/15 shadow-2xl bg-[#030303] relative group">
+              <!-- Imagen de Alta Fidelidad del Pipeline Digital & IA -->
+              <img 
+                src="/mockup/concept_tech_lab_1786827317224.jpg" 
+                alt="Pipeline de Arquitectura Digital y Automatizaciones Boosted" 
+                class="w-full h-auto object-cover brightness-95 group-hover:scale-105 transition-transform duration-700"
+              />
+
+              <!-- Overlay con Status del Flujo de 3 Pasos -->
+              <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-[#030303]/95 via-[#030303]/85 to-transparent p-6 border-t border-white/10">
+                <div class="mb-2 text-xs font-outfit font-bold uppercase tracking-wider text-white flex items-center gap-2">
+                  <span class="w-2 h-2 rounded-full bg-[#26CCCA] animate-pulse"></span>
+                  Ecosistema en Ejecución
+                </div>
+                <div class="flex items-center justify-between text-[11px] font-outfit uppercase font-bold tracking-wider text-zinc-400">
+                  <span class="text-white flex items-center gap-1.5">
+                    01. Auditoría
+                  </span>
+                  <span class="text-zinc-600">➔</span>
+                  <span class="text-white flex items-center gap-1.5">
+                    02. Vínculo
+                  </span>
+                  <span class="text-zinc-600">➔</span>
+                  <span class="text-[#26CCCA] flex items-center gap-1.5">
+                    03. Escala
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Quick Info Box -->
+            <div class="mt-6 p-6 rounded-2xl bg-zinc-50 border border-black/10">
+              <div class="flex items-start gap-4">
+                <div class="w-10 h-10 rounded-xl bg-[#030303] text-white flex items-center justify-center shrink-0">
+                  <svg class="w-5 h-5 text-[#26CCCA]" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                  </svg>
+                </div>
+                <div>
+                  <h4 class="font-outfit text-sm font-bold text-[#030303] mb-1">
+                    Crecimiento Sostenible y Predecible
+                  </h4>
+                  <p class="font-poppins text-xs text-[#52525B] leading-relaxed">
+                    Cada etapa está diseñada para que tu inversión se pague a sí misma antes de avanzar a la siguiente fase de escala.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 5. NUESTRO EQUIPO (Adaptado fielmente con el grid tecnológico, efecto ola y avatares con borde animado) -->
+    <TeamSection />
+
+    <!-- 6. FEATURE SHOWCASE DE INGENIERÍA (Negro Obsidiana #030303 - Alta Autoridad Tecnológica) -->
+    <section class="py-24 lg:py-32 bg-[#030303] text-white border-y border-white/10 relative overflow-hidden">
+      <!-- Iluminación difusa de fondo -->
+      <div class="absolute top-1/2 right-0 -translate-y-1/2 w-[600px] h-[600px] bg-[#26CCCA]/5 rounded-full blur-[160px] pointer-events-none -z-0"></div>
+
+      <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+          
+          <div class="lg:col-span-6">
+            <span class="font-outfit text-xs sm:text-sm font-semibold uppercase tracking-widest text-[#26CCCA] block mb-3">
+              Ingeniería de Autoridad
+            </span>
+            <h2 class="font-bebas text-5xl sm:text-6xl lg:text-7xl text-white tracking-tight uppercase leading-[0.95] mb-6">
+              CONSTRUIMOS SISTEMAS QUE <span class="text-[#26CCCA]">TRABAJAN POR TI</span>
+            </h2>
+            <p class="font-poppins text-sm sm:text-base text-zinc-300 leading-relaxed mb-8">
+              No creemos en herramientas aisladas ni en soluciones genéricas. Cada desarrollo de Boosted es una pieza de ingeniería personalizada que se conecta de forma nativa a tu CRM, automatiza tus canales de atención y te entrega telemetría en tiempo real sobre cada peso invertido.
+            </p>
+
+            <div class="space-y-4 mb-10 font-poppins text-sm text-zinc-300">
+              <div class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-[#26CCCA]"></span>
+                <span>Propiedad 100% del código y de tus bases de datos</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-[#26CCCA]"></span>
+                <span>Velocidad de carga sub-segundo con estándares Lighthouse 99+</span>
+              </div>
+              <div class="flex items-center gap-3">
+                <span class="w-2 h-2 rounded-full bg-[#26CCCA]"></span>
+                <span>Despliegue de Agentes de IA que operan 24/7 sin descanso</span>
+              </div>
+            </div>
+
+            <div>
+              <a 
+                href="https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0eLzWvh-yrlAvDqP4vCBpex5c2wtzqpp89n_C4VVp6Obx184OHVTcQxAJBAtq4CtJtcYmyMuuA" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                class="btn-primary text-xs uppercase tracking-wider py-4 px-8 inline-flex items-center gap-2 border border-white/20 shadow-md"
+              >
+                <span>Agenda un diagnóstico gratuito</span>
+                <svg class="w-4 h-4 shrink-0 transition-colors duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <line x1="5" y1="12" x2="19" y2="12"></line>
+                  <polyline points="12 5 19 12 12 19"></polyline>
+                </svg>
+              </a>
+            </div>
+          </div>
+
+          <div class="lg:col-span-6 rounded-3xl overflow-hidden border border-white/10 bg-zinc-900 shadow-2xl relative min-h-[380px]">
+            <img 
+              src="/mockup/hero_studio_visual_1786834965899.jpg" 
+              alt="Boosted Ecosistema Digital e Inteligencia Artificial" 
+              class="w-full h-full object-cover brightness-90 hover:scale-105 transition-transform duration-700"
+            />
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. CONTACTO DIRECTO REUTILIZADO (Componente Contact Oficial) -->
+    <Contact />
+
+  </main>
+
+  <Footer />
+</Layout>
+
+<script>
+  // Count-up numérico para las métricas del Hero de Nosotros
+  function setupNosotrosCounter() {
+    const statsSection = document.getElementById('nosotros-stats');
+    if (!statsSection) return;
+
+    const counters = statsSection.querySelectorAll('.stat-counter-nosotros');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          counters.forEach(counter => {
+            const rawTarget = counter.getAttribute('data-target');
+            const staticVal = counter.getAttribute('data-static');
+            if (staticVal) {
+              counter.textContent = staticVal;
+              return;
+            }
+            if (!rawTarget) return;
+
+            const target = parseInt(rawTarget, 10);
+            const prefix = counter.getAttribute('data-prefix') || '';
+            const suffix = counter.getAttribute('data-suffix') || '';
+            const duration = 1600;
+            const startTime = performance.now();
+
+            function updateNumber(currentTime: number) {
+              const elapsed = currentTime - startTime;
+              const progress = Math.min(elapsed / duration, 1);
+              // Easing easeOutExpo
+              const easeOut = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+              const current = Math.floor(easeOut * target);
+
+              counter.textContent = `${prefix}${current}${suffix}`;
+
+              if (progress < 1) {
+                requestAnimationFrame(updateNumber);
+              } else {
+                counter.textContent = `${prefix}${target}${suffix}`;
+              }
+            }
+
+            requestAnimationFrame(updateNumber);
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.2 });
+
+    observer.observe(statsSection);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupNosotrosCounter);
+  } else {
+    setupNosotrosCounter();
+  }
+</script>

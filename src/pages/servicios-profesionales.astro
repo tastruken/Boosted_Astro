@@ -1,0 +1,715 @@
+---
+// src/pages/servicios-profesionales.astro - Soluciones por Sector: Servicios Profesionales | Boosted.cl
+import Layout from '../layouts/Layout.astro';
+import Navbar from '../components/Navbar.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import CircularSplitRoll from '../components/CircularSplitRoll.astro';
+import HowItWorks from '../components/ui/HowItWorks.astro';
+
+const calendarUrl = "https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ0eLzWvh-yrlAvDqP4vCBpex5c2wtzqpp89n_C4VVp6Obx184OHVTcQxAJBAtq4CtJtcYmyMuuA";
+
+// Comparativa de Modelos: Tradicional vs Boosted Servicios Profesionales
+const comparisonTradicional = [
+  {
+    title: "Herramientas separadas y fugas comerciales",
+    desc: "Operar con herramientas aisladas genera oportunidades comerciales perdidas y proyectos sin trazabilidad. Un CRM básico desconectado y la facturación manual frenan el crecimiento de la firma."
+  },
+  {
+    title: "Proyectos sin visibilidad ni registro de horas",
+    desc: "Comunicación caótica por correos o mensajería dispersa, falta de claridad en los avances y horas profesionales no registradas que erosionan el margen neto de cada mandato."
+  },
+  {
+    title: "Inconsistencia de marca y falta de autoridad",
+    desc: "Sin coherencia entre la presencia digital y la entrega operativa, se pierde autoridad frente al cliente, dificultando cobrar honorarios basados en valor y escalar la firma."
+  }
+];
+
+const comparisonBoosted = [
+  {
+    title: "Pipeline comercial integrado y automático",
+    desc: "Gestiona prospectos calificados automáticamente hasta el cierre. Seguimiento continuo de propuestas interactivas que proyectan prestigio y aceleran la decisión del cliente."
+  },
+  {
+    title: "Portal de clientes y trazabilidad total",
+    desc: "Portal exclusivo para avances de proyectos, aprobación de entregables y registro de horas preciso. Elimina la fricción y asegura total transparencia y rentabilidad."
+  },
+  {
+    title: "Autoridad de marca y diferenciación premium",
+    desc: "Diseño web estratégico y presencia digital que posicionan tu expertise técnico. Atrae mandantes de alto valor que buscan especialistas, diferenciándote de consultoras genéricas."
+  }
+];
+
+// 3 Pilares Estratégicos Boosted: Lo Que Hacemos
+const strategicPillars = [
+  {
+    number: "01",
+    tag: "PROSPECCIÓN & CIERRES",
+    title: "Pipeline Comercial Predecible",
+    description: "Gestiona leads automáticamente hasta el cierre. Automatiza seguimientos y genera propuestas profesionales que proyectan autoridad y escalan tu firma sin depender de referencias casuales.",
+    icon: `<svg class="w-6 h-6 text-[#030303] group-hover:text-[#26CCCA] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" /></svg>`,
+    points: [
+      "Embudos de prospección B2B hipersegmentados para clientes corporativos",
+      "Propuestas interactivas con firma digital integrada y alertas de lectura",
+      "Sincronización instantánea con tu CRM sin ingreso manual de datos"
+    ]
+  },
+  {
+    number: "02",
+    tag: "CONTROL OPERATIVO",
+    title: "Proyectos con Visibilidad Total",
+    description: "Portal de clientes para avances y registro de horas preciso. Elimina la comunicación caótica y asegura trazabilidad completa, potenciando la productividad y la rentabilidad de cada proyecto.",
+    icon: `<svg class="w-6 h-6 text-[#030303] group-hover:text-[#26CCCA] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" /></svg>`,
+    points: [
+      "Portal exclusivo donde tus clientes revisan hitos y entregables en tiempo real",
+      "Registro riguroso de horas dedicadas por abogado, consultor o ingeniero",
+      "Facturación electrónica vinculada a etapas concluidas sin demoras"
+    ]
+  },
+  {
+    number: "03",
+    tag: "POSICIONAMIENTO & VALOR",
+    title: "Diferenciación Profesional Clara",
+    description: "Diseño web estratégico y redes sociales activas que posicionan tu expertise. Atrae clientes premium que valoran tu especialidad, diferenciándote de consultoras genéricas con una marca sólida.",
+    icon: `<svg class="w-6 h-6 text-[#030303] group-hover:text-[#26CCCA] transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>`,
+    points: [
+      "Identidad corporativa sobria y moderna que respalda honorarios de alto nivel",
+      "Contenido de liderazgo de opinión y casos de estudio que construyen confianza",
+      "Asistente Charlie™ 24/7 resolviendo consultas preliminares y agendando reuniones"
+    ]
+  }
+];
+
+// Qué cambia con soluciones digitales para Servicios Profesionales
+const professionalTransformations = [
+  {
+    tag: "VENTAS PREDECIBLES",
+    title: "Pipeline Comercial Predecible",
+    desc: "Gestiona leads automáticamente hasta el cierre. Automatiza seguimientos y genera propuestas profesionales que proyectan autoridad y escalan tu consultora sin depender de referencias casuales.",
+    metric: "+3.5x",
+    metricLabel: "Conversión de Propuestas"
+  },
+  {
+    tag: "CONTROL TOTAL",
+    title: "Proyectos con Visibilidad Total",
+    desc: "Portal de clientes para avances y registro de horas preciso. Elimina la comunicación caótica y asegura trazabilidad completa, potenciando la productividad y la rentabilidad de cada proyecto.",
+    metric: "100%",
+    metricLabel: "Control de Hitos y Horas"
+  },
+  {
+    tag: "MARCA DE AUTORIDAD",
+    title: "Diferenciación Profesional Clara",
+    desc: "Diseño web estratégico y redes sociales activas que posicionan tu expertise. Atrae clientes premium que valoran tu especialidad, diferenciándote de consultoras genéricas con una marca sólida.",
+    metric: "+50%",
+    metricLabel: "Ticket por Mandato"
+  }
+];
+
+// 6 Subsectores Oficiales de Servicios Profesionales
+const subsectors = [
+  {
+    number: "01",
+    title: "Estudios Jurídicos",
+    description: "Portales confidenciales para causas, seguimiento de juicios y plazos fatales, firma digital de poderes y cobro automatizado de honorarios.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" /></svg>`,
+    tag: "Legal & Litigios",
+    image: "/mockup/industry_servicios_1786829835822.jpg"
+  },
+  {
+    number: "02",
+    title: "Estudios Contables y Asesorías",
+    description: "Recepción digital centralizada de facturas y balances, reportería contable en tiempo real para clientes y alertas de vencimientos de impuestos.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" /></svg>`,
+    tag: "Tributario & Finanzas",
+    image: "/mockup/growth_analytics_dark.jpg"
+  },
+  {
+    number: "03",
+    title: "Consultoras de Recursos Humanos",
+    description: "Embudos de selección y calificación de candidatos con IA, pruebas psicotécnicas automatizadas y portales de presentación de ternas ejecutivas.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" /></svg>`,
+    tag: "Talento & Headhunting",
+    image: "/mockup/light_contrast_studio_1786827514288.jpg"
+  },
+  {
+    number: "04",
+    title: "Empresas de Auditoría",
+    description: "Bitácoras de muestreo digital, trazabilidad documental inviolable, dashboards de hallazgos y generación de informes de cumplimiento en un clic.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>`,
+    tag: "Compliance & Riesgos",
+    image: "/mockup/digital_ecosystem_mockup.jpg"
+  },
+  {
+    number: "05",
+    title: "Empresas Ingeniería y Especialidades",
+    description: "Control de horas técnicas por especialidad, certificación de avances de cálculo estructural o de faena y portales para mandantes mineros o industriales.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" /><path stroke-linecap="round" stroke-linejoin="round" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" /></svg>`,
+    tag: "Ingeniería & Faena",
+    image: "/mockup/concept_tech_lab_1786827317224.jpg"
+  },
+  {
+    number: "06",
+    title: "Estudios de Arquitectura",
+    description: "Portafolios interactivos de proyectos en 3D, entrega de planos por fases de desarrollo, control presupuestario de obra y aprobación de mandantes en línea.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>`,
+    tag: "Diseño & Urbanismo",
+    image: "/mockup/hero_architecture_noir.jpg"
+  }
+];
+
+// 6 Beneficios de Trabajar con Boosted
+const boostedReasons = [
+  {
+    number: "01",
+    title: "Ecosistema Integrado",
+    description: "Pipeline comercial, proyectos, facturación y portal de clientes perfectamente sincronizados.",
+    copy: "Conectamos prospección, gestión operativa y cobranzas en una arquitectura tecnológica coherente.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" /></svg>`
+  },
+  {
+    number: "02",
+    title: "Especialización Firmas",
+    description: "Diseño basado en los ciclos de venta consultiva y retención B2B.",
+    copy: "Comprendemos a fondo las dinámicas de mandatos, honorarios por hora y retención de clientes corporativos.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>`
+  },
+  {
+    number: "03",
+    title: "Implementación sin Fricción",
+    description: "Evolución digital gradual sin detener la atención a tus mandantes.",
+    copy: "Despliegues por fases que permiten a tus abogados o consultores seguir operando con normalidad.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>`
+  },
+  {
+    number: "04",
+    title: "Solución 360°",
+    description: "Operación unificada más marketing de contenido y marca diferenciada.",
+    copy: "Ingeniería de procesos sumada a branding premium para cobrar lo que realmente vale tu experiencia.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>`
+  },
+  {
+    number: "05",
+    title: "Soporte Operativo",
+    description: "Acompañamiento experto que entiende el ritmo y la confidencialidad de tu firma.",
+    copy: "Soporte técnico cercano y protocolos de seguridad que resguardan la información sensible de tus clientes.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M18.364 5.636l-3.536 3.536m0 5.656l3.536 3.536M9.172 9.172L5.636 5.636m3.536 9.192l-3.536 3.536M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-5 0a4 4 0 11-8 0 4 4 0 018 0z" /></svg>`
+  },
+  {
+    number: "06",
+    title: "Autonomía Total",
+    description: "Datos, contratos y clientes siempre bajo el control de tu empresa.",
+    copy: "Cero ataduras a ecosistemas cerrados: eres dueño de tus activos digitales, base de datos y flujos de trabajo.",
+    icon: `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" /></svg>`
+  }
+];
+---
+
+<Layout 
+  title="Soluciones Digitales para Servicios Profesionales | Boosted.cl"
+  description="El ecosistema para escalar tu firma. En Boosted diseñamos soluciones digitales para consultoras, estudios jurídicos, contables y asesorías que integran captación, proyectos y gestión operativa."
+>
+  <Navbar />
+
+  <main class="flex-grow">
+
+    <!-- 1. HERO SECTION (Negro Obsidiana #050505 con Acentos Cian & Estilo Editorial Boosted) -->
+    <section class="min-h-[calc(100vh-80px)] bg-[#050505] text-white relative flex items-center px-6 sm:px-12 lg:px-20 py-12 lg:py-16 overflow-hidden select-none">
+      
+      <!-- Fondo Cinematográfico y Texturas de Profundidad con Fotografía Corporativa -->
+      <div class="absolute inset-0 pointer-events-none select-none z-0 overflow-hidden">
+        <img 
+          src="/mockup/industry_servicios_1786829835822.jpg" 
+          alt="Boosted Servicios Profesionales Texture" 
+          class="w-full h-full object-cover object-right lg:object-center opacity-25 brightness-90 contrast-125 scale-105"
+          loading="eager"
+          decoding="async"
+        />
+        <!-- Viñetas de gradiente oficiales -->
+        <div class="absolute inset-0 bg-gradient-to-b from-[#050505] via-transparent to-[#050505] opacity-80"></div>
+        <div class="absolute inset-0 bg-gradient-to-r from-[#050505] via-[#050505]/60 to-transparent opacity-90"></div>
+        <div class="absolute top-1/3 left-1/4 w-[500px] h-[350px] bg-[#26CCCA]/15 rounded-full blur-[160px]"></div>
+        <div class="absolute bottom-1/4 right-1/4 w-[450px] h-[300px] bg-[#0E8A88]/20 rounded-full blur-[180px]"></div>
+      </div>
+
+      <!-- Contenido Principal en Grilla de 2 Columnas -->
+      <div class="w-full max-w-[1400px] mx-auto relative z-10 py-6 sm:py-8">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          <!-- Columna Izquierda: Titulares, Narrativa y CTAs (7 Columnas) -->
+          <div class="lg:col-span-7 flex flex-col justify-center">
+
+            <!-- Eyebrow Editorial Limpio -->
+            <span class="font-outfit text-xs sm:text-sm font-bold uppercase tracking-widest text-[#26CCCA] block mb-3">
+              Soluciones por Sector · Servicios Profesionales
+            </span>
+
+            <!-- Titular Proporcionado e Impactante con Gradiente Oficial -->
+            <h1 class="font-bebas text-4xl sm:text-6xl lg:text-[4.6rem] text-white tracking-tight uppercase leading-[0.95] mb-4">
+              SOLUCIONES DIGITALES PARA<br />
+              <span class="bg-gradient-to-r from-[#26CCCA] via-[#3DE8E5] to-[#0E8A88] bg-clip-text text-transparent">
+                SERVICIOS PROFESIONALES
+              </span>
+            </h1>
+
+            <!-- Párrafo Claro y Respirable -->
+            <p class="font-poppins text-sm sm:text-base lg:text-lg text-zinc-300 font-normal leading-relaxed max-w-xl mb-6">
+              El ecosistema para escalar tu firma. Diseñamos soluciones digitales que integran cada área de tu negocio, desde la captación de clientes hasta la gestión operativa final. Ecosistemas específicos para consultoras, estudios jurídicos, contables y asesorías.
+            </p>
+
+            <!-- Botones de Acción Inmediatos -->
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 mb-6">
+              <!-- CTA 1: Agenda Diagnóstico Gratuito -->
+              <a 
+                href="#contacto" 
+                class="btn-primary text-xs uppercase tracking-wider py-3.5 px-7 inline-flex items-center justify-center gap-2.5 border border-white/20 shadow-lg text-center cursor-pointer"
+              >
+                <span>Agenda Diagnóstico Gratuito</span>
+                <svg class="w-4 h-4 text-[#26CCCA] shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+                </svg>
+              </a>
+
+              <!-- CTA 2: Ver Cómo Funciona -->
+              <a 
+                href="#subsectores" 
+                class="px-7 py-3.5 rounded-full border border-white/20 bg-white/[0.05] hover:bg-white/[0.12] hover:border-[#26CCCA] text-white font-outfit text-xs font-bold uppercase tracking-wider transition-all duration-200 inline-flex items-center justify-center gap-2 text-center cursor-pointer"
+              >
+                <span>Ver Cómo Funciona</span>
+                <span class="text-[#26CCCA]">↓</span>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Columna Derecha: Enfoque Estratégico en Estilo Editorial Abierto -->
+          <div class="lg:col-span-5 flex flex-col justify-center gap-8 lg:gap-10 lg:pl-6">
+            
+            <!-- Pilar 1: Pipeline Comercial & Seguimiento -->
+            <div class="relative pl-6 border-l-2 border-[#26CCCA]/40 hover:border-[#26CCCA] transition-colors duration-300 group">
+              <div class="flex items-baseline justify-between gap-4 mb-2">
+                <div>
+                  <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#26CCCA] block mb-1">
+                    Pipeline Comercial
+                  </span>
+                  <h3 class="font-outfit text-xl sm:text-2xl font-bold text-white tracking-tight">
+                    Trazabilidad de Oportunidades
+                  </h3>
+                </div>
+                <span class="font-bebas text-6xl sm:text-7xl text-white group-hover:text-[#26CCCA] transition-colors leading-none tracking-tight shrink-0">
+                  100%
+                </span>
+              </div>
+              <p class="font-poppins text-xs sm:text-sm text-zinc-400 font-normal leading-relaxed max-w-md">
+                Seguimiento automático de propuestas y oportunidades comerciales sin fugas de prospectos ni tareas manuales.
+              </p>
+            </div>
+
+            <!-- Divisor sutil entre pilares -->
+            <div class="h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent"></div>
+
+            <!-- Pilar 2: Diferenciación & Clientes Premium -->
+            <div class="relative pl-6 border-l-2 border-[#26CCCA]/40 hover:border-[#26CCCA] transition-colors duration-300 group">
+              <div class="flex items-baseline justify-between gap-4 mb-2">
+                <div>
+                  <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#26CCCA] block mb-1">
+                    Posicionamiento & Autoridad
+                  </span>
+                  <h3 class="font-outfit text-xl sm:text-2xl font-bold text-white tracking-tight">
+                    Clientes de Alto Valor
+                  </h3>
+                </div>
+                <span class="font-bebas text-6xl sm:text-7xl text-[#26CCCA] leading-none tracking-tight shrink-0">
+                  +2.6x
+                </span>
+              </div>
+              <p class="font-poppins text-xs sm:text-sm text-zinc-400 font-normal leading-relaxed max-w-md">
+                Marca digital que proyecta solvencia técnica y permite defender honorarios basados en valor demostrado.
+              </p>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+    </section>
+
+    <!-- 2. TRANSFORMACIÓN DE FIRMAS (Blanco Puro #FFFFFF con Comparativa de Lujo & Luxury Cards) -->
+    <section id="transformacion" class="py-24 sm:py-32 bg-[#FFFFFF] text-[#030303] border-t border-black/[0.06] relative">
+      <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+        
+        <!-- Header de Sección -->
+        <div class="max-w-3xl mb-16 sm:mb-20">
+          <span class="font-outfit text-xs sm:text-sm font-bold uppercase tracking-widest text-[#0E8A88] block mb-3">
+            TRANSFORMACIÓN DE FIRMAS
+          </span>
+          <h2 class="font-bebas text-5xl sm:text-6xl lg:text-7xl text-[#030303] tracking-tight uppercase leading-[0.95] mb-5">
+            TRANSFORMACIÓN DIGITAL EN <br class="hidden sm:block" />
+            <span class="border-b-4 border-[#26CCCA] inline-block">EMPRESAS PROFESIONALES</span>
+          </h2>
+          <p class="font-poppins text-base sm:text-lg text-[#52525B] leading-relaxed">
+            Empresas que implementan ecosistemas digitales completos logran un pipeline comercial organizado, proyectos con visibilidad real y una diferenciación clara que permite cobrar por el valor demostrado.
+          </p>
+        </div>
+
+        <!-- A. COMPARATIVA ESTRATÉGICA (Sobria, limpia, sin cuadros rojos genéricos) -->
+        <div id="cambio" class="mb-20 scroll-mt-24">
+          <div class="max-w-2xl mb-8">
+            <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#0E8A88] block mb-2">
+              COMPARATIVA DE MODELOS
+            </span>
+            <h3 class="font-bebas text-3xl sm:text-5xl text-[#030303] tracking-tight uppercase leading-none">
+              Operación Tradicional vs <span class="border-b-4 border-[#26CCCA] inline-block">Ecosistema Boosted</span>
+            </h3>
+          </div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+            
+            <!-- Columna Izquierda: Modelo Tradicional (El Desafío) -->
+            <div class="rounded-3xl bg-[#F8F9FA] border border-zinc-200 p-8 sm:p-10 flex flex-col justify-between">
+              <div>
+                <div class="flex items-center justify-between pb-6 mb-6 border-b border-black/5">
+                  <div>
+                    <span class="font-outfit text-xs font-semibold uppercase tracking-wider text-zinc-400 block mb-1">
+                      El Desafío Actual
+                    </span>
+                    <h4 class="font-outfit text-2xl font-bold text-zinc-800">
+                      Operación Tradicional de Firmas
+                    </h4>
+                  </div>
+                  <span class="text-xs font-outfit font-semibold px-3 py-1 rounded-full bg-zinc-200/80 text-zinc-600">
+                    Silos Operativos
+                  </span>
+                </div>
+
+                <div class="space-y-6">
+                  {comparisonTradicional.map((item) => (
+                    <div class="flex items-start gap-4">
+                      <div class="w-7 h-7 rounded-full bg-zinc-200/70 text-zinc-500 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                        —
+                      </div>
+                      <div>
+                        <strong class="font-outfit text-base font-semibold text-zinc-900 block mb-1">
+                          {item.title}
+                        </strong>
+                        <p class="font-poppins text-xs sm:text-sm text-zinc-500 leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div class="pt-6 mt-8 border-t border-black/5 flex items-center justify-between text-xs font-poppins text-zinc-400">
+                <span>Dependencia de referencias casuales</span>
+                <span class="font-semibold text-zinc-600">Fugas de horas y propuestas sin cerrar</span>
+              </div>
+            </div>
+
+            <!-- Columna Derecha: Con Ecosistema Boosted (La Solución) -->
+            <div class="rounded-3xl bg-[#050505] text-white border border-[#26CCCA]/30 p-8 sm:p-10 flex flex-col justify-between relative overflow-hidden shadow-2xl">
+              <!-- Glow ambiental sutil -->
+              <div class="absolute -top-20 -right-20 w-72 h-72 bg-[#26CCCA]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+              <div class="relative z-10">
+                <div class="flex items-center justify-between pb-6 mb-6 border-b border-white/10">
+                  <div>
+                    <span class="font-outfit text-xs font-bold uppercase tracking-wider text-[#26CCCA] block mb-1">
+                      Solución Boosted
+                    </span>
+                    <h4 class="font-outfit text-2xl font-bold text-white">
+                      Con Ecosistema Coherente e Integrado
+                    </h4>
+                  </div>
+                  <span class="text-xs font-outfit font-bold px-3 py-1 rounded-full bg-[#26CCCA]/20 text-[#26CCCA] border border-[#26CCCA]/40">
+                    Escala Predecible
+                  </span>
+                </div>
+
+                <div class="space-y-6">
+                  {comparisonBoosted.map((item) => (
+                    <div class="flex items-start gap-4">
+                      <div class="w-7 h-7 rounded-full bg-[#26CCCA]/20 text-[#26CCCA] border border-[#26CCCA]/40 flex items-center justify-center shrink-0 mt-0.5 font-bold text-xs">
+                        ✓
+                      </div>
+                      <div>
+                        <strong class="font-outfit text-base font-semibold text-white block mb-1">
+                          {item.title}
+                        </strong>
+                        <p class="font-poppins text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                          {item.desc}
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div class="relative z-10 pt-6 mt-8 border-t border-white/10 flex items-center justify-between text-xs font-poppins text-zinc-400">
+                <span class="text-[#26CCCA] font-semibold">Trazabilidad completa</span>
+                <span class="font-semibold text-white">Autoridad y honorarios por valor</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- B. LO QUE HACEMOS (Nuestros 3 Pilares con Luxury Cards) -->
+        <div class="mb-20">
+          <div class="flex items-center gap-3 mb-8">
+            <span class="w-2.5 h-2.5 rounded-full bg-[#26CCCA]"></span>
+            <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#0E8A88]">
+              Lo Que Hacemos · Nuestra Metodología
+            </span>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+            {strategicPillars.map((pillar) => (
+              <div class="luxury-card group flex flex-col justify-between p-8 sm:p-10 rounded-3xl bg-[#F8F9FA] border border-zinc-200 hover:border-[#26CCCA] hover:-translate-y-1 transition-all duration-300 relative min-h-[380px] shadow-sm hover:shadow-xl">
+                <div>
+                  <!-- Top Row: Icono + Número Gigante -->
+                  <div class="flex items-center justify-between mb-6 pb-4 border-b border-black/10">
+                    <div class="w-12 h-12 rounded-2xl bg-white border border-zinc-200 flex items-center justify-center group-hover:bg-[#26CCCA]/10 transition-colors" set:html={pillar.icon}>
+                    </div>
+                    <span class="font-bebas text-4xl text-zinc-300 group-hover:text-[#26CCCA] transition-colors leading-none">
+                      {pillar.number}
+                    </span>
+                  </div>
+
+                  <!-- Tag Editorial Limpio -->
+                  <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#0E8A88] block mb-3">
+                    {pillar.tag}
+                  </span>
+
+                  <!-- Título -->
+                  <h3 class="font-outfit text-2xl font-bold text-[#030303] mb-4 leading-tight">
+                    {pillar.title}
+                  </h3>
+
+                  <!-- Descripción -->
+                  <p class="font-poppins text-sm text-[#52525B] leading-relaxed mb-6">
+                    {pillar.description}
+                  </p>
+                </div>
+
+                <!-- Puntos Clave con checkmark limpio -->
+                <div class="pt-4 border-t border-black/5 space-y-2 font-poppins text-xs text-zinc-600">
+                  {pillar.points.map((point) => (
+                    <div class="flex items-center gap-2">
+                      <span class="text-[#26CCCA] font-bold text-xs shrink-0">✓</span>
+                      <span>{point}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        <!-- C. QUÉ CAMBIA CON SOLUCIONES DIGITALES SERVICIOS PROFESIONALES -->
+        <div class="p-8 sm:p-12 lg:p-14 rounded-3xl bg-[#030303] text-white border border-white/10 relative overflow-hidden shadow-2xl">
+          <div class="absolute -right-20 -top-20 w-80 h-80 bg-[#26CCCA]/10 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="max-w-2xl mb-12 relative z-10">
+            <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#26CCCA] block mb-2">
+              RESULTADOS COMPROBADOS
+            </span>
+            <h3 class="font-bebas text-3xl sm:text-5xl text-white tracking-tight uppercase leading-none">
+              Qué Cambia con Soluciones Digitales para <span class="text-[#26CCCA]">Servicios Profesionales</span>
+            </h3>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+            {professionalTransformations.map((trans) => (
+              <div class="flex flex-col justify-between border-t border-white/15 pt-6 group">
+                <div>
+                  <div class="flex items-baseline justify-between mb-3">
+                    <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#26CCCA]">
+                      {trans.tag}
+                    </span>
+                    <span class="font-bebas text-3xl sm:text-4xl text-white group-hover:text-[#26CCCA] transition-colors leading-none">
+                      {trans.metric}
+                    </span>
+                  </div>
+                  <h4 class="font-outfit text-xl font-bold text-white mb-3 leading-snug">
+                    {trans.title}
+                  </h4>
+                  <p class="font-poppins text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                    {trans.desc}
+                  </p>
+                </div>
+                <div class="mt-4 pt-3 border-t border-white/5">
+                  <span class="font-outfit text-[11px] font-semibold text-zinc-400 uppercase tracking-wider">
+                    Impacto: {trans.metricLabel}
+                  </span>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 3. SUBSECTORES: SOLUCIONES ESPECÍFICAS POR TIPO DE EMPRESA (3D Circular Split Roll Interactivo) -->
+    <CircularSplitRoll 
+      items={subsectors} 
+      kicker="SUBSECTORES · SOLUCIONES ESPECÍFICAS POR TIPO DE EMPRESA"
+      subtitle="Ecosistemas adaptados a los modelos de facturación, entrega de proyectos y relación con clientes de firmas especializadas:"
+      footerNote="Ecosistemas digitales sincronizados para firmas profesionales, consultoras y estudios"
+      badgeText="6 Especialidades Adaptadas"
+    />
+
+    <!-- 4. CARTELERÍA DIGITAL PROFESIONAL (Negro Obsidiana #030303) -->
+    <section id="digital-signage" class="py-20 sm:py-28 bg-[#030303] text-white border-y border-white/10 relative overflow-hidden">
+      <!-- Glow ambiental suave -->
+      <div class="absolute -top-32 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#26CCCA]/10 rounded-full blur-[180px] pointer-events-none"></div>
+      <div class="absolute bottom-0 right-10 w-80 h-80 bg-[#26CCCA]/5 rounded-full blur-[140px] pointer-events-none"></div>
+
+      <div class="max-w-[1400px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+          
+          <!-- Columna Izquierda: Información de Digital Signage (7 Cols) -->
+          <div class="lg:col-span-7 flex flex-col justify-center">
+            
+            <!-- Tag Editorial Limpio -->
+            <span class="font-outfit text-xs sm:text-sm font-bold uppercase tracking-widest text-[#26CCCA] block mb-3">
+              CARTELERÍA DIGITAL PROFESIONAL
+            </span>
+
+            <h2 class="font-bebas text-4xl sm:text-5xl lg:text-6xl text-white tracking-tight uppercase leading-[0.95] mb-4">
+              AUTORIDAD Y EXPERTISE EN CADA <br class="hidden sm:block" />
+              <span class="text-[#26CCCA]">ESPACIO DE TU FIRMA</span>
+            </h2>
+
+            <p class="font-poppins text-sm sm:text-base lg:text-lg text-zinc-300 leading-relaxed mb-6 max-w-xl">
+              Implementamos pantallas inteligentes en salas de reuniones y oficinas que proyectan una imagen de vanguardia. Exhibe portafolios de proyectos y casos de éxito para construir confianza antes de cada interacción.
+            </p>
+
+            <!-- 3 Beneficios Clave con ✓ -->
+            <div class="space-y-3.5 mb-8 font-poppins text-xs sm:text-sm text-zinc-300">
+              <div class="flex items-start gap-3">
+                <span class="text-[#26CCCA] font-bold text-base shrink-0">✓</span>
+                <span><strong>Recepción y Salas de Directorio de Alto Impacto:</strong> proyecta credenciales corporativas, casos de estudio y reconocimientos mientras tus clientes esperan su reunión.</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-[#26CCCA] font-bold text-base shrink-0">✓</span>
+                <span><strong>Portafolios de Proyectos y Métricas en Tiempo Real:</strong> demuestra solidez técnica y antecedentes de éxito con presentaciones dinámicas interactuables.</span>
+              </div>
+              <div class="flex items-start gap-3">
+                <span class="text-[#26CCCA] font-bold text-base shrink-0">✓</span>
+                <span><strong>Bienvenida Personalizada para Visitas Clave:</strong> actualiza de manera remota los mensajes de recepción para mandantes estratégicos desde una consola en la nube.</span>
+              </div>
+            </div>
+
+            <!-- CTA Button -->
+            <div>
+              <a 
+                href="#contacto" 
+                class="btn-primary text-xs uppercase tracking-wider py-4 px-8 inline-flex items-center gap-2.5 border border-white/20 shadow-lg text-center cursor-pointer"
+              >
+                <span>Transforma tu comunicación visual</span>
+                <svg class="w-4 h-4 text-[#26CCCA]" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                </svg>
+              </a>
+            </div>
+
+          </div>
+
+          <!-- Columna Derecha: Mockup Visual de Pantalla Digital en Sala de Directorio (5 Cols) -->
+          <div class="lg:col-span-5 flex items-center justify-center">
+            <div class="relative w-full aspect-[4/3] rounded-3xl overflow-hidden border border-white/15 bg-white/5 shadow-2xl group">
+              <img 
+                src="/mockup/industry_servicios_1786829835822.jpg" 
+                alt="Pantallas Inteligentes y Cartelería Digital en Sala de Directorio Corporativa" 
+                class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                loading="lazy"
+              />
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. BENEFICIOS DE TRABAJAR CON BOOSTED (Blanco Puro #FFFFFF con HowItWorks) -->
+    <section id="por-que-boosted" class="py-24 sm:py-32 bg-[#FFFFFF] text-[#030303] border-t border-black/[0.06] relative">
+      <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+        
+        <!-- Bloque How-It-Works con Línea de Conexión Continua y Estilos Boosted -->
+        <HowItWorks 
+          title="BENEFICIOS DE TRABAJAR"
+          titleAccent="CON BOOSTED"
+          subtitle="Elegir el partner correcto hace la diferencia. Diseñamos ecosistemas que unifican pipeline comercial, gestión de proyectos y presencia de autoridad para firmas de servicios profesionales:"
+          steps={boostedReasons}
+          layout="columns"
+          className="mb-16"
+        />
+
+        <!-- Banner de Conversión Inferior: Diseño Integrado con Charlie en Directorio Corporativo -->
+        <div class="rounded-3xl bg-[#070708] text-white border border-white/10 relative overflow-hidden shadow-2xl group">
+          <!-- Glows ambientales sutiles -->
+          <div class="absolute -right-20 -top-20 w-96 h-96 bg-[#26CCCA]/10 rounded-full blur-3xl pointer-events-none"></div>
+          <div class="absolute -left-20 -bottom-20 w-96 h-96 bg-[#26CCCA]/5 rounded-full blur-3xl pointer-events-none"></div>
+
+          <div class="grid grid-cols-1 lg:grid-cols-12 items-stretch relative z-10">
+            <!-- Columna Izquierda: Charlie Managing Director en Reunión Corporativa -->
+            <div class="lg:col-span-5 relative w-full min-h-[340px] sm:min-h-[400px] lg:min-h-[460px] overflow-hidden">
+              <!-- Glow ambiental sutil que aporta luz al entorno de Charlie -->
+              <div class="absolute -top-12 -left-12 w-80 h-80 bg-[#26CCCA]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+              <img 
+                src="/mockup/charlie_servicios_prof.jpg" 
+                alt="Charlie™ - Asistente y Consultor Estratégico en Reunión de Directorio Corporativo" 
+                class="w-full h-full object-cover object-center brightness-[1.05] contrast-[1.02] transition-transform duration-700 group-hover:scale-105"
+                loading="lazy"
+              />
+
+              <!-- Desvanecido suave únicamente en el borde derecho final -->
+              <div class="absolute inset-y-0 right-0 w-24 sm:w-36 bg-gradient-to-r from-transparent to-[#070708] pointer-events-none hidden lg:block"></div>
+              <div class="absolute inset-x-0 bottom-0 h-16 sm:h-24 bg-gradient-to-t from-[#070708] to-transparent pointer-events-none lg:hidden"></div>
+            </div>
+
+            <!-- Columna Derecha: Contenido Breve y CTA de Conversión -->
+            <div class="lg:col-span-7 p-8 sm:p-12 lg:p-14 flex flex-col justify-center">
+              <span class="font-outfit text-xs font-bold uppercase tracking-widest text-[#26CCCA] block mb-3">
+                COMIENZA AHORA
+              </span>
+
+              <h3 class="font-outfit text-2xl sm:text-3xl lg:text-4xl font-bold text-white leading-tight mb-4 tracking-tight">
+                Lidera la Evolución Tecnológica de tu Firma Profesional
+              </h3>
+
+              <p class="font-poppins text-sm sm:text-base text-zinc-300 leading-relaxed mb-8 max-w-xl">
+                Elimina las fugas comerciales y la falta de trazabilidad en tus proyectos. En Boosted estamos listos para estructurar el ecosistema digital que posicionará a tu firma en el segmento más rentable.
+              </p>
+
+              <div>
+                <a 
+                  href={calendarUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="inline-flex items-center justify-center gap-2.5 px-8 py-4 rounded-xl bg-white text-[#030303] font-outfit font-bold text-xs uppercase tracking-wider hover:bg-[#26CCCA] hover:text-[#030303] transition-all duration-300 shadow-xl hover:shadow-[0_0_30px_rgba(38,204,202,0.4)] group cursor-pointer"
+                >
+                  <span>AGENDAR CONSULTORÍA GRATUITA</span>
+                  <svg class="w-4 h-4 text-[#030303] group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- 6. CONTACTO REUTILIZADO (Componente Oficial Contact.astro) -->
+    <Contact />
+
+  </main>
+
+  <Footer />
+</Layout>

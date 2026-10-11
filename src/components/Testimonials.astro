@@ -1,0 +1,350 @@
+---
+// Testimonials.astro - Slider Editorial de Testimonios (Tipográfico Limpio, Sin Imágenes de Avatar)
+import { testimonials } from '../data/testimonials';
+---
+
+<section id="testimonios" class="py-24 bg-[#FFFFFF] border-t border-black/[0.06] relative overflow-hidden">
+  <!-- DECORACIÓN MÓVIL: ONDA FLUIDA ENVOLVENTE SUPERIOR DERECHA (DISEÑO EXACTO ADAPTADO) -->
+  <div class="block sm:hidden absolute top-0 right-0 w-60 h-36 pointer-events-none select-none overflow-hidden z-0">
+    <svg viewBox="0 0 240 160" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full">
+      <!-- Línea exterior sutil paralela -->
+      <path 
+        class="wave-anim-outer"
+        d="M60 0 C60 50, 65 95, 95 122 C125 148, 175 142, 240 148" 
+        stroke="#030303" 
+        stroke-opacity="0.22" 
+        stroke-width="1.5" 
+      />
+      <!-- Línea cian de acento paralela -->
+      <path 
+        class="wave-anim-cyan"
+        d="M85 0 C85 45, 90 85, 115 110 C140 135, 185 130, 240 136" 
+        stroke="#26CCCA" 
+        stroke-opacity="0.85" 
+        stroke-width="2" 
+      />
+      <!-- Forma negra sólida con curva envolvente y caída fluida -->
+      <path 
+        class="wave-anim-black"
+        style="filter: drop-shadow(-4px 4px 14px rgba(0, 0, 0, 0.12));"
+        d="M110 0 C110 40, 115 75, 135 98 C155 120, 190 118, 240 124 L240 0 Z" 
+        fill="#030303" 
+      />
+    </svg>
+  </div>
+
+  <!-- DECORACIÓN DESKTOP/TABLET: ONDA LATERAL COMPLETA (SM EN ADELANTE) -->
+  <div class="hidden sm:flex absolute right-0 top-0 bottom-0 w-[180px] md:w-[260px] lg:w-[340px] xl:w-[380px] pointer-events-none select-none overflow-hidden z-0 items-center justify-end">
+    <svg viewBox="0 0 500 800" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-full preserve-3d" preserveAspectRatio="none">
+      <!-- Línea Guía Externa 2 (Negro Sutil / Trazo Fino) -->
+      <path 
+        class="wave-anim-outer"
+        d="M330 0 C230 170, 280 330, 190 480 C110 610, 155 710, 220 800" 
+        stroke="#030303" 
+        stroke-opacity="0.22" 
+        stroke-width="1.5" 
+      />
+
+      <!-- Línea Guía Externa 1 (Cian Eléctrico) -->
+      <path 
+        class="wave-anim-cyan"
+        d="M365 0 C265 170, 315 330, 225 480 C145 610, 190 710, 255 800" 
+        stroke="#26CCCA" 
+        stroke-opacity="0.8" 
+        stroke-width="1.75" 
+      />
+
+      <!-- Onda Principal en Negro Sólido con Relieve -->
+      <path 
+        class="wave-anim-black"
+        style="filter: drop-shadow(-8px 0 20px rgba(0, 0, 0, 0.07));"
+        d="M400 0 C300 170, 350 330, 260 480 C180 610, 225 710, 290 800 L500 800 L500 0 Z" 
+        fill="#030303" 
+      />
+    </svg>
+  </div>
+
+  <!-- DECORACIÓN DE LÍNEAS DE CONTORNO CURVAS (INFERIOR IZQUIERDA - COMPACTA PARA NO TOCAR LA LÍNEA) -->
+  <div class="absolute -left-3 -bottom-3 sm:-left-6 sm:-bottom-6 w-36 h-36 sm:w-52 sm:h-52 lg:w-68 lg:h-68 pointer-events-none select-none z-0">
+    <svg viewBox="0 0 300 300" fill="none" class="w-full h-full">
+      <path class="wave-anim-left-1" d="M0 60 C90 60, 160 130, 160 220 C160 260, 180 300, 240 300" stroke="#030303" stroke-width="2" stroke-opacity="0.75" />
+      <path class="wave-anim-left-2" d="M0 110 C110 110, 190 170, 200 300" stroke="#26CCCA" stroke-width="2.5" stroke-opacity="0.95" />
+      <path class="wave-anim-left-3" d="M0 160 C130 160, 220 220, 240 300" stroke="#030303" stroke-width="1.5" stroke-dasharray="6 6" stroke-opacity="0.45" />
+    </svg>
+  </div>
+
+  <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12 relative z-10">
+    <!-- Header de la Sección -->
+    <div class="max-w-3xl mb-12">
+      <h2 class="font-bebas text-4xl sm:text-6xl text-[#030303] tracking-tight uppercase leading-none">
+        LA PRUEBA ESTÁ EN <span class="border-b-4 border-[#26CCCA] inline-block">LOS RESULTADOS</span>
+      </h2>
+    </div>
+
+    <!-- Contenedor Principal del Slider Editorial -->
+    <div class="w-full max-w-5xl mx-auto py-6">
+      <div class="flex flex-col sm:flex-row items-start gap-6 sm:gap-10">
+        <!-- Número Gigante de Índice en #26CCCA -->
+        <span
+          id="testimonial-index-num"
+          class="font-bebas text-[90px] sm:text-[140px] leading-none text-[#26CCCA] select-none transition-all duration-500 shrink-0"
+        >
+          01
+        </span>
+
+        <!-- Bloque de Contenido Activo -->
+        <div class="flex-1 sm:pt-4">
+          <!-- Cita Textual -->
+          <blockquote
+            id="testimonial-quote"
+            class="text-xl sm:text-2xl lg:text-3xl font-light font-poppins leading-relaxed text-[#030303] tracking-tight transition-all duration-300 min-h-[120px]"
+          >
+            "{testimonials[0].quote}"
+          </blockquote>
+
+          <!-- Info del Autor Tipográfica Limpia (Sin Imágenes) -->
+          <div
+            id="testimonial-author-block"
+            class="mt-8 transition-all duration-300"
+          >
+            <p id="testimonial-name" class="font-outfit font-bold text-base sm:text-lg text-[#030303]">
+              {testimonials[0].name}
+            </p>
+            <p class="font-poppins text-xs sm:text-sm text-[#52525B] mt-0.5">
+              <span id="testimonial-role">{testimonials[0].role}</span>
+              <span class="mx-2 text-black/20">/</span>
+              <span id="testimonial-company" class="font-semibold text-[#030303]">
+                {testimonials[0].company}
+              </span>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Barra de Navegación: Líneas Horizontales + Contador + Chevrons -->
+      <div class="mt-12 pt-6 border-t border-black/5 flex items-center justify-between gap-4 flex-wrap sm:flex-nowrap relative z-10">
+        <div class="flex items-center gap-4 sm:gap-6 flex-wrap">
+          <!-- Líneas Selectoras Horizontales con Color #26CCCA en Activo -->
+          <div class="flex items-center gap-1.5 sm:gap-2">
+            {testimonials.map((_, i) => (
+              <button 
+                type="button" 
+                data-t-index={i} 
+                aria-label={`Ver testimonio ${i + 1}`}
+                class="testimonial-line-btn group relative py-2 sm:py-3 cursor-pointer"
+              >
+                <span
+                  class={`testimonial-line-bar block h-[3px] rounded-full transition-all duration-500 ease-out ${
+                    i === 0
+                      ? 'w-8 sm:w-12 bg-[#26CCCA]'
+                      : 'w-3.5 sm:w-5 bg-black/15 group-hover:w-6 sm:group-hover:w-8 group-hover:bg-[#26CCCA]/60'
+                  }`}
+                />
+              </button>
+            ))}
+          </div>
+
+          <!-- Contador Digital 01 / 07 -->
+          <span id="testimonial-counter" class="font-outfit text-xs text-[#030303] tracking-widest uppercase font-bold shrink-0">
+            <span class="text-[#0E8A88]">01</span> / {String(testimonials.length).padStart(2, "0")}
+          </span>
+        </div>
+
+        <!-- Botones Chevrons Anterior / Siguiente -->
+        <div class="flex items-center gap-2 shrink-0">
+          <button
+            id="t-prev-btn"
+            type="button"
+            aria-label="Testimonio anterior"
+            class="p-2.5 sm:p-3 rounded-full text-black/50 hover:text-black hover:bg-black/5 border border-black/10 transition-all duration-300 cursor-pointer bg-white/80 backdrop-blur-sm"
+          >
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+            </svg>
+          </button>
+          <button
+            id="t-next-btn"
+            type="button"
+            aria-label="Testimonio siguiente"
+            class="p-2.5 sm:p-3 rounded-full text-black/50 hover:text-black hover:bg-black/5 border border-black/10 transition-all duration-300 cursor-pointer bg-white/80 backdrop-blur-sm"
+          >
+            <svg class="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script define:vars={{ testimonials }}>
+  let activeIndex = 0;
+  const total = testimonials.length;
+  let isTransitioning = false;
+
+  const numEl = document.getElementById('testimonial-index-num');
+  const quoteEl = document.getElementById('testimonial-quote');
+  const authorBlock = document.getElementById('testimonial-author-block');
+  const nameEl = document.getElementById('testimonial-name');
+  const roleEl = document.getElementById('testimonial-role');
+  const companyEl = document.getElementById('testimonial-company');
+  const counterEl = document.getElementById('testimonial-counter');
+  const lineBars = document.querySelectorAll('.testimonial-line-bar');
+
+  function changeTestimonial(newIndex) {
+    if (newIndex === activeIndex || isTransitioning) return;
+    isTransitioning = true;
+
+    // Fade out animation
+    if (quoteEl) {
+      quoteEl.classList.add('opacity-0', 'translate-x-4');
+      quoteEl.classList.remove('opacity-100', 'translate-x-0');
+    }
+    if (authorBlock) {
+      authorBlock.classList.add('opacity-0');
+      authorBlock.classList.remove('opacity-100');
+    }
+
+    setTimeout(() => {
+      activeIndex = newIndex;
+      const t = testimonials[activeIndex];
+
+      // Update text & content
+      if (numEl) numEl.textContent = String(activeIndex + 1).padStart(2, '0');
+      if (quoteEl) quoteEl.textContent = `"${t.quote}"`;
+      if (nameEl) nameEl.textContent = t.name;
+      if (roleEl) roleEl.textContent = t.role;
+      if (companyEl) companyEl.textContent = t.company;
+      if (counterEl) {
+        counterEl.innerHTML = `<span class="text-[#0E8A88]">${String(activeIndex + 1).padStart(2, '0')}</span> / ${String(total).padStart(2, '0')}`;
+      }
+
+      // Update line selectors with #26CCCA for active
+      lineBars.forEach((bar, i) => {
+        if (i === activeIndex) {
+          bar.className = 'testimonial-line-bar block h-[3px] rounded-full transition-all duration-500 ease-out w-12 bg-[#26CCCA]';
+        } else {
+          bar.className = 'testimonial-line-bar block h-[3px] rounded-full transition-all duration-500 ease-out w-5 bg-black/15 group-hover:w-8 group-hover:bg-[#26CCCA]/60';
+        }
+      });
+
+      // Fade in animation
+      setTimeout(() => {
+        if (quoteEl) {
+          quoteEl.classList.remove('opacity-0', 'translate-x-4');
+          quoteEl.classList.add('opacity-100', 'translate-x-0');
+        }
+        if (authorBlock) {
+          authorBlock.classList.remove('opacity-0');
+          authorBlock.classList.add('opacity-100');
+        }
+        isTransitioning = false;
+      }, 50);
+    }, 250);
+  }
+
+  // Click on line selector
+  const lineButtons = document.querySelectorAll('.testimonial-line-btn');
+  lineButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const idx = parseInt(btn.getAttribute('data-t-index') || '0', 10);
+      changeTestimonial(idx);
+    });
+  });
+
+  // Prev / Next button listeners
+  const prevBtn = document.getElementById('t-prev-btn');
+  const nextBtn = document.getElementById('t-next-btn');
+
+  if (prevBtn) {
+    prevBtn.addEventListener('click', () => {
+      const newIndex = activeIndex === 0 ? total - 1 : activeIndex - 1;
+      changeTestimonial(newIndex);
+    });
+  }
+
+  if (nextBtn) {
+    nextBtn.addEventListener('click', () => {
+      const newIndex = activeIndex === total - 1 ? 0 : activeIndex + 1;
+      changeTestimonial(newIndex);
+    });
+  }
+</script>
+
+<style>
+  /* PULSO PALPITANTE CALMADO, SUAVE Y ELEGANTE */
+  @keyframes pulseBlackWave {
+    0%, 100% {
+      transform: translateX(0) scaleX(1);
+    }
+    50% {
+      transform: translateX(-3px) scaleX(1.015);
+    }
+  }
+
+  @keyframes pulseCyanWave {
+    0%, 100% {
+      transform: translateX(0) scaleX(1);
+      opacity: 0.7;
+    }
+    50% {
+      transform: translateX(-7px) scaleX(1.035);
+      opacity: 0.95;
+    }
+  }
+
+  @keyframes pulseOuterWave {
+    0%, 100% {
+      transform: translateX(0) scaleX(1);
+      opacity: 0.2;
+    }
+    50% {
+      transform: translateX(-12px) scaleX(1.055);
+      opacity: 0.35;
+    }
+  }
+
+  @keyframes pulseLeftWave {
+    0%, 100% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.025) translate(2px, -2px);
+    }
+  }
+
+  /* Ritmo relajado de 5.2s en ciclo ease-in-out para máxima serenidad */
+  .wave-anim-black {
+    transform-origin: right center;
+    animation: pulseBlackWave 5.2s ease-in-out infinite;
+  }
+
+  .wave-anim-cyan {
+    transform-origin: right center;
+    animation: pulseCyanWave 5.2s ease-in-out infinite;
+  }
+
+  .wave-anim-outer {
+    transform-origin: right center;
+    animation: pulseOuterWave 5.2s ease-in-out infinite;
+  }
+
+  .wave-anim-left-1,
+  .wave-anim-left-2,
+  .wave-anim-left-3 {
+    transform-origin: bottom left;
+    animation: pulseLeftWave 5.2s ease-in-out infinite;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .wave-anim-outer,
+    .wave-anim-cyan,
+    .wave-anim-black,
+    .wave-anim-left-1,
+    .wave-anim-left-2,
+    .wave-anim-left-3 {
+      animation: none !important;
+    }
+  }
+</style>

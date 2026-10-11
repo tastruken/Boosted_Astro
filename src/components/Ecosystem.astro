@@ -1,0 +1,112 @@
+---
+// Ecosystem.astro - Ecosistema Digital (Diseño Split de Alta Gama en Blanco: Columna Estratégica + Grilla 2x3 con Micro-Elevación y Acabado Pulido)
+import { ecosystemServices } from '../data/ecosystem';
+
+const serviceIcons = [
+  // 01 Charlie IA (Brain/Sparkles)
+  `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>`,
+  // 02 Automatización (Flow/Repeat)
+  `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>`,
+  // 03 Desarrollo a Medida (Code < >)
+  `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" /></svg>`,
+  // 04 Sitios Web (UX / Monitor)
+  `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>`,
+  // 05 Branding y Redes (Pen / Palette)
+  `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" /></svg>`,
+  // 06 Transformación Digital (Shield / Scale)
+  `<svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>`
+];
+---
+
+<section id="ecosistema" class="py-28 bg-[#FFFFFF] relative overflow-hidden">
+  <div class="max-w-[1536px] mx-auto px-4 sm:px-8 lg:px-12">
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-start">
+      <!-- Columna Izquierda: Información & CTA -->
+      <div class="lg:col-span-4 lg:sticky lg:top-32 flex flex-col justify-between">
+        <div>
+          <h2 class="font-bebas text-5xl sm:text-7xl text-[#030303] tracking-tight uppercase leading-[0.92] mb-6">
+            TODO LO QUE NECESITAS PARA <span class="border-b-4 border-[#26CCCA] inline-block">CRECER CONECTADO</span>
+          </h2>
+
+          <p class="font-poppins text-sm sm:text-base text-[#52525B] leading-relaxed mb-8">
+            Seis pilares estratégicos interconectados que potencian tu adquisición, automatizan tu operación y multiplican tus resultados.
+          </p>
+
+          <!-- Beneficios Clave Directos (Sin cajas pesadas) -->
+          <div class="space-y-3.5 mb-10 font-poppins text-xs sm:text-sm text-[#030303]">
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 rounded-full bg-[#26CCCA]"></span>
+              <span>Integración fluida con tu CRM y canales actuales</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 rounded-full bg-[#26CCCA]"></span>
+              <span>Flujos autónomos con inteligencia artificial</span>
+            </div>
+            <div class="flex items-center gap-3">
+              <span class="w-2 h-2 rounded-full bg-[#26CCCA]"></span>
+              <span>Medición clara de impacto y ROI en 60 días</span>
+            </div>
+          </div>
+
+          <a 
+            href="#contacto"
+            class="btn-primary inline-flex text-xs uppercase tracking-wider py-4 px-8 shadow-md"
+          >
+            <span>Agenda un diagnóstico</span>
+            <svg class="w-4 h-4 shrink-0 transition-colors duration-200" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+              <polyline points="12 5 19 12 12 19"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+
+      <!-- Columna Derecha: Grilla 2x3 de Tarjetas Pulidas de Alta Gama -->
+      <div class="lg:col-span-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-5 sm:gap-6">
+          {ecosystemServices.map((service, index) => (
+            <a 
+              href={service.href} 
+              target="_blank"
+              class="group flex flex-col justify-between p-7 sm:p-8 rounded-3xl bg-white border border-zinc-200 hover:border-[#26CCCA] hover:-translate-y-1 transition-all duration-300 relative min-h-[235px] overflow-hidden"
+            >
+              <!-- Fila Superior: Icono Negro + Número e Indicador de Enlace -->
+              <div class="flex items-center justify-between mb-6">
+                <!-- Icono Minimalista en Negro -->
+                <div class="w-12 h-12 rounded-2xl bg-[#030303] text-white flex items-center justify-center group-hover:bg-[#26CCCA] group-hover:text-[#030303] transition-all duration-300 shadow-sm">
+                  <Fragment set:html={serviceIcons[index]} />
+                </div>
+
+                <!-- Número de Pilar y Botón Flecha -->
+                <div class="flex items-center gap-2.5">
+                  <span class="font-bebas text-2xl text-zinc-300 group-hover:text-[#0E8A88] transition-colors duration-300">
+                    {service.number}
+                  </span>
+                  <div class="w-8 h-8 rounded-full bg-zinc-100 flex items-center justify-center text-zinc-400 group-hover:bg-[#030303] group-hover:text-[#26CCCA] transition-all duration-300 shrink-0">
+                    <svg class="w-4 h-4 shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <line x1="5" y1="12" x2="19" y2="12"></line>
+                      <polyline points="12 5 19 12 12 19"></polyline>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Contenido de la Tarjeta -->
+              <div class="mt-auto">
+                <h3 class="font-outfit text-xl sm:text-2xl font-bold text-[#030303] mb-2 leading-tight group-hover:text-[#030303] transition-colors">
+                  {service.title}
+                </h3>
+                <p class="font-poppins text-xs sm:text-sm text-[#52525B] leading-relaxed">
+                  {service.highlight}
+                </p>
+              </div>
+
+              <!-- Línea de Acento Inferior en Hover -->
+              <div class="absolute bottom-0 left-0 right-0 h-1 bg-[#26CCCA] scale-x-0 group-hover:scale-x-100 transition-transform duration-400 origin-left"></div>
+            </a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
